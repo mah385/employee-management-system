@@ -7,7 +7,9 @@ import PropTypes from "prop-types";
 
 function MyFormSelect(props) {
   return (
-    <div className={`${stylesMyForm.inputContainer} input-group input-group-sm m-1`}>
+    <div
+      className={`${stylesMyForm.inputContainer} input-group input-group-sm m-1`}
+    >
       <div className={`${stylesMyForm.inputLabel} input-group-text`}>
         {props.label}
       </div>

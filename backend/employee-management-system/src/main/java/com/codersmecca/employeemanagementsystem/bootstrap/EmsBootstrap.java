@@ -24,7 +24,7 @@ public class EmsBootstrap {
 
     private void initEmsUser() {
         if (this.emsUserRepository.count() == 0) {
-            for (int i = 0; i < 100; i++) {
+            for (int i = 0; i < 1000; i++) {
                 this.emsUserRepository.save(
                         EmsUserEntity.builder()
                                 .emsUserFirstName("some_first_name")
