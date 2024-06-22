@@ -1,0 +1,12 @@
+.inputContainer {
+    width: 320px;
+}
+
+.inputLabel {
+    width: 120px;
+    border: 2px solid teal;
+}
+
+.inputField {
+    border: 2px solid teal;
+}

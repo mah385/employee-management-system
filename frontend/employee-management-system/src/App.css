@@ -1,0 +1,32 @@
+.grid-container {
+    display: grid;
+
+    grid-template-areas:
+    "header header header header header header header header"
+    "nav content content content content content content content";
+
+    grid-template-rows: 8vh 92vh;
+    grid-template-columns: repeat(8, 12.5%);
+    /*grid-gap: 10px;*/
+    height: 100vh;
+}
+
+.app-header {
+    grid-area: header;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    text-align: center;
+}
+
+.app-navbar {
+    grid-area: nav;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+.app-main {
+    grid-area: content;
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+    overflow: auto;
+}
