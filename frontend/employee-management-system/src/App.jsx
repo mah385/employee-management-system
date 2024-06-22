@@ -4,7 +4,11 @@ import { ToastContainer } from "react-toastify";
 /*-------------------------------------------------------------------*/
 import { NavLink, Outlet } from "react-router-dom";
 /*-------------------------------------------------------------------*/
-import { ADD_NEW_EMS_USER, DISPLAY_EMS_USER } from "./routes/EmsUrlConstant.js";
+import {
+  ADD_NEW_EMS_USER,
+  BULK_IMPORT_EMS_USER,
+  DISPLAY_EMS_USER,
+} from "./routes/EmsUrlConstant.js";
 
 /*-------------------------------------------------------------------*/
 
@@ -23,6 +27,12 @@ function App() {
               to={ADD_NEW_EMS_USER}
             >
               Add New Ems User
+            </NavLink>
+            <NavLink
+              className="list-group-item list-group-item-action"
+              to={BULK_IMPORT_EMS_USER}
+            >
+              Bulk Import Ems User
             </NavLink>
             <NavLink
               className="list-group-item list-group-item-action"

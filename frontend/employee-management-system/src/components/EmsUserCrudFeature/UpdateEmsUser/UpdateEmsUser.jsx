@@ -21,7 +21,7 @@ const UpdateEmsUser = () => {
     location.state.emsUserToBeUpdated,
   );
 
-  const handleFormSubmitToUpdateEmsUser = async (e) => {
+  const onSubmitHandleFormToUpdateEmsUser = async (e) => {
     e.preventDefault();
     const responseData = await updateEmsUserUsingAxios(updatedEmsUser);
     if (responseData.statusCode === 200) {
@@ -29,21 +29,21 @@ const UpdateEmsUser = () => {
     }
   };
 
-  const handleOnChange = (e) => {
+  const onChangeHandleState = (e) => {
     setUpdatedEmsUser((prevState) => ({
       ...prevState,
       [e.target.name]: e.target.value,
     }));
   };
 
-  const handleCancelButton = () => {
+  const onClickHandleCancel = () => {
     setUpdatedEmsUser({});
     navigate(DISPLAY_EMS_USER);
   };
 
   return (
     <form
-      onSubmit={(e) => handleFormSubmitToUpdateEmsUser(e)}
+      onSubmit={(e) => onSubmitHandleFormToUpdateEmsUser(e)}
       className={`${styles.myFormContainer} h-100 d-flex flex-column justify-content-center align-items-center`}
     >
       <h3>Edit User</h3>
@@ -53,7 +53,7 @@ const UpdateEmsUser = () => {
           name="firstName"
           label="First Name"
           value={updatedEmsUser.firstName}
-          onChange={(e) => handleOnChange(e)}
+          onChange={(e) => onChangeHandleState(e)}
           required
         />
         <MyFormInput
@@ -61,14 +61,14 @@ const UpdateEmsUser = () => {
           name="lastName"
           label="Last Name"
           value={updatedEmsUser.lastName}
-          onChange={(e) => handleOnChange(e)}
+          onChange={(e) => onChangeHandleState(e)}
         />
         <MyFormSelect
           options={["MALE", "FEMALE"]}
           name="emsUserGender"
           label="Gender"
           value={updatedEmsUser.emsUserGender}
-          onChange={(e) => handleOnChange(e)}
+          onChange={(e) => onChangeHandleState(e)}
           required
         />
         <MyFormInput
@@ -83,42 +83,42 @@ const UpdateEmsUser = () => {
           name="dateOfBirth"
           label="Date Of Birth"
           value={updatedEmsUser.dateOfBirth}
-          onChange={(e) => handleOnChange(e)}
+          onChange={(e) => onChangeHandleState(e)}
         />
         <MyFormInput
           type="date"
           name="dateOfJoin"
           label="Date Of Join"
           value={updatedEmsUser.dateOfJoin}
-          onChange={(e) => handleOnChange(e)}
+          onChange={(e) => onChangeHandleState(e)}
         />
         <MyFormInput
           type="number"
           name="salary"
           label="Salary"
           value={updatedEmsUser.salary}
-          onChange={(e) => handleOnChange(e)}
+          onChange={(e) => onChangeHandleState(e)}
         />
         <MyFormInput
           type="number"
           name="hikePercentage"
           label="Hike Percentage"
           value={updatedEmsUser.hikePercentage}
-          onChange={(e) => handleOnChange(e)}
+          onChange={(e) => onChangeHandleState(e)}
         />
         <MyFormInput
           type="text"
           name="zipCode"
           label="Zip Code"
           value={updatedEmsUser.zipCode}
-          onChange={(e) => handleOnChange(e)}
+          onChange={(e) => onChangeHandleState(e)}
         />
         <MyFormInput
           type="text"
           name="mobileNumber"
           label="Mobile Number"
           value={updatedEmsUser.mobileNumber}
-          onChange={(e) => handleOnChange(e)}
+          onChange={(e) => onChangeHandleState(e)}
         />
       </div>
       <div className="d-flex gap-5 mt-4">
@@ -131,7 +131,7 @@ const UpdateEmsUser = () => {
         <button
           type="button"
           className="border border-2 border-danger btn btn-outline-danger"
-          onClick={handleCancelButton}
+          onClick={onClickHandleCancel}
         >
           Cancel
         </button>

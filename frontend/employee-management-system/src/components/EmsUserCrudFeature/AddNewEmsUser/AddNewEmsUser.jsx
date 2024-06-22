@@ -34,29 +34,29 @@ const AddNewEmsUser = () => {
 
   const [newEmsUser, setNewEmsUser] = useState(initNewEmsUser());
 
-  const handleFormSubmitToAddNewEmsUser = async (e) => {
+  const onSubmitHandleFormToAddNewEmsUser = async (e) => {
     e.preventDefault();
     const responseData = await addNewEmsUserUsingAxios(newEmsUser);
     if (responseData.statusCode === 201) {
-      handleClearButton();
+      onClickHandleClearAll();
       navigate(DISPLAY_EMS_USER);
     }
   };
 
-  const handleOnChange = (e) => {
+  const onChangeHandleState = (e) => {
     setNewEmsUser((prevState) => ({
       ...prevState,
       [e.target.name]: e.target.value,
     }));
   };
 
-  const handleClearButton = () => {
+  const onClickHandleClearAll = () => {
     setNewEmsUser(initNewEmsUser());
   };
 
   return (
     <form
-      onSubmit={(e) => handleFormSubmitToAddNewEmsUser(e)}
+      onSubmit={(e) => onSubmitHandleFormToAddNewEmsUser(e)}
       className={`${styles.myFormContainer} h-100 d-flex flex-column justify-content-center align-items-center`}
     >
       <div className="d-flex flex-column">
@@ -65,7 +65,7 @@ const AddNewEmsUser = () => {
           name="firstName"
           label="First Name"
           value={newEmsUser.firstName}
-          onChange={(e) => handleOnChange(e)}
+          onChange={(e) => onChangeHandleState(e)}
           required
         />
         <MyFormInput
@@ -73,14 +73,14 @@ const AddNewEmsUser = () => {
           name="lastName"
           label="Last Name"
           value={newEmsUser.lastName}
-          onChange={(e) => handleOnChange(e)}
+          onChange={(e) => onChangeHandleState(e)}
         />
         <MyFormSelect
           options={["MALE", "FEMALE"]}
           name="emsUserGender"
           label="Gender"
           value={newEmsUser.emsUserGender}
-          onChange={(e) => handleOnChange(e)}
+          onChange={(e) => onChangeHandleState(e)}
           required
         />
         <MyFormInput
@@ -88,49 +88,49 @@ const AddNewEmsUser = () => {
           name="email"
           label="Email"
           value={newEmsUser.email}
-          onChange={(e) => handleOnChange(e)}
+          onChange={(e) => onChangeHandleState(e)}
         />
         <MyFormInput
           type="date"
           name="dateOfBirth"
           label="Date Of Birth"
           value={newEmsUser.dateOfBirth}
-          onChange={(e) => handleOnChange(e)}
+          onChange={(e) => onChangeHandleState(e)}
         />
         <MyFormInput
           type="date"
           name="dateOfJoin"
           label="Date Of Join"
           value={newEmsUser.dateOfJoin}
-          onChange={(e) => handleOnChange(e)}
+          onChange={(e) => onChangeHandleState(e)}
         />
         <MyFormInput
           type="number"
           name="salary"
           label="Salary"
           value={newEmsUser.salary}
-          onChange={(e) => handleOnChange(e)}
+          onChange={(e) => onChangeHandleState(e)}
         />
         <MyFormInput
           type="number"
           name="hikePercentage"
           label="Hike Percentage"
           value={newEmsUser.hikePercentage}
-          onChange={(e) => handleOnChange(e)}
+          onChange={(e) => onChangeHandleState(e)}
         />
         <MyFormInput
           type="text"
           name="zipCode"
           label="Zip Code"
           value={newEmsUser.zipCode}
-          onChange={(e) => handleOnChange(e)}
+          onChange={(e) => onChangeHandleState(e)}
         />
         <MyFormInput
           type="text"
           name="mobileNumber"
           label="Mobile Number"
           value={newEmsUser.mobileNumber}
-          onChange={(e) => handleOnChange(e)}
+          onChange={(e) => onChangeHandleState(e)}
         />
       </div>
       <div className="d-flex gap-5 mt-4">
@@ -143,7 +143,7 @@ const AddNewEmsUser = () => {
         <button
           type="button"
           className="border border-2 border-danger btn btn-outline-danger"
-          onClick={handleClearButton}
+          onClick={onClickHandleClearAll}
         >
           Clear All
         </button>
