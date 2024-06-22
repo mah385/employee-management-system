@@ -2,7 +2,7 @@ body {
     font-style: normal;
     font-weight: 600;
     font-size: 14px;
-    font-family: "Urbanist", serif;
+    font-family: "Outfit", serif;
     background-image: linear-gradient(lightcyan, #e9f5f5, lightcyan);
     height: 100vh;
 }
@@ -12,4 +12,8 @@ body {
     src: url(./assets/google-fonts/Urbanist/Urbanist-VariableFont_wght.ttf);
 }
 
+@font-face {
+    font-family: "Outfit";
+    src: url(assets/google-fonts/Outfit/Outfit-VariableFont_wght.ttf);
+}
 
