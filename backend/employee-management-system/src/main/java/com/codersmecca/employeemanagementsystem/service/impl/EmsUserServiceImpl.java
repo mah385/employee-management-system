@@ -46,7 +46,6 @@ public class EmsUserServiceImpl implements EmsUserService {
                 updateEmsUserRequestBean.getFirstName(),
                 updateEmsUserRequestBean.getLastName(),
                 updateEmsUserRequestBean.getEmsUserGender(),
-                updateEmsUserRequestBean.getEmail(),
                 updateEmsUserRequestBean.getDateOfBirth(),
                 updateEmsUserRequestBean.getDateOfJoin(),
                 updateEmsUserRequestBean.getSalary(),

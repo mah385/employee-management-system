@@ -74,7 +74,7 @@ const UpdateEmsUser = () => {
           name="email"
           label="Email"
           value={updatedEmsUser.email}
-          onChange={(e) => handleOnChange(e)}
+          disabled={true}
         />
         <MyFormInput
           type="date"

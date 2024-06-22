@@ -23,15 +23,13 @@ public interface EmsUserRepository extends JpaRepository<EmsUserEntity, String> 
     @Transactional
     @Modifying
     @Query("UPDATE EmsUserEntity eue " +
-            "SET eue.emsUserFirstName=:firstName, eue.emsUserLastName=:lastName, eue.emsUserGender=:emsUserGender, eue.emsUserEmail=:email, " +
-            "eue.emsUserDateOfBirth=:dateOfBirth, eue.emsUserDateOfJoin=:dateOfJoin, eue.emsUserSalary=:salary, eue.emsUserHikePercentage=:hikePercentage, " +
-            "eue.emsUserZipCode=:zipCode, eue.emsUserMobileNumber=:mobileNumber " +
+            "SET eue.emsUserFirstName=:firstName, eue.emsUserLastName=:lastName, eue.emsUserGender=:emsUserGender, eue.emsUserDateOfBirth=:dateOfBirth, " +
+            "eue.emsUserDateOfJoin=:dateOfJoin, eue.emsUserSalary=:salary, eue.emsUserHikePercentage=:hikePercentage, eue.emsUserZipCode=:zipCode, eue.emsUserMobileNumber=:mobileNumber " +
             "WHERE eue.emsUserId=:userId ")
     void updateEmsUser(
             @Param(value = "firstName") String firstName,
             @Param(value = "lastName") String lastName,
             @Param(value = "emsUserGender") EmsUserGender emsUserGender,
-            @Param(value = "email") String email,
             @Param(value = "dateOfBirth") LocalDate dateOfBirth,
             @Param(value = "dateOfJoin") LocalDate dateOfJoin,
             @Param(value = "salary") BigDecimal salary,

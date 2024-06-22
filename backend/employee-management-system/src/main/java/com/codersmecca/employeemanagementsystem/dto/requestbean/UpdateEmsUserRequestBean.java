@@ -1,7 +1,6 @@
 package com.codersmecca.employeemanagementsystem.dto.requestbean;
 
 import com.codersmecca.employeemanagementsystem.enums.EmsUserGender;
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -26,10 +25,6 @@ public class UpdateEmsUserRequestBean {
 
     @NotNull(message = "User Gender is Required")
     private EmsUserGender emsUserGender;
-
-    @Email(message = "Email is Required")
-    @NotNull(message = "Email is Required")
-    private String email;
 
     @NotNull(message = "Date Of Birth is Required")
     private LocalDate dateOfBirth;
