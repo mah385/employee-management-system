@@ -1,6 +1,5 @@
 package com.codersmecca.employeemanagementsystem.service.impl;
 
-import com.codersmecca.employeemanagementsystem.constants.EmsResponseConstant;
 import com.codersmecca.employeemanagementsystem.dto.requestbean.AddNewEmsUserRequestBean;
 import com.codersmecca.employeemanagementsystem.dto.requestbean.UpdateEmsUserRequestBean;
 import com.codersmecca.employeemanagementsystem.dto.requestbean.mapper.BeanToEntityMapper;
@@ -10,7 +9,7 @@ import com.codersmecca.employeemanagementsystem.enums.EmsUserGender;
 import com.codersmecca.employeemanagementsystem.repository.EmsUserRepository;
 import com.codersmecca.employeemanagementsystem.service.EmsUserService;
 import com.codersmecca.employeemanagementsystem.utils.EmsResponseEntity;
-import com.codersmecca.employeemanagementsystem.utils.EmsResponseUtil;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +19,9 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
+
+import static com.codersmecca.employeemanagementsystem.constants.EmsResponseConstant.*;
+import static com.codersmecca.employeemanagementsystem.utils.EmsResponseUtil.*;
 
 @Service
 @RequiredArgsConstructor
@@ -32,15 +34,15 @@ public class EmsUserServiceImpl implements EmsUserService {
             final AddNewEmsUserRequestBean addNewEmsUserRequestBean
     ) {
         if (this.emsUserRepository.existsByEmsUserEmail(addNewEmsUserRequestBean.getEmail())) {
-            return EmsResponseUtil.sendResponse(HttpStatus.BAD_REQUEST, "User Email Already Exists.");
+            return sendResponse(HttpStatus.BAD_REQUEST, "User Email Already Exists.");
         } else {
             this.emsUserRepository.save(
                     BeanToEntityMapper.mapBeanToEntityForAddingNewEmsUserEntity.apply(addNewEmsUserRequestBean)
             );
 
-            return EmsResponseUtil.sendResponse(
+            return sendResponse(
                     HttpStatus.CREATED,
-                    EmsResponseConstant.DATA_CREATED_SUCCESSFULLY_MSG
+                    DATA_CREATED_SUCCESSFULLY_MSG
             );
         }
     }
@@ -62,18 +64,18 @@ public class EmsUserServiceImpl implements EmsUserService {
                 updateEmsUserRequestBean.getId()
         );
 
-        return EmsResponseUtil.sendResponse(
+        return sendResponse(
                 HttpStatus.OK,
-                EmsResponseConstant.DATA_UPDATED_SUCCESSFULLY_MSG
+                DATA_UPDATED_SUCCESSFULLY_MSG
         );
     }
 
     @Override
     public ResponseEntity<EmsResponseEntity> getAllEmsUser() {
-        return EmsResponseUtil.sendResponse(
+        return sendResponse(
                 EntityToBeanMapper.mapEntityToBeanForMultipleEmsUserEntity.apply(this.emsUserRepository.findAll()),
                 HttpStatus.OK,
-                EmsResponseConstant.SHOWING_RESPONSE_DATA_MSG
+                SHOWING_RESPONSE_DATA_MSG
         );
     }
 
@@ -83,9 +85,9 @@ public class EmsUserServiceImpl implements EmsUserService {
     ) {
         this.emsUserRepository.deleteById(id);
 
-        return EmsResponseUtil.sendResponse(
+        return sendResponse(
                 HttpStatus.OK,
-                EmsResponseConstant.DATA_DELETED_SUCCESSFULLY_MSG
+                DATA_DELETED_SUCCESSFULLY_MSG
         );
     }
 
@@ -102,10 +104,11 @@ public class EmsUserServiceImpl implements EmsUserService {
                                     .build()
                     );
                 });
-        return EmsResponseUtil.sendResponse(
+
+        return sendResponse(
                 getDropdownOfEmsUserGenderResponseBeanLinkedList,
                 HttpStatus.OK,
-                EmsResponseConstant.SHOWING_RESPONSE_DATA_MSG
+                SHOWING_RESPONSE_DATA_MSG
         );
     }
 
