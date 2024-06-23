@@ -1,13 +1,16 @@
 import styles from "./AddNewEmsUser.module.css";
 /*-------------------------------------------------------------------*/
-import { useState } from "react";
+import { useEffect, useState } from "react";
 /*-------------------------------------------------------------------*/
 import { useNavigate } from "react-router-dom";
 /*-------------------------------------------------------------------*/
 import MyFormInput from "../../MyForm/MyFormInput/MyFormInput.jsx";
 import MyFormSelect from "../../MyForm/MyFormSelect/MyFormSelect.jsx";
 /*-------------------------------------------------------------------*/
-import { addNewEmsUserUsingAxios } from "../../../axios/ems_user/ems-user-data.js";
+import {
+  addNewEmsUserUsingAxios,
+  getDropdownOfEmsUserGenderUsingAxios,
+} from "../../../axios/ems_user/ems-user-data.js";
 /*-------------------------------------------------------------------*/
 import { DISPLAY_EMS_USER } from "../../../routes/EmsUrlConstant.js";
 
@@ -18,7 +21,6 @@ const AddNewEmsUser = () => {
 
   const initNewEmsUser = () => {
     return {
-      id: "",
       firstName: "",
       lastName: "",
       emsUserGender: "",
@@ -33,6 +35,25 @@ const AddNewEmsUser = () => {
   };
 
   const [newEmsUser, setNewEmsUser] = useState(initNewEmsUser());
+  const [dropdownOfEmsUserGender, setDropdownOfEmsUserGender] = useState([]);
+
+  useEffect(() => {
+    let isMounted = true;
+    const getDropdownOfEmsUserGender = async () => {
+      const responseData = await getDropdownOfEmsUserGenderUsingAxios();
+      if (isMounted && responseData.payload != null) {
+        setDropdownOfEmsUserGender(responseData.payload);
+      }
+    };
+
+    getDropdownOfEmsUserGender();
+
+    return () => {
+      // Clean up on unmount
+      isMounted = false;
+      setDropdownOfEmsUserGender([]);
+    };
+  }, []);
 
   const onSubmitHandleFormToAddNewEmsUser = async (e) => {
     e.preventDefault();
@@ -76,7 +97,7 @@ const AddNewEmsUser = () => {
           onChange={(e) => onChangeHandleState(e)}
         />
         <MyFormSelect
-          options={["MALE", "FEMALE"]}
+          options={dropdownOfEmsUserGender}
           name="emsUserGender"
           label="Gender"
           value={newEmsUser.emsUserGender}

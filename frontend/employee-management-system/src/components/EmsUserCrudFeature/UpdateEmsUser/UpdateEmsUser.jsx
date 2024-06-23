@@ -1,13 +1,16 @@
 import styles from "./UpdateEmsUser.module.css";
 /*-------------------------------------------------------------------*/
-import { useState } from "react";
+import { useEffect, useState } from "react";
 /*-------------------------------------------------------------------*/
 import { useLocation, useNavigate } from "react-router-dom";
 /*-------------------------------------------------------------------*/
 import MyFormInput from "../../MyForm/MyFormInput/MyFormInput.jsx";
 import MyFormSelect from "../../MyForm/MyFormSelect/MyFormSelect.jsx";
 /*-------------------------------------------------------------------*/
-import { updateEmsUserUsingAxios } from "../../../axios/ems_user/ems-user-data.js";
+import {
+  getDropdownOfEmsUserGenderUsingAxios,
+  updateEmsUserUsingAxios,
+} from "../../../axios/ems_user/ems-user-data.js";
 /*-------------------------------------------------------------------*/
 import { DISPLAY_EMS_USER } from "../../../routes/EmsUrlConstant.js";
 
@@ -20,6 +23,25 @@ const UpdateEmsUser = () => {
   const [updatedEmsUser, setUpdatedEmsUser] = useState(
     location.state.emsUserToBeUpdated,
   );
+  const [dropdownOfEmsUserGender, setDropdownOfEmsUserGender] = useState([]);
+
+  useEffect(() => {
+    let isMounted = true;
+    const getDropdownOfEmsUserGender = async () => {
+      const responseData = await getDropdownOfEmsUserGenderUsingAxios();
+      if (isMounted && responseData.payload != null) {
+        setDropdownOfEmsUserGender(responseData.payload);
+      }
+    };
+
+    getDropdownOfEmsUserGender();
+
+    return () => {
+      // Clean up on unmount
+      isMounted = false;
+      setDropdownOfEmsUserGender([]);
+    };
+  }, []);
 
   const onSubmitHandleFormToUpdateEmsUser = async (e) => {
     e.preventDefault();
@@ -64,7 +86,7 @@ const UpdateEmsUser = () => {
           onChange={(e) => onChangeHandleState(e)}
         />
         <MyFormSelect
-          options={["MALE", "FEMALE"]}
+          options={dropdownOfEmsUserGender}
           name="emsUserGender"
           label="Gender"
           value={updatedEmsUser.emsUserGender}

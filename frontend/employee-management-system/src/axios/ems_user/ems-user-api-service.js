@@ -7,6 +7,7 @@ const ADD_NEW_EMS_USER = `${EMS_USER_API_PREFIX}/add-new-ems-user`;
 const UPDATE_EMS_USER = `${EMS_USER_API_PREFIX}/update-ems-user`;
 const GET_ALL_EMS_USER = `${EMS_USER_API_PREFIX}/get-all-ems-user`;
 const DELETE_EMS_USER_BY_ID = `${EMS_USER_API_PREFIX}/delete-ems-user-by-id`;
+const GET_DROPDOWN_OF_EMS_USER_GENDER = `${EMS_USER_API_PREFIX}/get-dropdown-of-ems-user-gender`;
 
 export const addNewEmsUser = async (newEmsUser) => {
   return await axiosInstance.post(ADD_NEW_EMS_USER, newEmsUser);
@@ -26,4 +27,8 @@ export const deleteEmsUserById = async (id) => {
       id: id,
     },
   });
+};
+
+export const getDropdownOfEmsUserGender = async () => {
+  return await axiosInstance.get(GET_DROPDOWN_OF_EMS_USER_GENDER);
 };

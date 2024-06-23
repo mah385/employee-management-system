@@ -4,6 +4,7 @@ import {
   addNewEmsUser,
   deleteEmsUserById,
   getAllEmsUser,
+  getDropdownOfEmsUserGender,
   updateEmsUser,
 } from "./ems-user-api-service.js";
 
@@ -49,5 +50,16 @@ export const deleteEmsUserByIdUsingAxios = async (id) => {
     return response.data.payload;
   } catch (error) {
     // HANDLE ERROR...
+  }
+};
+
+export const getDropdownOfEmsUserGenderUsingAxios = async () => {
+  try {
+    const response = await getDropdownOfEmsUserGender();
+    // toast.success(response.data.message);
+    return response.data;
+  } catch (error) {
+    toast.error(error.response.data.message);
+    return error.response.data;
   }
 };

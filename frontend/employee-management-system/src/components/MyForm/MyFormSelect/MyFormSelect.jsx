@@ -14,11 +14,11 @@ function MyFormSelect(props) {
         {props.label}
       </div>
       <select {...props} className={`${stylesMyForm.inputField} form-select`}>
-        <option>Please Select</option>
+        <option value={null}>Please Select</option>
         {props.options.map((option, index) => {
           return (
-            <option key={index} value={option}>
-              {option}
+            <option key={index} value={option.value}>
+              {option.label}
             </option>
           );
         })}

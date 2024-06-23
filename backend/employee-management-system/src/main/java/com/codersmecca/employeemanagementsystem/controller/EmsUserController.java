@@ -44,4 +44,9 @@ public class EmsUserController {
         return this.emsUserService.deleteEmsUserById(id);
     }
 
+    @GetMapping(value = "/get-dropdown-of-ems-user-gender", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<EmsResponseEntity> getDropdownOfEmsUserGender() {
+        return this.emsUserService.getDropdownOfEmsUserGender();
+    }
+
 }

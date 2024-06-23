@@ -4,7 +4,9 @@ import com.codersmecca.employeemanagementsystem.constants.EmsResponseConstant;
 import com.codersmecca.employeemanagementsystem.dto.requestbean.AddNewEmsUserRequestBean;
 import com.codersmecca.employeemanagementsystem.dto.requestbean.UpdateEmsUserRequestBean;
 import com.codersmecca.employeemanagementsystem.dto.requestbean.mapper.BeanToEntityMapper;
+import com.codersmecca.employeemanagementsystem.dto.responsebean.GetDropdownOfEmsUserGenderResponseBean;
 import com.codersmecca.employeemanagementsystem.dto.responsebean.mapper.EntityToBeanMapper;
+import com.codersmecca.employeemanagementsystem.enums.EmsUserGender;
 import com.codersmecca.employeemanagementsystem.repository.EmsUserRepository;
 import com.codersmecca.employeemanagementsystem.service.EmsUserService;
 import com.codersmecca.employeemanagementsystem.utils.EmsResponseEntity;
@@ -13,6 +15,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.LinkedList;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -79,6 +86,26 @@ public class EmsUserServiceImpl implements EmsUserService {
         return EmsResponseUtil.sendResponse(
                 HttpStatus.OK,
                 EmsResponseConstant.DATA_DELETED_SUCCESSFULLY_MSG
+        );
+    }
+
+    @Override
+    public ResponseEntity<EmsResponseEntity> getDropdownOfEmsUserGender() {
+        List<GetDropdownOfEmsUserGenderResponseBean> getDropdownOfEmsUserGenderResponseBeanLinkedList = new LinkedList<>();
+        Arrays.stream(EmsUserGender.values())
+                .sorted(Comparator.comparing(EmsUserGender::getLabel))
+                .forEach(emsUserGender -> {
+                    getDropdownOfEmsUserGenderResponseBeanLinkedList.add(
+                            GetDropdownOfEmsUserGenderResponseBean.builder()
+                                    .label(emsUserGender.getLabel())
+                                    .value(emsUserGender.name())
+                                    .build()
+                    );
+                });
+        return EmsResponseUtil.sendResponse(
+                getDropdownOfEmsUserGenderResponseBeanLinkedList,
+                HttpStatus.OK,
+                EmsResponseConstant.SHOWING_RESPONSE_DATA_MSG
         );
     }
 

@@ -15,4 +15,6 @@ public interface EmsUserService {
 
     ResponseEntity<EmsResponseEntity> deleteEmsUserById(String id);
 
+    ResponseEntity<EmsResponseEntity> getDropdownOfEmsUserGender();
+
 }
