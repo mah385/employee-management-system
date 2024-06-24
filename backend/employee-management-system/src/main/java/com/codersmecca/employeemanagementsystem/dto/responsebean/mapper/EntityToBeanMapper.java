@@ -1,5 +1,6 @@
 package com.codersmecca.employeemanagementsystem.dto.responsebean.mapper;
 
+import com.codersmecca.employeemanagementsystem.dto.repositorybean.GetEmsUserRepositoryBean;
 import com.codersmecca.employeemanagementsystem.dto.responsebean.GetEmsUserResponseBean;
 import com.codersmecca.employeemanagementsystem.entity.EmsUserEntity;
 
@@ -9,7 +10,7 @@ import java.util.function.Function;
 
 public interface EntityToBeanMapper {
 
-    Function<List<EmsUserEntity>, List<GetEmsUserResponseBean>> mapEntityToBeanForMultipleEmsUserEntity = (emsUserEntityListSaved) -> {
+    Function<List<EmsUserEntity>, List<GetEmsUserResponseBean>> mapMultipleEntityToBeanByUsingEmsUserEntityAndReturnGetEmsUserResponseBean = (emsUserEntityListSaved) -> {
         List<GetEmsUserResponseBean> getEmsUserResponseBeanList = new ArrayList<>();
         emsUserEntityListSaved.forEach(emsUserEntitySaved -> {
             getEmsUserResponseBeanList.add(
@@ -25,8 +26,28 @@ public interface EntityToBeanMapper {
                             .hikePercentage(emsUserEntitySaved.getEmsUserHikePercentage())
                             .zipCode(emsUserEntitySaved.getEmsUserZipCode())
                             .mobileNumber(emsUserEntitySaved.getEmsUserMobileNumber())
-                            .createdTime(emsUserEntitySaved.getCreatedTime())
-                            .updatedTime(emsUserEntitySaved.getUpdatedTime())
+                            .build()
+            );
+        });
+        return getEmsUserResponseBeanList;
+    };
+
+    Function<List<GetEmsUserRepositoryBean>, List<GetEmsUserResponseBean>> mapMultipleEntityToBeanByUsingGetEmsUserRepositoryBeanAndReturnGetEmsUserResponseBean = (getEmsUserRepositoryBeanList) -> {
+        List<GetEmsUserResponseBean> getEmsUserResponseBeanList = new ArrayList<>();
+        getEmsUserRepositoryBeanList.forEach(emsUserEntitySaved -> {
+            getEmsUserResponseBeanList.add(
+                    GetEmsUserResponseBean.builder()
+                            .id(emsUserEntitySaved.getId())
+                            .firstName(emsUserEntitySaved.getFirstName())
+                            .lastName(emsUserEntitySaved.getLastName())
+                            .emsUserGender(emsUserEntitySaved.getEmsUserGender())
+                            .email(emsUserEntitySaved.getEmail())
+                            .dateOfBirth(emsUserEntitySaved.getDateOfBirth())
+                            .dateOfJoin(emsUserEntitySaved.getDateOfJoin())
+                            .salary(emsUserEntitySaved.getSalary())
+                            .hikePercentage(emsUserEntitySaved.getHikePercentage())
+                            .zipCode(emsUserEntitySaved.getZipCode())
+                            .mobileNumber(emsUserEntitySaved.getMobileNumber())
                             .build()
             );
         });

@@ -7,7 +7,7 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class EmsResourceNotFoundException extends  RuntimeException{
+public class EmsResourceNotFoundException extends RuntimeException {
 
     private String message;
 

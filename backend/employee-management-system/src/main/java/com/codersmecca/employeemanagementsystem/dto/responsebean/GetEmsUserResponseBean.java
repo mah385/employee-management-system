@@ -5,7 +5,6 @@ import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Builder
 @Getter
@@ -25,7 +24,5 @@ public class GetEmsUserResponseBean {
     private BigDecimal hikePercentage;
     private Integer zipCode;
     private String mobileNumber;
-    private LocalDateTime createdTime;
-    private LocalDateTime updatedTime;
 
 }

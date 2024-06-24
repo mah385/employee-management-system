@@ -1,6 +1,7 @@
 package com.codersmecca.employeemanagementsystem.controller;
 
 import com.codersmecca.employeemanagementsystem.dto.requestbean.AddNewEmsUserRequestBean;
+import com.codersmecca.employeemanagementsystem.dto.requestbean.EmsUserRequestBeanWithPaginationAndSearchAndSort;
 import com.codersmecca.employeemanagementsystem.dto.requestbean.UpdateEmsUserRequestBean;
 import com.codersmecca.employeemanagementsystem.service.EmsUserService;
 import com.codersmecca.employeemanagementsystem.utils.EmsResponseEntity;
@@ -35,6 +36,13 @@ public class EmsUserController {
     @GetMapping(value = "/get-all-ems-user", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<EmsResponseEntity> getAllEmsUser() {
         return this.emsUserService.getAllEmsUser();
+    }
+
+    @PostMapping(value = "/get-all-ems-user-with-pagination-and-search-and-sort", consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<EmsResponseEntity> getAllEmsUserWithPaginationAndSearchAndSort(
+            @Valid @RequestBody EmsUserRequestBeanWithPaginationAndSearchAndSort emsUserRequestBeanWithPaginationAndSearchAndSort
+    ) {
+        return this.emsUserService.getAllEmsUserWithPaginationAndSearchAndSort(emsUserRequestBeanWithPaginationAndSearchAndSort);
     }
 
     @DeleteMapping(value = "/delete-ems-user-by-id", produces = {MediaType.APPLICATION_JSON_VALUE})
