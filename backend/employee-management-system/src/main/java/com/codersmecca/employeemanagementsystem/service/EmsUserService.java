@@ -5,8 +5,13 @@ import com.codersmecca.employeemanagementsystem.dto.requestbean.EmsUserRequestBe
 import com.codersmecca.employeemanagementsystem.dto.requestbean.UpdateEmsUserRequestBean;
 import com.codersmecca.employeemanagementsystem.utils.EmsResponseEntity;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 public interface EmsUserService {
+
+    ResponseEntity<EmsResponseEntity> importEmsUser(MultipartFile emsUserMultipartFile) throws IOException;
 
     ResponseEntity<EmsResponseEntity> addNewEmsUser(AddNewEmsUserRequestBean addNewEmsUserRequestBean);
 

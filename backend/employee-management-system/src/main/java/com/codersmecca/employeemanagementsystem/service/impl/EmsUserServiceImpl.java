@@ -8,17 +8,22 @@ import com.codersmecca.employeemanagementsystem.dto.requestbean.mapper.BeanToEnt
 import com.codersmecca.employeemanagementsystem.dto.responsebean.GetDropdownOfEmsUserGenderResponseBean;
 import com.codersmecca.employeemanagementsystem.dto.responsebean.GetEmsUserResponseBeanWithPaginationAndSearchAndSort;
 import com.codersmecca.employeemanagementsystem.dto.responsebean.mapper.EntityToBeanMapper;
+import com.codersmecca.employeemanagementsystem.entity.EmsUserEntity;
 import com.codersmecca.employeemanagementsystem.enums.EmsUserGender;
 import com.codersmecca.employeemanagementsystem.repository.EmsUserRepository;
 import com.codersmecca.employeemanagementsystem.service.EmsUserService;
 import com.codersmecca.employeemanagementsystem.utils.EmsResponseEntity;
+import com.codersmecca.employeemanagementsystem.utils.EmsUtil;
+import com.codersmecca.employeemanagementsystem.utils.ImportEmsUserUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.LinkedList;
@@ -34,20 +39,31 @@ public class EmsUserServiceImpl implements EmsUserService {
     private final EmsUserRepository emsUserRepository;
 
     @Override
+    public ResponseEntity<EmsResponseEntity> importEmsUser(
+            final MultipartFile emsUserMultipartFile
+    ) throws IOException {
+        if (emsUserMultipartFile.isEmpty()) {
+            return sendResponse(HttpStatus.BAD_REQUEST, UPLOAD_FILE_IS_MISSING_MSG);
+        } else {
+            if ("csv".equals(EmsUtil.getFileExtension(emsUserMultipartFile.getOriginalFilename()))) {
+                List<EmsUserEntity> emsUserEntityLinkedList = ImportEmsUserUtil.importEmsUser(emsUserMultipartFile);
+                this.emsUserRepository.saveAll(emsUserEntityLinkedList);
+                return sendResponse(HttpStatus.OK, DATA_IMPORTED_SUCCESSFULLY_MSG);
+            } else {
+                return sendResponse(HttpStatus.BAD_REQUEST, INVALID_FILE_FORMAT_UPLOADED_MSG);
+            }
+        }
+    }
+
+    @Override
     public ResponseEntity<EmsResponseEntity> addNewEmsUser(
             final AddNewEmsUserRequestBean addNewEmsUserRequestBean
     ) {
         if (this.emsUserRepository.existsByEmsUserEmail(addNewEmsUserRequestBean.getEmail())) {
             return sendResponse(HttpStatus.BAD_REQUEST, "User Email Already Exists.");
         } else {
-            this.emsUserRepository.save(
-                    BeanToEntityMapper.mapBeanToEntityForAddingNewEmsUserEntity.apply(addNewEmsUserRequestBean)
-            );
-
-            return sendResponse(
-                    HttpStatus.CREATED,
-                    DATA_CREATED_SUCCESSFULLY_MSG
-            );
+            this.emsUserRepository.save(BeanToEntityMapper.mapBeanToEntityForAddingNewEmsUserEntity.apply(addNewEmsUserRequestBean));
+            return sendResponse(HttpStatus.CREATED, DATA_CREATED_SUCCESSFULLY_MSG);
         }
     }
 
@@ -67,11 +83,7 @@ public class EmsUserServiceImpl implements EmsUserService {
                 updateEmsUserRequestBean.getMobileNumber(),
                 updateEmsUserRequestBean.getId()
         );
-
-        return sendResponse(
-                HttpStatus.OK,
-                DATA_UPDATED_SUCCESSFULLY_MSG
-        );
+        return sendResponse(HttpStatus.OK, DATA_UPDATED_SUCCESSFULLY_MSG);
     }
 
     @Override
@@ -110,11 +122,7 @@ public class EmsUserServiceImpl implements EmsUserService {
                 .totalNoOfPage(getEmsUserRepositoryBeanWithPaginationAndSearchAndSort.getTotalPages())
                 .build();
 
-        return sendResponse(
-                getEmsUserResponseBeanWithPaginationAndSearchAndSort,
-                HttpStatus.OK,
-                SHOWING_RESPONSE_DATA_MSG
-        );
+        return sendResponse(getEmsUserResponseBeanWithPaginationAndSearchAndSort, HttpStatus.OK, SHOWING_RESPONSE_DATA_MSG);
     }
 
     @Override
@@ -122,11 +130,7 @@ public class EmsUserServiceImpl implements EmsUserService {
             final String id
     ) {
         this.emsUserRepository.deleteById(id);
-
-        return sendResponse(
-                HttpStatus.OK,
-                DATA_DELETED_SUCCESSFULLY_MSG
-        );
+        return sendResponse(HttpStatus.OK, DATA_DELETED_SUCCESSFULLY_MSG);
     }
 
     @Override
@@ -143,11 +147,7 @@ public class EmsUserServiceImpl implements EmsUserService {
                     );
                 });
 
-        return sendResponse(
-                getDropdownOfEmsUserGenderResponseBeanLinkedList,
-                HttpStatus.OK,
-                SHOWING_RESPONSE_DATA_MSG
-        );
+        return sendResponse(getDropdownOfEmsUserGenderResponseBeanLinkedList, HttpStatus.OK, SHOWING_RESPONSE_DATA_MSG);
     }
 
 }

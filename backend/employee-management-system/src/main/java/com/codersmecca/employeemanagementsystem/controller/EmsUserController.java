@@ -10,6 +10,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 @RestController
 @RequestMapping(value = "/ems-user")
@@ -18,6 +21,13 @@ import org.springframework.web.bind.annotation.*;
 public class EmsUserController {
 
     private final EmsUserService emsUserService;
+
+    @PostMapping(value = "/import-ems-user", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<EmsResponseEntity> importEmsUser(
+            @RequestPart(value = "emsUserMultipartFile") MultipartFile emsUserMultipartFile
+    ) throws IOException {
+        return this.emsUserService.importEmsUser(emsUserMultipartFile);
+    }
 
     @PostMapping(value = "/add-new-ems-user", consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<EmsResponseEntity> addNewEmsUser(

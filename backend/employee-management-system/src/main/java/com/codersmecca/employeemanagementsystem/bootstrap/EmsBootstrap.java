@@ -19,7 +19,7 @@ public class EmsBootstrap {
 
     @EventListener(ApplicationReadyEvent.class)
     public void applicationReady() {
-        initEmsUser();
+//        initEmsUser();
     }
 
     private void initEmsUser() {

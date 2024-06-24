@@ -79,7 +79,7 @@ const DisplayEmsUser = () => {
               <th>Remove</th>
             </tr>
           </thead>
-          <tbody className="">
+          <tbody>
             {emsUserList.map((emsUserTemp, index) => {
               return (
                 <tr key={emsUserTemp.id}>
@@ -90,8 +90,8 @@ const DisplayEmsUser = () => {
                   <td>{emsUserTemp.email}</td>
                   <td>{emsUserTemp.dateOfBirth}</td>
                   <td>{emsUserTemp.dateOfJoin}</td>
-                  <td>{emsUserTemp.salary}</td>
-                  <td>{emsUserTemp.hikePercentage}</td>
+                  <td>{emsUserTemp.salary.toFixed(2)}</td>
+                  <td>{emsUserTemp.hikePercentage.toFixed(2)}</td>
                   <td>{emsUserTemp.zipCode}</td>
                   <td>{emsUserTemp.mobileNumber}</td>
                   <td
