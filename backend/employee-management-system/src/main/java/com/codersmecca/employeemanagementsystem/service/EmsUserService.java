@@ -11,7 +11,7 @@ import java.io.IOException;
 
 public interface EmsUserService {
 
-    ResponseEntity<EmsResponseEntity> importEmsUser(MultipartFile emsUserMultipartFile) throws IOException;
+    ResponseEntity<EmsResponseEntity> importEmsUserData(MultipartFile emsUserDataMultipartFile) throws IOException;
 
     ResponseEntity<EmsResponseEntity> addNewEmsUser(AddNewEmsUserRequestBean addNewEmsUserRequestBean);
 

@@ -8,7 +8,7 @@ import { MdDeleteForever, MdOutlineEdit } from "react-icons/md";
 /*-------------------------------------------------------------------*/
 import MainLayoutResponse from "../../MainLayoutResponse/MainLayoutResponse.jsx";
 /*-------------------------------------------------------------------*/
-import * as EmsUserData from "../../../axios/ems_user/ems-user-data.js";
+import * as EmsUserApiResponseService from "../../../axios/ems-user/ems-user-api-response-service.js";
 /*-------------------------------------------------------------------*/
 import * as EmsUrlConstant from "../../../routes/EmsUrlConstant.js";
 
@@ -24,7 +24,8 @@ const DisplayEmsUser = () => {
   useEffect(() => {
     let isMounted = true;
     const getAllEmsUser = async () => {
-      const responseData = await EmsUserData.getAllEmsUserUsingAxios();
+      const responseData =
+        await EmsUserApiResponseService.getAllEmsUserResponseService();
       if (isMounted && responseData.payload != null) {
         setEmsUserList(responseData.payload);
       }
@@ -46,7 +47,7 @@ const DisplayEmsUser = () => {
   };
 
   const onClickHandleDeleteEmsUserById = async (id) => {
-    await EmsUserData.deleteEmsUserByIdUsingAxios(id);
+    await EmsUserApiResponseService.deleteEmsUserByIdResponseService(id);
     setUseEffectTrigger(new Date());
   };
 

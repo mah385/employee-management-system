@@ -40,14 +40,14 @@ public class EmsUserServiceImpl implements EmsUserService {
     private final EmsUserRepository emsUserRepository;
 
     @Override
-    public ResponseEntity<EmsResponseEntity> importEmsUser(
-            final MultipartFile emsUserMultipartFile
+    public ResponseEntity<EmsResponseEntity> importEmsUserData(
+            final MultipartFile emsUserDataMultipartFile
     ) throws IOException {
-        if (emsUserMultipartFile.isEmpty()) {
+        if (emsUserDataMultipartFile.isEmpty()) {
             return sendResponse(HttpStatus.BAD_REQUEST, UPLOAD_FILE_IS_MISSING_MSG);
         } else {
-            if ("csv".equals(EmsUtil.getFileExtension(emsUserMultipartFile.getOriginalFilename()))) {
-                List<EmsUserEntity> emsUserEntityLinkedList = ImportEmsUserUtil.importEmsUser(emsUserMultipartFile);
+            if ("csv".equals(EmsUtil.getFileExtension(emsUserDataMultipartFile.getOriginalFilename()))) {
+                List<EmsUserEntity> emsUserEntityLinkedList = ImportEmsUserUtil.importEmsUserData(emsUserDataMultipartFile);
                 this.emsUserRepository.saveAll(emsUserEntityLinkedList);
                 return sendResponse(HttpStatus.OK, DATA_IMPORTED_SUCCESSFULLY_MSG);
             } else {

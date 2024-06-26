@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 /*-------------------------------------------------------------------*/
 import MyFormInput from "../../MyForm/MyFormInput/MyFormInput.jsx";
 /*-------------------------------------------------------------------*/
-import * as EmsUserData from "../../../axios/ems_user/ems-user-data.js";
+import * as EmsUserApiResponseService from "../../../axios/ems-user/ems-user-api-response-service.js";
 /*-------------------------------------------------------------------*/
 import * as EmsUrlConstant from "../../../routes/EmsUrlConstant.js";
 
@@ -27,9 +27,10 @@ const ImportEmsUser = () => {
       ...prevState,
       isFileUploading: true,
     }));
-    const responseData = await EmsUserData.importEmsUserUsingAxios(
-      uploadFileInfo.selectedFile,
-    );
+    const responseData =
+      await EmsUserApiResponseService.importEmsUserDataResponseService(
+        uploadFileInfo.selectedFile,
+      );
     setUploadFileInfo((prevState) => ({
       ...prevState,
       isFileUploading: false,

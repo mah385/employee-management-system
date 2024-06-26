@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import MyFormInput from "../../MyForm/MyFormInput/MyFormInput.jsx";
 import MyFormSelect from "../../MyForm/MyFormSelect/MyFormSelect.jsx";
 /*-------------------------------------------------------------------*/
-import * as EmsUserData from "../../../axios/ems_user/ems-user-data.js";
+import * as EmsUserApiResponseService from "../../../axios/ems-user/ems-user-api-response-service.js";
 /*-------------------------------------------------------------------*/
 import * as EmsUrlConstant from "../../../routes/EmsUrlConstant.js";
 
@@ -38,7 +38,7 @@ const AddNewEmsUser = () => {
     let isMounted = true;
     const getDropdownOfEmsUserGender = async () => {
       const responseData =
-        await EmsUserData.getDropdownOfEmsUserGenderUsingAxios();
+        await EmsUserApiResponseService.getDropdownOfEmsUserGenderResponseService();
       if (isMounted && responseData.payload != null) {
         setDropdownOfEmsUserGender(responseData.payload);
       }
@@ -55,7 +55,8 @@ const AddNewEmsUser = () => {
 
   const onSubmitHandleFormToAddNewEmsUser = async (e) => {
     e.preventDefault();
-    const responseData = await EmsUserData.addNewEmsUserUsingAxios(newEmsUser);
+    const responseData =
+      await EmsUserApiResponseService.addNewEmsUserResponseService(newEmsUser);
     if (responseData.statusCode === 201) {
       onClickHandleClearAll();
       navigate(EmsUrlConstant.DISPLAY_EMS_USER_PATH);

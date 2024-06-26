@@ -22,11 +22,11 @@ public class EmsUserController {
 
     private final EmsUserService emsUserService;
 
-    @PostMapping(value = "/import-ems-user", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<EmsResponseEntity> importEmsUser(
-            @RequestPart(value = "emsUserMultipartFile") MultipartFile emsUserMultipartFile
+    @PostMapping(value = "/import-ems-user-data", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<EmsResponseEntity> importEmsUserData(
+            @RequestPart(value = "emsUserDataMultipartFile") MultipartFile emsUserDataMultipartFile
     ) throws IOException {
-        return this.emsUserService.importEmsUser(emsUserMultipartFile);
+        return this.emsUserService.importEmsUserData(emsUserDataMultipartFile);
     }
 
     @PostMapping(value = "/add-new-ems-user", consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})

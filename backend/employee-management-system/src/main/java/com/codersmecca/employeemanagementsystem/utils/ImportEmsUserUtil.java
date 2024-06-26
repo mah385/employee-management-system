@@ -1,6 +1,5 @@
 package com.codersmecca.employeemanagementsystem.utils;
 
-
 import com.codersmecca.employeemanagementsystem.entity.EmsUserEntity;
 import com.codersmecca.employeemanagementsystem.enums.EmsUserGender;
 import org.apache.commons.csv.CSVFormat;
@@ -21,12 +20,12 @@ import static com.codersmecca.employeemanagementsystem.constants.EmsConstant.*;
 
 public class ImportEmsUserUtil {
 
-    public static List<EmsUserEntity> importEmsUser(
-            final MultipartFile emsUserMultipartFile
+    public static List<EmsUserEntity> importEmsUserData(
+            final MultipartFile emsUserDataMultipartFile
     ) throws IOException {
 //        CSVFormat.DEFAULT.withFirstRecordAsHeader().withIgnoreHeaderCase().withTrim());
         try (
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(emsUserMultipartFile.getInputStream(), StandardCharsets.ISO_8859_1));
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(emsUserDataMultipartFile.getInputStream(), StandardCharsets.ISO_8859_1));
                 CSVParser csvParser = new CSVParser(
                         bufferedReader,
                         CSVFormat.DEFAULT.builder()
