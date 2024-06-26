@@ -6,6 +6,7 @@ import com.codersmecca.employeemanagementsystem.dto.requestbean.EmsUserRequestBe
 import com.codersmecca.employeemanagementsystem.dto.requestbean.UpdateEmsUserRequestBean;
 import com.codersmecca.employeemanagementsystem.dto.requestbean.mapper.BeanToEntityMapper;
 import com.codersmecca.employeemanagementsystem.dto.responsebean.GetDropdownOfEmsUserGenderResponseBean;
+import com.codersmecca.employeemanagementsystem.dto.responsebean.GetEmsUserResponseBean;
 import com.codersmecca.employeemanagementsystem.dto.responsebean.GetEmsUserResponseBeanWithPaginationAndSearchAndSort;
 import com.codersmecca.employeemanagementsystem.dto.responsebean.mapper.EntityToBeanMapper;
 import com.codersmecca.employeemanagementsystem.entity.EmsUserEntity;
@@ -88,11 +89,8 @@ public class EmsUserServiceImpl implements EmsUserService {
 
     @Override
     public ResponseEntity<EmsResponseEntity> getAllEmsUser() {
-        return sendResponse(
-                EntityToBeanMapper.mapMultipleEntityToBeanByUsingEmsUserEntityAndReturnGetEmsUserResponseBean.apply(this.emsUserRepository.findAll()),
-                HttpStatus.OK,
-                SHOWING_RESPONSE_DATA_MSG
-        );
+        List<GetEmsUserResponseBean> getEmsUserResponseBeanList = EntityToBeanMapper.mapMultipleEntityToBeanByUsingEmsUserEntityAndReturnGetEmsUserResponseBean.apply(this.emsUserRepository.findAll());
+        return sendResponse(getEmsUserResponseBeanList, HttpStatus.OK, getEmsUserResponseBeanList.isEmpty() ? DATA_NOT_FOUND_MSG : SHOWING_RESPONSE_DATA_MSG);
     }
 
     @Override

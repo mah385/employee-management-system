@@ -5,10 +5,22 @@ import {
   deleteEmsUserById,
   getAllEmsUser,
   getDropdownOfEmsUserGender,
+  importEmsUser,
   updateEmsUser,
 } from "./ems-user-api-service.js";
 
 /*-------------------------------------------------------------------*/
+
+export const importEmsUserUsingAxios = async (emsUserMultipartFile) => {
+  try {
+    const response = await importEmsUser(emsUserMultipartFile);
+    toast.success(response.data.message);
+    return response.data;
+  } catch (error) {
+    toast.error(error.response.data.message);
+    return error.response.data;
+  }
+};
 
 export const addNewEmsUserUsingAxios = async (newEmsUser) => {
   try {

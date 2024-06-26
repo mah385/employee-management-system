@@ -17,7 +17,7 @@ import java.io.IOException;
 @RestController
 @RequestMapping(value = "/ems-user")
 @RequiredArgsConstructor
-@CrossOrigin(origins = {"http://localhost:3000", "http://127.0.0.1:3000"})
+//@CrossOrigin(origins = {"http://localhost:3000", "http://127.0.0.1:3000"}) //this solution is specific to this controller
 public class EmsUserController {
 
     private final EmsUserService emsUserService;

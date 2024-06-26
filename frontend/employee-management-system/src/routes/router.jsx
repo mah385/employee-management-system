@@ -2,35 +2,35 @@ import { createBrowserRouter } from "react-router-dom";
 /*-------------------------------------------------------------------*/
 import App from "../App.jsx";
 import EmsErrorPage from "./EmsErrorPage/EmsErrorPage.jsx";
+import ImportEmsUser from "../components/EmsUserCrudFeature/ImportEmsUser/ImportEmsUser.jsx";
 import AddNewEmsUser from "../components/EmsUserCrudFeature/AddNewEmsUser/AddNewEmsUser.jsx";
-import DisplayEmsUser from "../components/EmsUserCrudFeature/DisplayEmsUser/DisplayEmsUser.jsx";
 import UpdateEmsUser from "../components/EmsUserCrudFeature/UpdateEmsUser/UpdateEmsUser.jsx";
+import DisplayEmsUser from "../components/EmsUserCrudFeature/DisplayEmsUser/DisplayEmsUser.jsx";
 /*-------------------------------------------------------------------*/
-import {
-  ADD_NEW_EMS_USER,
-  DISPLAY_EMS_USER,
-  UPDATE_EMS_USER,
-} from "./EmsUrlConstant.js";
-
+import * as EmsUrlConstant from "./EmsUrlConstant.js";
 /*-------------------------------------------------------------------*/
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: EmsUrlConstant.EMS_ROOT_PATH,
     element: <App />,
     errorElement: <EmsErrorPage />,
     children: [
       {
-        path: ADD_NEW_EMS_USER,
+        path: EmsUrlConstant.IMPORT_EMS_USER_DATA_PATH,
+        element: <ImportEmsUser />,
+      },
+      {
+        path: EmsUrlConstant.ADD_NEW_EMS_USER_PATH,
         element: <AddNewEmsUser />,
       },
       {
-        path: DISPLAY_EMS_USER,
-        element: <DisplayEmsUser />,
+        path: EmsUrlConstant.UPDATE_EMS_USER_PATH,
+        element: <UpdateEmsUser />,
       },
       {
-        path: UPDATE_EMS_USER,
-        element: <UpdateEmsUser />,
+        path: EmsUrlConstant.DISPLAY_EMS_USER_PATH,
+        element: <DisplayEmsUser />,
       },
     ],
   },

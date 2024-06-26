@@ -1,21 +1,17 @@
 import "./App.css";
 /*-------------------------------------------------------------------*/
-import { ToastContainer } from "react-toastify";
-/*-------------------------------------------------------------------*/
 import { NavLink, Outlet } from "react-router-dom";
 /*-------------------------------------------------------------------*/
-import {
-  ADD_NEW_EMS_USER,
-  BULK_IMPORT_EMS_USER,
-  DISPLAY_EMS_USER,
-} from "./routes/EmsUrlConstant.js";
+import { ToastContainer } from "react-toastify";
+/*-------------------------------------------------------------------*/
+import * as EmsUrlConstant from "./routes/EmsUrlConstant.js";
 
 /*-------------------------------------------------------------------*/
 
 function App() {
   return (
     <>
-      <ToastContainer position="bottom-right" autoClose={1500} />
+      <ToastContainer position="bottom-right" autoClose={2000} />
       <div className="grid-container">
         <header className="app-header">
           <h1>Header</h1>
@@ -24,21 +20,21 @@ function App() {
           <div className="list-group m-1">
             <NavLink
               className="list-group-item list-group-item-action"
-              to={ADD_NEW_EMS_USER}
+              to={EmsUrlConstant.IMPORT_EMS_USER_DATA_PATH}
             >
-              Add New Ems User
+              Import EMS User Data
             </NavLink>
             <NavLink
               className="list-group-item list-group-item-action"
-              to={BULK_IMPORT_EMS_USER}
+              to={EmsUrlConstant.ADD_NEW_EMS_USER_PATH}
             >
-              Bulk Import Ems User
+              Add New EMS User
             </NavLink>
             <NavLink
               className="list-group-item list-group-item-action"
-              to={DISPLAY_EMS_USER}
+              to={EmsUrlConstant.DISPLAY_EMS_USER_PATH}
             >
-              Display Ems User
+              Display EMS User
             </NavLink>
           </div>
         </aside>

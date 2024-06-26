@@ -8,7 +8,7 @@ const EmsErrorPage = () => {
   const navigate = useNavigate();
   const error = useRouteError();
 
-  const handleGoBackButton = () => {
+  const onClickHandleGoBackButton = () => {
     navigate(-1);
   };
 
@@ -24,7 +24,7 @@ const EmsErrorPage = () => {
       <button
         type="button"
         className="border border-2 border-black btn btn-lg btn-outline-dark"
-        onClick={handleGoBackButton}
+        onClick={onClickHandleGoBackButton}
       >
         Go Back
       </button>

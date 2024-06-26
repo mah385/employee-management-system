@@ -6,17 +6,17 @@ import { useNavigate } from "react-router-dom";
 /*-------------------------------------------------------------------*/
 import { MdDeleteForever, MdOutlineEdit } from "react-icons/md";
 /*-------------------------------------------------------------------*/
-import {
-  deleteEmsUserByIdUsingAxios,
-  getAllEmsUserUsingAxios,
-} from "../../../axios/ems_user/ems-user-data.js";
+import MainLayoutResponse from "../../MainLayoutResponse/MainLayoutResponse.jsx";
 /*-------------------------------------------------------------------*/
-import { UPDATE_EMS_USER } from "../../../routes/EmsUrlConstant.js";
+import * as EmsUserData from "../../../axios/ems_user/ems-user-data.js";
+/*-------------------------------------------------------------------*/
+import * as EmsUrlConstant from "../../../routes/EmsUrlConstant.js";
 
 /*-------------------------------------------------------------------*/
 
 const DisplayEmsUser = () => {
   const navigate = useNavigate();
+  console.log("DisplayEmsUser");
 
   const [emsUserList, setEmsUserList] = useState([]);
   const [useEffectTrigger, setUseEffectTrigger] = useState(new Date());
@@ -24,7 +24,7 @@ const DisplayEmsUser = () => {
   useEffect(() => {
     let isMounted = true;
     const getAllEmsUser = async () => {
-      const responseData = await getAllEmsUserUsingAxios();
+      const responseData = await EmsUserData.getAllEmsUserUsingAxios();
       if (isMounted && responseData.payload != null) {
         setEmsUserList(responseData.payload);
       }
@@ -40,22 +40,20 @@ const DisplayEmsUser = () => {
   }, [useEffectTrigger]);
 
   const onClickHandleUpdateEmsUser = (emsUserToBeUpdated) => {
-    navigate(UPDATE_EMS_USER, {
+    navigate(EmsUrlConstant.UPDATE_EMS_USER_PATH, {
       state: { emsUserToBeUpdated: emsUserToBeUpdated },
     });
   };
 
   const onClickHandleDeleteEmsUserById = async (id) => {
-    await deleteEmsUserByIdUsingAxios(id);
+    await EmsUserData.deleteEmsUserByIdUsingAxios(id);
     setUseEffectTrigger(new Date());
   };
 
   return (
     <>
       {emsUserList.length === 0 ? (
-        <h1 className="h-100 align-content-center display-1 text-center">
-          User Data Not Found.
-        </h1>
+        <MainLayoutResponse />
       ) : (
         <table
           className={`${styles.displayEmsUserTable} w-100 table-bordered text-center`}

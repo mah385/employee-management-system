@@ -7,12 +7,9 @@ import { useNavigate } from "react-router-dom";
 import MyFormInput from "../../MyForm/MyFormInput/MyFormInput.jsx";
 import MyFormSelect from "../../MyForm/MyFormSelect/MyFormSelect.jsx";
 /*-------------------------------------------------------------------*/
-import {
-  addNewEmsUserUsingAxios,
-  getDropdownOfEmsUserGenderUsingAxios,
-} from "../../../axios/ems_user/ems-user-data.js";
+import * as EmsUserData from "../../../axios/ems_user/ems-user-data.js";
 /*-------------------------------------------------------------------*/
-import { DISPLAY_EMS_USER } from "../../../routes/EmsUrlConstant.js";
+import * as EmsUrlConstant from "../../../routes/EmsUrlConstant.js";
 
 /*-------------------------------------------------------------------*/
 
@@ -40,7 +37,8 @@ const AddNewEmsUser = () => {
   useEffect(() => {
     let isMounted = true;
     const getDropdownOfEmsUserGender = async () => {
-      const responseData = await getDropdownOfEmsUserGenderUsingAxios();
+      const responseData =
+        await EmsUserData.getDropdownOfEmsUserGenderUsingAxios();
       if (isMounted && responseData.payload != null) {
         setDropdownOfEmsUserGender(responseData.payload);
       }
@@ -57,10 +55,10 @@ const AddNewEmsUser = () => {
 
   const onSubmitHandleFormToAddNewEmsUser = async (e) => {
     e.preventDefault();
-    const responseData = await addNewEmsUserUsingAxios(newEmsUser);
+    const responseData = await EmsUserData.addNewEmsUserUsingAxios(newEmsUser);
     if (responseData.statusCode === 201) {
       onClickHandleClearAll();
-      navigate(DISPLAY_EMS_USER);
+      navigate(EmsUrlConstant.DISPLAY_EMS_USER_PATH);
     }
   };
 
@@ -82,6 +80,7 @@ const AddNewEmsUser = () => {
     >
       <div className="d-flex flex-column">
         <MyFormInput
+          inputlabelwidthtype="MD"
           type="text"
           name="firstName"
           label="First Name"
@@ -90,6 +89,7 @@ const AddNewEmsUser = () => {
           required
         />
         <MyFormInput
+          inputlabelwidthtype="MD"
           type="text"
           name="lastName"
           label="Last Name"
@@ -97,6 +97,7 @@ const AddNewEmsUser = () => {
           onChange={(e) => onChangeHandleState(e)}
         />
         <MyFormSelect
+          inputlabelwidthtype="MD"
           options={dropdownOfEmsUserGender}
           name="emsUserGender"
           label="Gender"
@@ -105,6 +106,7 @@ const AddNewEmsUser = () => {
           required
         />
         <MyFormInput
+          inputlabelwidthtype="MD"
           type="email"
           name="email"
           label="Email"
@@ -112,6 +114,7 @@ const AddNewEmsUser = () => {
           onChange={(e) => onChangeHandleState(e)}
         />
         <MyFormInput
+          inputlabelwidthtype="MD"
           type="date"
           name="dateOfBirth"
           label="Date Of Birth"
@@ -119,6 +122,7 @@ const AddNewEmsUser = () => {
           onChange={(e) => onChangeHandleState(e)}
         />
         <MyFormInput
+          inputlabelwidthtype="MD"
           type="date"
           name="dateOfJoin"
           label="Date Of Join"
@@ -126,6 +130,7 @@ const AddNewEmsUser = () => {
           onChange={(e) => onChangeHandleState(e)}
         />
         <MyFormInput
+          inputlabelwidthtype="MD"
           type="number"
           name="salary"
           label="Salary"
@@ -133,6 +138,7 @@ const AddNewEmsUser = () => {
           onChange={(e) => onChangeHandleState(e)}
         />
         <MyFormInput
+          inputlabelwidthtype="MD"
           type="number"
           name="hikePercentage"
           label="Hike Percentage"
@@ -140,6 +146,7 @@ const AddNewEmsUser = () => {
           onChange={(e) => onChangeHandleState(e)}
         />
         <MyFormInput
+          inputlabelwidthtype="MD"
           type="text"
           name="zipCode"
           label="Zip Code"
@@ -147,6 +154,7 @@ const AddNewEmsUser = () => {
           onChange={(e) => onChangeHandleState(e)}
         />
         <MyFormInput
+          inputlabelwidthtype="MD"
           type="text"
           name="mobileNumber"
           label="Mobile Number"

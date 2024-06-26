@@ -5,7 +5,7 @@
     "header header header header header header header header"
     "nav content content content content content content content";
 
-    grid-template-rows: 8vh 92vh;
+    grid-template-rows: 10vh 90vh;
     grid-template-columns: repeat(8, 12.5%);
     /*grid-gap: 10px;*/
     height: 100vh;

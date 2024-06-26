@@ -8,6 +8,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -35,6 +36,14 @@ public class EmsGlobalExceptionHandler {
         return EmsResponseUtil.sendResponse(HttpStatus.NOT_FOUND, ex.getMessage());
     }
 
+    @ExceptionHandler(value = MaxUploadSizeExceededException.class)
+    public ResponseEntity<EmsResponseEntity> handleMaxUploadSizeExceededException(
+            Exception ex
+    ) {
+        ex.printStackTrace();
+        return EmsResponseUtil.sendResponse(HttpStatus.BAD_REQUEST, ex.getMessage());
+    }
+
     @ExceptionHandler(value = Exception.class)
     public ResponseEntity<EmsResponseEntity> handleException(
             Exception ex
@@ -42,4 +51,5 @@ public class EmsGlobalExceptionHandler {
         ex.printStackTrace();
         return EmsResponseUtil.sendResponse(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage());
     }
+
 }

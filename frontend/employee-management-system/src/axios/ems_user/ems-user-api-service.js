@@ -3,32 +3,52 @@ import axiosInstance from "../axios-instance.js";
 /*-------------------------------------------------------------------*/
 
 const EMS_USER_API_PREFIX = "/ems-user";
-const ADD_NEW_EMS_USER = `${EMS_USER_API_PREFIX}/add-new-ems-user`;
-const UPDATE_EMS_USER = `${EMS_USER_API_PREFIX}/update-ems-user`;
-const GET_ALL_EMS_USER = `${EMS_USER_API_PREFIX}/get-all-ems-user`;
-const DELETE_EMS_USER_BY_ID = `${EMS_USER_API_PREFIX}/delete-ems-user-by-id`;
-const GET_DROPDOWN_OF_EMS_USER_GENDER = `${EMS_USER_API_PREFIX}/get-dropdown-of-ems-user-gender`;
+
+export const importEmsUser = async (emsUserMultipartFile) => {
+  let formData = new FormData();
+  formData.append("emsUserMultipartFile", emsUserMultipartFile);
+  return await axiosInstance.post(
+    `${EMS_USER_API_PREFIX}/import-ems-user`,
+    formData,
+    {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    },
+  );
+};
 
 export const addNewEmsUser = async (newEmsUser) => {
-  return await axiosInstance.post(ADD_NEW_EMS_USER, newEmsUser);
+  return await axiosInstance.post(
+    `${EMS_USER_API_PREFIX}/add-new-ems-user`,
+    newEmsUser,
+  );
 };
 
 export const updateEmsUser = async (updatedEmsUser) => {
-  return await axiosInstance.put(UPDATE_EMS_USER, updatedEmsUser);
+  return await axiosInstance.put(
+    `${EMS_USER_API_PREFIX}/update-ems-user`,
+    updatedEmsUser,
+  );
 };
 
 export const getAllEmsUser = async () => {
-  return await axiosInstance.get(GET_ALL_EMS_USER);
+  return await axiosInstance.get(`${EMS_USER_API_PREFIX}/get-all-ems-user`);
 };
 
 export const deleteEmsUserById = async (id) => {
-  return await axiosInstance.delete(DELETE_EMS_USER_BY_ID, {
-    params: {
-      id: id,
+  return await axiosInstance.delete(
+    `${EMS_USER_API_PREFIX}/delete-ems-user-by-id`,
+    {
+      params: {
+        id: id,
+      },
     },
-  });
+  );
 };
 
 export const getDropdownOfEmsUserGender = async () => {
-  return await axiosInstance.get(GET_DROPDOWN_OF_EMS_USER_GENDER);
+  return await axiosInstance.get(
+    `${EMS_USER_API_PREFIX}/get-dropdown-of-ems-user-gender`,
+  );
 };
