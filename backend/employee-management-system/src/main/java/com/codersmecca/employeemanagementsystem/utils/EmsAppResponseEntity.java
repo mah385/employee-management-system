@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @NoArgsConstructor
-public class EmsResponseEntity {
+public class EmsAppResponseEntity {
 
     private Object payload;
     private Integer statusCode;
@@ -18,7 +18,7 @@ public class EmsResponseEntity {
     private String message;
     private LocalDateTime timestamp = LocalDateTime.now();
 
-    public EmsResponseEntity(
+    public EmsAppResponseEntity(
             final Object payload,
             final HttpStatus httpStatus,
             final String message

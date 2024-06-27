@@ -16,7 +16,7 @@ import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
 
-import static com.codersmecca.employeemanagementsystem.constants.EmsConstant.*;
+import static com.codersmecca.employeemanagementsystem.constants.EmsAppConstant.*;
 
 public class ImportEmsUserUtil {
 
@@ -49,8 +49,8 @@ public class ImportEmsUserUtil {
                                 .emsUserEmail(csvRecord.get(THREE))
                                 .emsUserDateOfBirth(LocalDate.parse(csvRecord.get(FOUR), DATE_TIME_FORMATTER))
                                 .emsUserDateOfJoin(LocalDate.parse(csvRecord.get(FIVE), DATE_TIME_FORMATTER))
-                                .emsUserSalary(EmsUtil.getBigDecimalValue(csvRecord.get(SIX)))
-                                .emsUserHikePercentage(EmsUtil.getBigDecimalValue(csvRecord.get(SEVEN).replaceAll(REGEX_FOR_NUMBERS_WITH_DECIMAL, EMPTY_STRING)))
+                                .emsUserSalary(EmsAppUtil.getBigDecimalValue(csvRecord.get(SIX)))
+                                .emsUserHikePercentage(EmsAppUtil.getBigDecimalValue(csvRecord.get(SEVEN).replaceAll(REGEX_FOR_NUMBERS_WITH_DECIMAL, EMPTY_STRING)))
                                 .emsUserZipCode(Integer.parseInt(csvRecord.get(EIGHT)))
                                 .emsUserMobileNumber(RandomStringUtils.randomNumeric(TEN))
                                 .build()

@@ -1,7 +1,7 @@
 package com.codersmecca.employeemanagementsystem.exception;
 
-import com.codersmecca.employeemanagementsystem.utils.EmsResponseEntity;
-import com.codersmecca.employeemanagementsystem.utils.EmsResponseUtil;
+import com.codersmecca.employeemanagementsystem.utils.EmsAppResponseEntity;
+import com.codersmecca.employeemanagementsystem.utils.EmsAppResponseUtil;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -14,10 +14,10 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 @RestControllerAdvice
-public class EmsGlobalExceptionHandler {
+public class EmsAppGlobalExceptionHandler {
 
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
-    public ResponseEntity<EmsResponseEntity> handleMethodArgumentNotValidException(
+    public ResponseEntity<EmsAppResponseEntity> handleMethodArgumentNotValidException(
             MethodArgumentNotValidException ex
     ) {
         ex.printStackTrace();
@@ -25,31 +25,31 @@ public class EmsGlobalExceptionHandler {
         for (FieldError fieldError : ex.getBindingResult().getFieldErrors()) {
             errorMap.put(fieldError.getField(), fieldError.getDefaultMessage());
         }
-        return EmsResponseUtil.sendResponse(errorMap, HttpStatus.BAD_REQUEST, "Validation Failed: Please provide required fields");
+        return EmsAppResponseUtil.sendResponse(errorMap, HttpStatus.BAD_REQUEST, "Validation Failed: Please provide required fields");
     }
 
     @ExceptionHandler(value = EmsResourceNotFoundException.class)
-    public ResponseEntity<EmsResponseEntity> handleEmsResourceNotFoundExceptionException(
+    public ResponseEntity<EmsAppResponseEntity> handleEmsResourceNotFoundExceptionException(
             EmsResourceNotFoundException ex
     ) {
         ex.printStackTrace();
-        return EmsResponseUtil.sendResponse(HttpStatus.NOT_FOUND, ex.getMessage());
+        return EmsAppResponseUtil.sendResponse(HttpStatus.NOT_FOUND, ex.getMessage());
     }
 
     @ExceptionHandler(value = MaxUploadSizeExceededException.class)
-    public ResponseEntity<EmsResponseEntity> handleMaxUploadSizeExceededException(
+    public ResponseEntity<EmsAppResponseEntity> handleMaxUploadSizeExceededException(
             Exception ex
     ) {
         ex.printStackTrace();
-        return EmsResponseUtil.sendResponse(HttpStatus.BAD_REQUEST, ex.getMessage());
+        return EmsAppResponseUtil.sendResponse(HttpStatus.BAD_REQUEST, ex.getMessage());
     }
 
     @ExceptionHandler(value = Exception.class)
-    public ResponseEntity<EmsResponseEntity> handleException(
+    public ResponseEntity<EmsAppResponseEntity> handleException(
             Exception ex
     ) {
         ex.printStackTrace();
-        return EmsResponseUtil.sendResponse(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage());
+        return EmsAppResponseUtil.sendResponse(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage());
     }
 
 }

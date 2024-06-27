@@ -15,8 +15,9 @@ import * as EmsUrlConstant from "../../../routes/EmsUrlConstant.js";
 /*-------------------------------------------------------------------*/
 
 const DisplayEmsUser = () => {
-  const navigate = useNavigate();
   console.log("DisplayEmsUser");
+
+  const navigate = useNavigate();
 
   const [emsUserList, setEmsUserList] = useState([]);
   const [useEffectTrigger, setUseEffectTrigger] = useState(new Date());

@@ -4,17 +4,17 @@ import com.codersmecca.employeemanagementsystem.exception.EmsResourceNotFoundExc
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-public class EmsResponseUtil {
+public class EmsAppResponseUtil {
 
-    public static ResponseEntity<EmsResponseEntity> sendResponse(
+    public static ResponseEntity<EmsAppResponseEntity> sendResponse(
             final Object payload,
             final HttpStatus httpStatus,
             final String message
     ) {
-        return new ResponseEntity<>(new EmsResponseEntity(payload, httpStatus, message), httpStatus);
+        return new ResponseEntity<>(new EmsAppResponseEntity(payload, httpStatus, message), httpStatus);
     }
 
-    public static ResponseEntity<EmsResponseEntity> sendResponse(
+    public static ResponseEntity<EmsAppResponseEntity> sendResponse(
             final HttpStatus httpStatus,
             final String message
     ) {

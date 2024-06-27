@@ -13,28 +13,29 @@ import * as EmsUrlConstant from "../../../routes/EmsUrlConstant.js";
 /*-------------------------------------------------------------------*/
 
 const ImportEmsUser = () => {
-  const navigate = useNavigate();
   console.log("ImportEmsUser");
+  const navigate = useNavigate();
   const [uploadFileInfo, setUploadFileInfo] = useState({
     selectedFile: undefined,
     isFileSelected: false,
     isFileUploading: false,
   });
 
-  const onSubmitHandleFormToUploadFile = async (e) => {
-    e.preventDefault();
+  const toggleFileUploadingStatus = () => {
     setUploadFileInfo((prevState) => ({
       ...prevState,
-      isFileUploading: true,
+      isFileUploading: !prevState.isFileUploading,
     }));
+  };
+
+  const onSubmitHandleFormToUploadFile = async (e) => {
+    e.preventDefault();
+    toggleFileUploadingStatus();
     const responseData =
       await EmsUserApiResponseService.importEmsUserDataResponseService(
         uploadFileInfo.selectedFile,
       );
-    setUploadFileInfo((prevState) => ({
-      ...prevState,
-      isFileUploading: false,
-    }));
+    toggleFileUploadingStatus();
     onClickHandleRemoveFile();
     if (responseData.statusCode === 200) {
       navigate(EmsUrlConstant.DISPLAY_EMS_USER_PATH);

@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Entity
 @Table(name = "tbl_ems_user")
-public class EmsUserEntity extends EmsBaseEntity {
+public class EmsUserEntity extends EmsAppBaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)

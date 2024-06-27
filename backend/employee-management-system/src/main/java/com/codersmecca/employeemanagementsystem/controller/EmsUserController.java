@@ -4,7 +4,7 @@ import com.codersmecca.employeemanagementsystem.dto.requestbean.AddNewEmsUserReq
 import com.codersmecca.employeemanagementsystem.dto.requestbean.EmsUserRequestBeanWithPaginationAndSearchAndSort;
 import com.codersmecca.employeemanagementsystem.dto.requestbean.UpdateEmsUserRequestBean;
 import com.codersmecca.employeemanagementsystem.service.EmsUserService;
-import com.codersmecca.employeemanagementsystem.utils.EmsResponseEntity;
+import com.codersmecca.employeemanagementsystem.utils.EmsAppResponseEntity;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
@@ -23,47 +23,47 @@ public class EmsUserController {
     private final EmsUserService emsUserService;
 
     @PostMapping(value = "/import-ems-user-data", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<EmsResponseEntity> importEmsUserData(
+    public ResponseEntity<EmsAppResponseEntity> importEmsUserData(
             @RequestPart(value = "emsUserDataMultipartFile") MultipartFile emsUserDataMultipartFile
     ) throws IOException {
         return this.emsUserService.importEmsUserData(emsUserDataMultipartFile);
     }
 
     @PostMapping(value = "/add-new-ems-user", consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<EmsResponseEntity> addNewEmsUser(
+    public ResponseEntity<EmsAppResponseEntity> addNewEmsUser(
             @Valid @RequestBody AddNewEmsUserRequestBean addNewEmsUserRequestBean
     ) {
         return this.emsUserService.addNewEmsUser(addNewEmsUserRequestBean);
     }
 
     @PutMapping(value = "/update-ems-user", consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<EmsResponseEntity> updateEmsUser(
+    public ResponseEntity<EmsAppResponseEntity> updateEmsUser(
             @Valid @RequestBody UpdateEmsUserRequestBean updateEmsUserRequestBean
     ) {
         return this.emsUserService.updateEmsUser(updateEmsUserRequestBean);
     }
 
     @GetMapping(value = "/get-all-ems-user", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<EmsResponseEntity> getAllEmsUser() {
+    public ResponseEntity<EmsAppResponseEntity> getAllEmsUser() {
         return this.emsUserService.getAllEmsUser();
     }
 
     @PostMapping(value = "/get-all-ems-user-with-pagination-and-search-and-sort", consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<EmsResponseEntity> getAllEmsUserWithPaginationAndSearchAndSort(
+    public ResponseEntity<EmsAppResponseEntity> getAllEmsUserWithPaginationAndSearchAndSort(
             @Valid @RequestBody EmsUserRequestBeanWithPaginationAndSearchAndSort emsUserRequestBeanWithPaginationAndSearchAndSort
     ) {
         return this.emsUserService.getAllEmsUserWithPaginationAndSearchAndSort(emsUserRequestBeanWithPaginationAndSearchAndSort);
     }
 
     @DeleteMapping(value = "/delete-ems-user-by-id", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<EmsResponseEntity> deleteEmsUserById(
+    public ResponseEntity<EmsAppResponseEntity> deleteEmsUserById(
             @RequestParam(value = "id") String id
     ) {
         return this.emsUserService.deleteEmsUserById(id);
     }
 
     @GetMapping(value = "/get-dropdown-of-ems-user-gender", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<EmsResponseEntity> getDropdownOfEmsUserGender() {
+    public ResponseEntity<EmsAppResponseEntity> getDropdownOfEmsUserGender() {
         return this.emsUserService.getDropdownOfEmsUserGender();
     }
 

@@ -13,8 +13,8 @@ import com.codersmecca.employeemanagementsystem.entity.EmsUserEntity;
 import com.codersmecca.employeemanagementsystem.enums.EmsUserGender;
 import com.codersmecca.employeemanagementsystem.repository.EmsUserRepository;
 import com.codersmecca.employeemanagementsystem.service.EmsUserService;
-import com.codersmecca.employeemanagementsystem.utils.EmsResponseEntity;
-import com.codersmecca.employeemanagementsystem.utils.EmsUtil;
+import com.codersmecca.employeemanagementsystem.utils.EmsAppResponseEntity;
+import com.codersmecca.employeemanagementsystem.utils.EmsAppUtil;
 import com.codersmecca.employeemanagementsystem.utils.ImportEmsUserUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -30,8 +30,8 @@ import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
-import static com.codersmecca.employeemanagementsystem.constants.EmsResponseConstant.*;
-import static com.codersmecca.employeemanagementsystem.utils.EmsResponseUtil.sendResponse;
+import static com.codersmecca.employeemanagementsystem.constants.EmsAppResponseConstant.*;
+import static com.codersmecca.employeemanagementsystem.utils.EmsAppResponseUtil.sendResponse;
 
 @Service
 @RequiredArgsConstructor
@@ -40,13 +40,13 @@ public class EmsUserServiceImpl implements EmsUserService {
     private final EmsUserRepository emsUserRepository;
 
     @Override
-    public ResponseEntity<EmsResponseEntity> importEmsUserData(
+    public ResponseEntity<EmsAppResponseEntity> importEmsUserData(
             final MultipartFile emsUserDataMultipartFile
     ) throws IOException {
         if (emsUserDataMultipartFile.isEmpty()) {
             return sendResponse(HttpStatus.BAD_REQUEST, UPLOAD_FILE_IS_MISSING_MSG);
         } else {
-            if ("csv".equals(EmsUtil.getFileExtension(emsUserDataMultipartFile.getOriginalFilename()))) {
+            if ("csv".equals(EmsAppUtil.getFileExtension(emsUserDataMultipartFile.getOriginalFilename()))) {
                 List<EmsUserEntity> emsUserEntityLinkedList = ImportEmsUserUtil.importEmsUserData(emsUserDataMultipartFile);
                 this.emsUserRepository.saveAll(emsUserEntityLinkedList);
                 return sendResponse(HttpStatus.OK, DATA_IMPORTED_SUCCESSFULLY_MSG);
@@ -57,7 +57,7 @@ public class EmsUserServiceImpl implements EmsUserService {
     }
 
     @Override
-    public ResponseEntity<EmsResponseEntity> addNewEmsUser(
+    public ResponseEntity<EmsAppResponseEntity> addNewEmsUser(
             final AddNewEmsUserRequestBean addNewEmsUserRequestBean
     ) {
         if (this.emsUserRepository.existsByEmsUserEmail(addNewEmsUserRequestBean.getEmail())) {
@@ -69,7 +69,7 @@ public class EmsUserServiceImpl implements EmsUserService {
     }
 
     @Override
-    public ResponseEntity<EmsResponseEntity> updateEmsUser(
+    public ResponseEntity<EmsAppResponseEntity> updateEmsUser(
             final UpdateEmsUserRequestBean updateEmsUserRequestBean
     ) {
         this.emsUserRepository.updateEmsUser(
@@ -88,13 +88,13 @@ public class EmsUserServiceImpl implements EmsUserService {
     }
 
     @Override
-    public ResponseEntity<EmsResponseEntity> getAllEmsUser() {
+    public ResponseEntity<EmsAppResponseEntity> getAllEmsUser() {
         List<GetEmsUserResponseBean> getEmsUserResponseBeanList = EntityToBeanMapper.mapMultipleEntityToBeanByUsingEmsUserEntityAndReturnGetEmsUserResponseBean.apply(this.emsUserRepository.findAll());
         return sendResponse(getEmsUserResponseBeanList, HttpStatus.OK, getEmsUserResponseBeanList.isEmpty() ? DATA_NOT_FOUND_MSG : SHOWING_RESPONSE_DATA_MSG);
     }
 
     @Override
-    public ResponseEntity<EmsResponseEntity> getAllEmsUserWithPaginationAndSearchAndSort(
+    public ResponseEntity<EmsAppResponseEntity> getAllEmsUserWithPaginationAndSearchAndSort(
             final EmsUserRequestBeanWithPaginationAndSearchAndSort emsUserRequestBeanWithPaginationAndSearchAndSort
     ) {
         Page<GetEmsUserRepositoryBean> getEmsUserRepositoryBeanWithPaginationAndSearchAndSort = this.emsUserRepository.findAllEmsUserWithPaginationAndSearchAndSort(
@@ -124,7 +124,7 @@ public class EmsUserServiceImpl implements EmsUserService {
     }
 
     @Override
-    public ResponseEntity<EmsResponseEntity> deleteEmsUserById(
+    public ResponseEntity<EmsAppResponseEntity> deleteEmsUserById(
             final String id
     ) {
         this.emsUserRepository.deleteById(id);
@@ -132,7 +132,7 @@ public class EmsUserServiceImpl implements EmsUserService {
     }
 
     @Override
-    public ResponseEntity<EmsResponseEntity> getDropdownOfEmsUserGender() {
+    public ResponseEntity<EmsAppResponseEntity> getDropdownOfEmsUserGender() {
         List<GetDropdownOfEmsUserGenderResponseBean> getDropdownOfEmsUserGenderResponseBeanLinkedList = new LinkedList<>();
         Arrays.stream(EmsUserGender.values())
                 .sorted(Comparator.comparing(EmsUserGender::getLabel))

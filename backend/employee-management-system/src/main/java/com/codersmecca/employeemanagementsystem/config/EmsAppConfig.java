@@ -10,7 +10,7 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-public class EmsConfig {
+public class EmsAppConfig {
 
     @Bean
     public OpenAPI createOpenAPIBean() {
@@ -25,7 +25,7 @@ public class EmsConfig {
     }
 
     @Bean //this solution is global
-    public WebMvcConfigurer corsConfigurer() {
+    public WebMvcConfigurer createCorsConfigurerBean() {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {

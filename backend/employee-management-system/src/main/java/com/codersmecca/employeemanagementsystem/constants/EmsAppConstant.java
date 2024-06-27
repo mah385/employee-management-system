@@ -2,7 +2,7 @@ package com.codersmecca.employeemanagementsystem.constants;
 
 import java.time.format.DateTimeFormatter;
 
-public class EmsConstant {
+public class EmsAppConstant {
 
     public static final Integer ZERO = 0;
     public static final Integer ONE = 1;

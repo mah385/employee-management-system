@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @MappedSuperclass
-public abstract class EmsBaseEntity {
+public abstract class EmsAppBaseEntity {
 
     @Column
     protected LocalDateTime createdTime;

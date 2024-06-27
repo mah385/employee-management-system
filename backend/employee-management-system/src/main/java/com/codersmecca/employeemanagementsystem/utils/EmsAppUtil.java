@@ -5,7 +5,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-public class EmsUtil {
+public class EmsAppUtil {
 
     public static BigDecimal getBigDecimalValue(Double value) {
         return BigDecimal.valueOf(value).setScale(2, RoundingMode.HALF_EVEN);

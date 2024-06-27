@@ -1,6 +1,6 @@
 package com.codersmecca.employeemanagementsystem.constants;
 
-public class EmsResponseConstant {
+public class EmsAppResponseConstant {
 
     public static final String DATA_CLEARED_SUCCESSFULLY_MSG = "Data Cleared Successfully.";
     public static final String DATA_CREATED_SUCCESSFULLY_MSG = "Data Created Successfully.";
