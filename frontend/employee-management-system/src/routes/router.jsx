@@ -2,7 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 /*-------------------------------------------------------------------*/
 import App from "../App.jsx";
 import EmsErrorPage from "./EmsErrorPage/EmsErrorPage.jsx";
-import ImportEmsUser from "../components/EmsUserCrudFeature/ImportEmsUser/ImportEmsUser.jsx";
+import ImportEmsUserData from "../components/EmsUserCrudFeature/ImportEmsUser/ImportEmsUserData.jsx";
 import AddNewEmsUser from "../components/EmsUserCrudFeature/AddNewEmsUser/AddNewEmsUser.jsx";
 import UpdateEmsUser from "../components/EmsUserCrudFeature/UpdateEmsUser/UpdateEmsUser.jsx";
 import DisplayEmsUser from "../components/EmsUserCrudFeature/DisplayEmsUser/DisplayEmsUser.jsx";
@@ -18,7 +18,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: EmsUrlConstant.IMPORT_EMS_USER_DATA_PATH,
-        element: <ImportEmsUser />,
+        element: <ImportEmsUserData />,
       },
       {
         path: EmsUrlConstant.ADD_NEW_EMS_USER_PATH,

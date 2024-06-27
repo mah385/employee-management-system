@@ -72,7 +72,7 @@ const UpdateEmsUser = () => {
       <h3>Edit User</h3>
       <div className="d-flex flex-column">
         <MyFormInput
-          inputlabelwidthtype="MD"
+          inputlabelwidthtype="SM"
           type="text"
           name="firstName"
           label="First Name"
@@ -81,7 +81,7 @@ const UpdateEmsUser = () => {
           required
         />
         <MyFormInput
-          inputlabelwidthtype="MD"
+          inputlabelwidthtype="SM"
           type="text"
           name="lastName"
           label="Last Name"
@@ -89,7 +89,7 @@ const UpdateEmsUser = () => {
           onChange={(e) => onChangeHandleState(e)}
         />
         <MyFormSelect
-          inputlabelwidthtype="MD"
+          inputlabelwidthtype="SM"
           options={dropdownOfEmsUserGender}
           name="emsUserGender"
           label="Gender"
@@ -98,7 +98,7 @@ const UpdateEmsUser = () => {
           required
         />
         <MyFormInput
-          inputlabelwidthtype="MD"
+          inputlabelwidthtype="SM"
           type="email"
           name="email"
           label="Email"
@@ -106,7 +106,7 @@ const UpdateEmsUser = () => {
           disabled={true}
         />
         <MyFormInput
-          inputlabelwidthtype="MD"
+          inputlabelwidthtype="SM"
           type="date"
           name="dateOfBirth"
           label="Date Of Birth"
@@ -114,7 +114,7 @@ const UpdateEmsUser = () => {
           onChange={(e) => onChangeHandleState(e)}
         />
         <MyFormInput
-          inputlabelwidthtype="MD"
+          inputlabelwidthtype="SM"
           type="date"
           name="dateOfJoin"
           label="Date Of Join"
@@ -122,7 +122,7 @@ const UpdateEmsUser = () => {
           onChange={(e) => onChangeHandleState(e)}
         />
         <MyFormInput
-          inputlabelwidthtype="MD"
+          inputlabelwidthtype="SM"
           type="number"
           name="salary"
           label="Salary"
@@ -130,7 +130,7 @@ const UpdateEmsUser = () => {
           onChange={(e) => onChangeHandleState(e)}
         />
         <MyFormInput
-          inputlabelwidthtype="MD"
+          inputlabelwidthtype="SM"
           type="number"
           name="hikePercentage"
           label="Hike Percentage"
@@ -138,7 +138,7 @@ const UpdateEmsUser = () => {
           onChange={(e) => onChangeHandleState(e)}
         />
         <MyFormInput
-          inputlabelwidthtype="MD"
+          inputlabelwidthtype="SM"
           type="text"
           name="zipCode"
           label="Zip Code"
@@ -146,7 +146,7 @@ const UpdateEmsUser = () => {
           onChange={(e) => onChangeHandleState(e)}
         />
         <MyFormInput
-          inputlabelwidthtype="MD"
+          inputlabelwidthtype="SM"
           type="text"
           name="mobileNumber"
           label="Mobile Number"

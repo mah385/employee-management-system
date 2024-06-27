@@ -10,31 +10,31 @@ function MyFormInput(props) {
   let inputContainerWidth;
   switch (props.inputlabelwidthtype) {
     case "XS": {
-      inputLabelWidth = 80;
-      break;
-    }
-    case "SM": {
       inputLabelWidth = 100;
       break;
     }
-    case "MD": {
+    case "SM": {
       inputLabelWidth = 120;
       break;
     }
-    case "LG": {
+    case "MD": {
       inputLabelWidth = 140;
       break;
     }
-    case "XL": {
+    case "LG": {
       inputLabelWidth = 160;
       break;
     }
-    case "XXL": {
+    case "XL": {
       inputLabelWidth = 180;
       break;
     }
-    case "XXXL": {
+    case "XXL": {
       inputLabelWidth = 200;
+      break;
+    }
+    case "XXXL": {
+      inputLabelWidth = 220;
       break;
     }
   }
@@ -48,7 +48,7 @@ function MyFormInput(props) {
         className={`${stylesMyForm.inputLabel} input-group-text`}
         style={{ width: `${inputLabelWidth}px` }}
       >
-        {props.label}
+        <label>{props.label}</label>
       </div>
       <input {...props} className={`${stylesMyForm.inputField} form-control`} />
     </div>
