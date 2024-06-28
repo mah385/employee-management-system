@@ -4,7 +4,7 @@ import { NavLink, Outlet } from "react-router-dom";
 /*-------------------------------------------------------------------*/
 import { ToastContainer } from "react-toastify";
 /*-------------------------------------------------------------------*/
-import * as EmsUrlConstant from "./routes/EmsUrlConstant.js";
+import * as EmsUrlConstant from "./constants/emp-app-path-constant.js";
 
 /*-------------------------------------------------------------------*/
 

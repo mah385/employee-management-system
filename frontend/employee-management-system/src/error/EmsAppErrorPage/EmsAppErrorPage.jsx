@@ -1,12 +1,12 @@
-import styles from "./EmsErrorPage.module.css";
+import styles from "./EmsAppErrorPage.module.css";
 /*-------------------------------------------------------------------*/
 import { useNavigate, useRouteError } from "react-router-dom";
 
 /*-------------------------------------------------------------------*/
 
-const EmsErrorPage = () => {
+const EmsAppErrorPage = () => {
   const navigate = useNavigate();
-  const error = useRouteError();
+  const routeError = useRouteError();
 
   const onClickHandleGoBackButton = () => {
     navigate(-1);
@@ -18,9 +18,11 @@ const EmsErrorPage = () => {
     >
       <p className={`${styles.errorHeading}`}>Oops!</p>
       <p className={`${styles.errorInfo}`}>
-        {error.status} - {error.statusText}
+        {routeError.status} - {routeError.statusText}
       </p>
-      <p className={`${styles.errorInfoReason}`}>Reason - [{error.data}]</p>
+      <p className={`${styles.errorInfoReason}`}>
+        Reason - [{routeError.data}]
+      </p>
       <button
         type="button"
         className="border border-2 border-black btn btn-lg btn-outline-dark"
@@ -32,4 +34,4 @@ const EmsErrorPage = () => {
   );
 };
 
-export default EmsErrorPage;
+export default EmsAppErrorPage;

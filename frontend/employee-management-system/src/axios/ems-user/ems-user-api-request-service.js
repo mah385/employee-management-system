@@ -1,4 +1,4 @@
-import axiosInstance from "../axios-instance.js";
+import empAppAxiosInstance from "../../config/emp-app-axios-instance.js";
 
 /*-------------------------------------------------------------------*/
 
@@ -9,7 +9,7 @@ export const importEmsUserDataRequestService = async (
 ) => {
   let formData = new FormData();
   formData.append("emsUserDataMultipartFile", emsUserDataMultipartFile);
-  return await axiosInstance.post(
+  return await empAppAxiosInstance.post(
     `${EMS_USER_API_PREFIX}/import-ems-user-data`,
     formData,
     {
@@ -21,25 +21,27 @@ export const importEmsUserDataRequestService = async (
 };
 
 export const addNewEmsUserRequestService = async (newEmsUser) => {
-  return await axiosInstance.post(
+  return await empAppAxiosInstance.post(
     `${EMS_USER_API_PREFIX}/add-new-ems-user`,
     newEmsUser,
   );
 };
 
 export const updateEmsUserRequestService = async (updatedEmsUser) => {
-  return await axiosInstance.put(
+  return await empAppAxiosInstance.put(
     `${EMS_USER_API_PREFIX}/update-ems-user`,
     updatedEmsUser,
   );
 };
 
 export const getAllEmsUserRequestService = async () => {
-  return await axiosInstance.get(`${EMS_USER_API_PREFIX}/get-all-ems-user`);
+  return await empAppAxiosInstance.get(
+    `${EMS_USER_API_PREFIX}/get-all-ems-user`,
+  );
 };
 
 export const deleteEmsUserByIdRequestService = async (id) => {
-  return await axiosInstance.delete(
+  return await empAppAxiosInstance.delete(
     `${EMS_USER_API_PREFIX}/delete-ems-user-by-id`,
     {
       params: {
@@ -50,7 +52,7 @@ export const deleteEmsUserByIdRequestService = async (id) => {
 };
 
 export const getDropdownOfEmsUserGenderRequestService = async () => {
-  return await axiosInstance.get(
+  return await empAppAxiosInstance.get(
     `${EMS_USER_API_PREFIX}/get-dropdown-of-ems-user-gender`,
   );
 };

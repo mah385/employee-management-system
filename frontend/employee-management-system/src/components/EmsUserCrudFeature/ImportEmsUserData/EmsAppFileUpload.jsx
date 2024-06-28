@@ -8,22 +8,19 @@ import MyFormInput from "../../MyForm/MyFormInput/MyFormInput.jsx";
 /*-------------------------------------------------------------------*/
 import * as EmsUserApiResponseService from "../../../axios/ems-user/ems-user-api-response-service.js";
 /*-------------------------------------------------------------------*/
-import * as EmsUrlConstant from "../../../routes/EmsUrlConstant.js";
+import * as EmsUrlConstant from "../../../constants/emp-app-path-constant.js";
+import PropTypes from "prop-types";
 
 /*-------------------------------------------------------------------*/
 
-const uploadFileType = {
-  csv: ".csv",
-  xlsx: ".xlsx",
-};
-
-const ImportEmsUserData = () => {
-  console.log("ImportEmsUserData");
+const EmsAppFileUpload = (props) => {
+  console.log(
+    "EmsAppFileUpload (props.fileInputAccept): " + props.fileInputAccept,
+  );
   const navigate = useNavigate();
   const [uploadFileInfo, setUploadFileInfo] = useState({
     selectedFile: undefined,
-    isCsvFileSelected: false,
-    isExcelFileSelected: false,
+    isFileSelected: false,
     isFileUploading: false,
   });
 
@@ -49,20 +46,10 @@ const ImportEmsUserData = () => {
   };
 
   const onChangeHandleState = (e) => {
-    let fileName = e.target.files[0].name;
-    let fileNameExtension = fileName
-      .substring(fileName.lastIndexOf("."))
-      .toLowerCase();
-
     setUploadFileInfo((prevState) => ({
       ...prevState,
       selectedFile: e.target.files[0],
-      isCsvFileSelected:
-        "importEmsUserDataUsingCsvFile" === e.target.name &&
-        uploadFileType.csv === fileNameExtension,
-      isExcelFileSelected:
-        "importEmsUserDataUsingExcelFile" === e.target.name &&
-        uploadFileType.xlsx === fileNameExtension,
+      isFileSelected: true,
     }));
   };
 
@@ -70,54 +57,31 @@ const ImportEmsUserData = () => {
     setUploadFileInfo((prevState) => ({
       ...prevState,
       selectedFile: undefined,
-      isCsvFileSelected: false,
-      isExcelFileSelected: false,
+      isFileSelected: false,
     }));
   };
 
   return (
     <form
       onSubmit={(e) => onSubmitHandleFormToUploadFile(e)}
-      className={`${styles.myFormContainer} h-100 d-flex flex-column justify-content-center align-items-center gap-4`}
+      className={`${styles.myFormContainer} d-flex flex-column justify-content-center align-items-center gap-2`}
     >
-      {!uploadFileInfo.isExcelFileSelected && (
-        <div>
-          <MyFormInput
-            inputlabelwidthtype="XXXL"
-            type="file"
-            name="importEmsUserDataUsingCsvFile"
-            label="Upload Data using CSV File"
-            accept={uploadFileType.csv}
-            onChange={(e) => onChangeHandleState(e)}
-            required
-          />
-        </div>
-      )}
-
-      {!uploadFileInfo.isCsvFileSelected && (
-        <div>
-          <MyFormInput
-            inputlabelwidthtype="XXXL"
-            type="file"
-            name="importEmsUserDataUsingExcelFile"
-            label="Upload Data using EXCEL File"
-            accept={uploadFileType.xlsx}
-            onChange={(e) => onChangeHandleState(e)}
-            required
-          />
-        </div>
-      )}
-
+      <div>
+        <MyFormInput
+          inputlabelwidthtype="XXXL"
+          type="file"
+          name="importDataFile"
+          label={props.fileInputLabel}
+          accept={props.fileInputAccept}
+          onChange={(e) => onChangeHandleState(e)}
+          required
+        />
+      </div>
       <div className="d-flex gap-5">
         <button
           type="submit"
           className="border border-2 border-success btn btn-outline-success"
-          disabled={
-            (!uploadFileInfo.isCsvFileSelected ||
-              uploadFileInfo.isExcelFileSelected) &&
-            (uploadFileInfo.isCsvFileSelected ||
-              !uploadFileInfo.isExcelFileSelected)
-          }
+          disabled={!uploadFileInfo.isFileSelected}
         >
           Upload File
         </button>
@@ -125,18 +89,13 @@ const ImportEmsUserData = () => {
           type="button"
           className="border border-2 border-danger btn btn-outline-danger"
           onClick={onClickHandleRemoveFile}
-          disabled={
-            (!uploadFileInfo.isCsvFileSelected ||
-              uploadFileInfo.isExcelFileSelected) &&
-            (uploadFileInfo.isCsvFileSelected ||
-              !uploadFileInfo.isExcelFileSelected)
-          }
+          disabled={!uploadFileInfo.isFileSelected}
         >
           Remove File
         </button>
       </div>
       <div>
-        <h1 className="display-4">
+        <h1 className="display-6">
           {uploadFileInfo.isFileUploading && "Uploading File... Please Wait."}
         </h1>
       </div>
@@ -144,4 +103,9 @@ const ImportEmsUserData = () => {
   );
 };
 
-export default ImportEmsUserData;
+export default EmsAppFileUpload;
+
+EmsAppFileUpload.propTypes = {
+  fileInputLabel: PropTypes.string,
+  fileInputAccept: PropTypes.string,
+};

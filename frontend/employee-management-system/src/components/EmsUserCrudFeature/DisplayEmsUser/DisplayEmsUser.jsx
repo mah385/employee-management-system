@@ -10,7 +10,7 @@ import MainLayoutResponse from "../../MainLayoutResponse/MainLayoutResponse.jsx"
 /*-------------------------------------------------------------------*/
 import * as EmsUserApiResponseService from "../../../axios/ems-user/ems-user-api-response-service.js";
 /*-------------------------------------------------------------------*/
-import * as EmsUrlConstant from "../../../routes/EmsUrlConstant.js";
+import * as EmsUrlConstant from "../../../constants/emp-app-path-constant.js";
 
 /*-------------------------------------------------------------------*/
 
