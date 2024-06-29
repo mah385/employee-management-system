@@ -17,11 +17,13 @@ import com.codersmecca.employeemanagementsystem.utils.EmsAppResponseEntity;
 import com.codersmecca.employeemanagementsystem.utils.EmsAppUtil;
 import com.codersmecca.employeemanagementsystem.utils.ImportEmsUserUtil;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -39,6 +41,10 @@ public class EmsUserServiceImpl implements EmsUserService {
 
     private final EmsUserRepository emsUserRepository;
 
+    @Value("${spring.jpa.properties.hibernate.jdbc.batch_size}")
+    private Integer hibernateJdbcBatchSize;
+
+    @Transactional
     @Override
     public ResponseEntity<EmsAppResponseEntity> importEmsUserData(
             final MultipartFile emsUserDataMultipartFile
@@ -48,7 +54,14 @@ public class EmsUserServiceImpl implements EmsUserService {
         } else {
             if ("csv".equals(EmsAppUtil.getFileExtension(emsUserDataMultipartFile.getOriginalFilename()))) {
                 List<EmsUserEntity> emsUserEntityLinkedList = ImportEmsUserUtil.importEmsUserData(emsUserDataMultipartFile);
-                this.emsUserRepository.saveAll(emsUserEntityLinkedList);
+                for (int i = 0; i < emsUserEntityLinkedList.size(); i = i + hibernateJdbcBatchSize) {
+                    if (i + hibernateJdbcBatchSize > emsUserEntityLinkedList.size()) {
+                        emsUserRepository.saveAll(emsUserEntityLinkedList.subList(i, emsUserEntityLinkedList.size() - 1));
+                        break;
+                    }
+                    List<EmsUserEntity> emsUserEntityLinkedSubList = emsUserEntityLinkedList.subList(i, i + hibernateJdbcBatchSize);
+                    emsUserRepository.saveAll(emsUserEntityLinkedSubList);
+                }
                 return sendResponse(HttpStatus.OK, DATA_IMPORTED_SUCCESSFULLY_MSG);
             } else {
                 return sendResponse(HttpStatus.BAD_REQUEST, INVALID_FILE_FORMAT_UPLOADED_MSG);
@@ -125,7 +138,7 @@ public class EmsUserServiceImpl implements EmsUserService {
 
     @Override
     public ResponseEntity<EmsAppResponseEntity> deleteEmsUserById(
-            final String id
+            final Long id
     ) {
         this.emsUserRepository.deleteById(id);
         return sendResponse(HttpStatus.OK, DATA_DELETED_SUCCESSFULLY_MSG);

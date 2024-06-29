@@ -8,10 +8,13 @@ export const importEmsUserDataResponseService = async (
   emsUserDataMultipartFile,
 ) => {
   try {
+    const t0 = performance.now();
     const response =
       await EmsUserApiRequestService.importEmsUserDataRequestService(
         emsUserDataMultipartFile,
       );
+    const t1 = performance.now();
+    console.log(`Call to doSomething took ${t1 - t0} milliseconds.`);
     toast.success(response.data.message);
     return response.data;
   } catch (error) {

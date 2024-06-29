@@ -15,7 +15,7 @@ public class UpdateEmsUserRequestBean {
 
     @NotBlank(message = "Id is Blank")
     @NotNull(message = "Id is Required")
-    private String id;
+    private Long id;
 
     @NotBlank(message = "First Name is Blank")
     @NotNull(message = "First Name is Required")

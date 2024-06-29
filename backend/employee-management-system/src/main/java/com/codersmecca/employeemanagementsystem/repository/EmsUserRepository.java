@@ -17,7 +17,7 @@ import java.time.LocalDate;
 import java.util.Optional;
 
 @Repository
-public interface EmsUserRepository extends JpaRepository<EmsUserEntity, String> {
+public interface EmsUserRepository extends JpaRepository<EmsUserEntity, Long> {
 
     Optional<EmsUserEntity> findByEmsUserEmail(String email);
 
@@ -39,7 +39,7 @@ public interface EmsUserRepository extends JpaRepository<EmsUserEntity, String> 
             @Param(value = "hikePercentage") BigDecimal hikePercentage,
             @Param(value = "zipCode") Integer zipCode,
             @Param(value = "mobileNumber") String mobileNumber,
-            @Param(value = "userId") String userId
+            @Param(value = "userId") Long userId
     );
 
     @Query("SELECT NEW com.codersmecca.employeemanagementsystem.dto.repositorybean.GetEmsUserRepositoryBean(eue.emsUserId, eue.emsUserFirstName, eue.emsUserLastName, eue.emsUserGender, " +

@@ -28,7 +28,7 @@ public class EmsAppConstant {
 
     public static final String EMPTY_STRING = "";
 
-    public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("[MM/dd/yyyy][M/d/yyyy]"); //DateTimeFormatter.ofPattern("[MM/dd/yyyy]" + "[dd-MM-yyyy]" + "[yyyy-MM-dd]");
+    public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("[yyyy-MM-dd][yyyy-M-d]");
 
     public static final List<String> ALLOWED_HEADERS_LIST = List.of(
             ACCEPT,

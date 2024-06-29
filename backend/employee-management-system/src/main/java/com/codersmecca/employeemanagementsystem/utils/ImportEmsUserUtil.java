@@ -45,7 +45,7 @@ public class ImportEmsUserUtil {
                         EmsUserEntity.builder()
                                 .emsUserFirstName(csvRecord.get(ZERO))
                                 .emsUserLastName(csvRecord.get(ONE))
-                                .emsUserGender(csvRecord.get(TWO).equals("F") ? EmsUserGender.FEMALE : EmsUserGender.MALE)
+                                .emsUserGender(csvRecord.get(TWO).equals("FEMALE") ? EmsUserGender.FEMALE : EmsUserGender.MALE)
                                 .emsUserEmail(csvRecord.get(THREE))
                                 .emsUserDateOfBirth(LocalDate.parse(csvRecord.get(FOUR), DATE_TIME_FORMATTER))
                                 .emsUserDateOfJoin(LocalDate.parse(csvRecord.get(FIVE), DATE_TIME_FORMATTER))
