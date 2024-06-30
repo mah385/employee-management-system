@@ -2,10 +2,10 @@ import { createBrowserRouter } from "react-router-dom";
 /*-------------------------------------------------------------------*/
 import App from "../App.jsx";
 import EmsAppErrorPage from "../error/EmsAppErrorPage/EmsAppErrorPage.jsx";
-import ImportEmsUserData from "../components/EmsUserCrudFeature/ImportEmsUserData/ImportEmsUserData.jsx";
-import AddNewEmsUser from "../components/EmsUserCrudFeature/AddNewEmsUser/AddNewEmsUser.jsx";
-import UpdateEmsUser from "../components/EmsUserCrudFeature/UpdateEmsUser/UpdateEmsUser.jsx";
-import DisplayEmsUser from "../components/EmsUserCrudFeature/DisplayEmsUser/DisplayEmsUser.jsx";
+import ImportEmsUserData from "../components/ems-user-feature/ImportEmsUserData/ImportEmsUserData.jsx";
+import AddNewEmsUser from "../components/ems-user-feature/AddNewEmsUser/AddNewEmsUser.jsx";
+import UpdateEmsUser from "../components/ems-user-feature/UpdateEmsUser/UpdateEmsUser.jsx";
+import DisplayEmsUser from "../components/ems-user-feature/DisplayEmsUser/DisplayEmsUser.jsx";
 /*-------------------------------------------------------------------*/
 import * as EmpAppPathConstant from "../constants/emp-app-path-constant.js";
 
