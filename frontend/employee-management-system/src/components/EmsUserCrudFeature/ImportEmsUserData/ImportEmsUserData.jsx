@@ -1,18 +1,8 @@
 // import styles from "./ImportEmsUserData.module.css";
 /*-------------------------------------------------------------------*/
-// import { useState } from "react";
-/*-------------------------------------------------------------------*/
-// import { useNavigate } from "react-router-dom";
-/*-------------------------------------------------------------------*/
-// import MyFormInput from "../../MyForm/MyFormInput/MyFormInput.jsx";
-/*-------------------------------------------------------------------*/
-// import * as EmsUserApiResponseService from "../../../axios/ems-user/ems-user-api-response-service.js";
-/*-------------------------------------------------------------------*/
-// import * as EmsUrlConstant from "../../../routes/emp-app-path-constant.js";
-
-/*-------------------------------------------------------------------*/
-
 import EmsAppFileUpload from "./EmsAppFileUpload.jsx";
+
+/*-------------------------------------------------------------------*/
 
 const ImportEmsUserData = () => {
   return (

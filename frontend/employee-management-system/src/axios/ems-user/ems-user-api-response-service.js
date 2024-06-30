@@ -14,7 +14,9 @@ export const importEmsUserDataResponseService = async (
         emsUserDataMultipartFile,
       );
     const t1 = performance.now();
-    console.log(`Call to doSomething took ${t1 - t0} milliseconds.`);
+    toast.success(
+      `Call to importEmsUserDataResponseService took ${t1 - t0} milliseconds.`,
+    );
     toast.success(response.data.message);
     return response.data;
   } catch (error) {
@@ -51,8 +53,13 @@ export const updateEmsUserResponseService = async (updatedEmsUser) => {
 
 export const getAllEmsUserResponseService = async () => {
   try {
+    const t0 = performance.now();
     const response =
       await EmsUserApiRequestService.getAllEmsUserRequestService();
+    const t1 = performance.now();
+    toast.success(
+      `Call to getAllEmsUserResponseService took ${t1 - t0} milliseconds.`,
+    );
     toast.success(response.data.message);
     return response.data;
   } catch (error) {

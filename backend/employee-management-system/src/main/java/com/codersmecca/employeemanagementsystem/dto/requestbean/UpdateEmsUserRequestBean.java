@@ -13,7 +13,6 @@ import java.time.LocalDate;
 @Setter
 public class UpdateEmsUserRequestBean {
 
-    @NotBlank(message = "Id is Blank")
     @NotNull(message = "Id is Required")
     private Long id;
 

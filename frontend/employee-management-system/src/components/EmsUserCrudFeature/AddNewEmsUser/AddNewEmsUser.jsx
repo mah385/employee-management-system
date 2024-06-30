@@ -9,7 +9,7 @@ import MyFormSelect from "../../MyForm/MyFormSelect/MyFormSelect.jsx";
 /*-------------------------------------------------------------------*/
 import * as EmsUserApiResponseService from "../../../axios/ems-user/ems-user-api-response-service.js";
 /*-------------------------------------------------------------------*/
-import * as EmsUrlConstant from "../../../constants/emp-app-path-constant.js";
+import * as EmpAppPathConstant from "../../../constants/emp-app-path-constant.js";
 
 /*-------------------------------------------------------------------*/
 
@@ -59,7 +59,7 @@ const AddNewEmsUser = () => {
       await EmsUserApiResponseService.addNewEmsUserResponseService(newEmsUser);
     if (responseData.statusCode === 201) {
       onClickHandleClearAll();
-      navigate(EmsUrlConstant.DISPLAY_EMS_USER_PATH);
+      navigate(EmpAppPathConstant.PATH_DISPLAY_EMS_USER);
     }
   };
 

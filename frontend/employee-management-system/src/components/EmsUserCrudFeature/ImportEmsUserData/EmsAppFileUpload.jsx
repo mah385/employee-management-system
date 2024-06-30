@@ -4,12 +4,13 @@ import { useState } from "react";
 /*-------------------------------------------------------------------*/
 import { useNavigate } from "react-router-dom";
 /*-------------------------------------------------------------------*/
+import PropTypes from "prop-types";
+/*-------------------------------------------------------------------*/
 import MyFormInput from "../../MyForm/MyFormInput/MyFormInput.jsx";
 /*-------------------------------------------------------------------*/
 import * as EmsUserApiResponseService from "../../../axios/ems-user/ems-user-api-response-service.js";
 /*-------------------------------------------------------------------*/
-import * as EmsUrlConstant from "../../../constants/emp-app-path-constant.js";
-import PropTypes from "prop-types";
+import * as EmpAppPathConstant from "../../../constants/emp-app-path-constant.js";
 
 /*-------------------------------------------------------------------*/
 
@@ -41,7 +42,7 @@ const EmsAppFileUpload = (props) => {
     toggleFileUploadingStatus();
     onClickHandleRemoveFile();
     if (responseData.statusCode === 200) {
-      navigate(EmsUrlConstant.DISPLAY_EMS_USER_PATH);
+      navigate(EmpAppPathConstant.PATH_DISPLAY_EMS_USER);
     }
   };
 

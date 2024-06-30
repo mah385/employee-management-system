@@ -8,11 +8,6 @@ body {
 }
 
 @font-face {
-    font-family: "Urbanist";
-    src: url(./assets/google-fonts/Urbanist/Urbanist-VariableFont_wght.ttf);
-}
-
-@font-face {
     font-family: "Outfit";
     src: url(assets/google-fonts/Outfit/Outfit-VariableFont_wght.ttf);
 }

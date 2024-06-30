@@ -1,5 +1,4 @@
 import stylesMyForm from "../MyForm.module.css";
-// import styles from "./MyFormSelect.module.css";
 /*-------------------------------------------------------------------*/
 import PropTypes from "prop-types";
 

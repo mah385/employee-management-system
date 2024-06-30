@@ -8,28 +8,29 @@ import UpdateEmsUser from "../components/EmsUserCrudFeature/UpdateEmsUser/Update
 import DisplayEmsUser from "../components/EmsUserCrudFeature/DisplayEmsUser/DisplayEmsUser.jsx";
 /*-------------------------------------------------------------------*/
 import * as EmpAppPathConstant from "../constants/emp-app-path-constant.js";
+
 /*-------------------------------------------------------------------*/
 
 const emsAppBrowserRouter = createBrowserRouter([
   {
-    path: EmpAppPathConstant.EMS_ROOT_PATH,
+    path: EmpAppPathConstant.PATH_EMS_ROOT,
     element: <App />,
     errorElement: <EmsAppErrorPage />,
     children: [
       {
-        path: EmpAppPathConstant.IMPORT_EMS_USER_DATA_PATH,
+        path: EmpAppPathConstant.PATH_IMPORT_EMS_USER_DATA,
         element: <ImportEmsUserData />,
       },
       {
-        path: EmpAppPathConstant.ADD_NEW_EMS_USER_PATH,
+        path: EmpAppPathConstant.PATH_ADD_NEW_EMS_USER,
         element: <AddNewEmsUser />,
       },
       {
-        path: EmpAppPathConstant.UPDATE_EMS_USER_PATH,
+        path: EmpAppPathConstant.PATH_UPDATE_EMS_USER,
         element: <UpdateEmsUser />,
       },
       {
-        path: EmpAppPathConstant.DISPLAY_EMS_USER_PATH,
+        path: EmpAppPathConstant.PATH_DISPLAY_EMS_USER,
         element: <DisplayEmsUser />,
       },
     ],

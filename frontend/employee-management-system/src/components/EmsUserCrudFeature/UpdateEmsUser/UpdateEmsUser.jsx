@@ -1,17 +1,15 @@
 import styles from "./UpdateEmsUser.module.css";
 /*-------------------------------------------------------------------*/
-import {
-  useEffect,
-  useState,
-} from "react"; /*-------------------------------------------------------------------*/
-import {
-  useLocation,
-  useNavigate,
-} from "react-router-dom"; /*-------------------------------------------------------------------*/
+import { useEffect, useState } from "react";
+/*-------------------------------------------------------------------*/
+import { useLocation, useNavigate } from "react-router-dom";
+/*-------------------------------------------------------------------*/
 import MyFormInput from "../../MyForm/MyFormInput/MyFormInput.jsx";
-import MyFormSelect from "../../MyForm/MyFormSelect/MyFormSelect.jsx"; /*-------------------------------------------------------------------*/
-import * as EmsUserApiResponseService from "../../../axios/ems-user/ems-user-api-response-service.js"; /*-------------------------------------------------------------------*/
-import * as EmsUrlConstant from "../../../constants/emp-app-path-constant.js"; /*-------------------------------------------------------------------*/
+import MyFormSelect from "../../MyForm/MyFormSelect/MyFormSelect.jsx";
+/*-------------------------------------------------------------------*/
+import * as EmsUserApiResponseService from "../../../axios/ems-user/ems-user-api-response-service.js";
+/*-------------------------------------------------------------------*/
+import * as EmpAppPathConstant from "../../../constants/emp-app-path-constant.js";
 
 /*-------------------------------------------------------------------*/
 
@@ -50,7 +48,7 @@ const UpdateEmsUser = () => {
         updatedEmsUser,
       );
     if (responseData.statusCode === 200) {
-      navigate(EmsUrlConstant.DISPLAY_EMS_USER_PATH);
+      navigate(EmpAppPathConstant.PATH_DISPLAY_EMS_USER);
     }
   };
 
@@ -63,7 +61,7 @@ const UpdateEmsUser = () => {
 
   const onClickHandleCancel = () => {
     setUpdatedEmsUser({});
-    navigate(EmsUrlConstant.DISPLAY_EMS_USER_PATH);
+    navigate(EmpAppPathConstant.PATH_DISPLAY_EMS_USER);
   };
 
   return (

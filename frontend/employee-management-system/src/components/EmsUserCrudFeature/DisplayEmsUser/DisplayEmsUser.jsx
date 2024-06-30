@@ -10,7 +10,7 @@ import MainLayoutResponse from "../../MainLayoutResponse/MainLayoutResponse.jsx"
 /*-------------------------------------------------------------------*/
 import * as EmsUserApiResponseService from "../../../axios/ems-user/ems-user-api-response-service.js";
 /*-------------------------------------------------------------------*/
-import * as EmsUrlConstant from "../../../constants/emp-app-path-constant.js";
+import * as EmpAppPathConstant from "../../../constants/emp-app-path-constant.js";
 
 /*-------------------------------------------------------------------*/
 
@@ -42,7 +42,7 @@ const DisplayEmsUser = () => {
   }, [useEffectTrigger]);
 
   const onClickHandleUpdateEmsUser = (emsUserToBeUpdated) => {
-    navigate(EmsUrlConstant.UPDATE_EMS_USER_PATH, {
+    navigate(EmpAppPathConstant.PATH_UPDATE_EMS_USER, {
       state: { emsUserToBeUpdated: emsUserToBeUpdated },
     });
   };
