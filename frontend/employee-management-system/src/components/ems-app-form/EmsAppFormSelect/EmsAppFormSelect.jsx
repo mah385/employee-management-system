@@ -1,51 +1,23 @@
-import stylesMyForm from "../MyForm.module.css";
+import stylesMyForm from "../ems-app-form.module.css";
 /*-------------------------------------------------------------------*/
 import PropTypes from "prop-types";
+/*-------------------------------------------------------------------*/
+import { getInputLabelWidthBasedOnType } from "../ems-app-form-input-label-width-type.js";
 
 /*-------------------------------------------------------------------*/
 
-function MyFormSelect(props) {
-  let inputLabelWidth;
-  let inputContainerWidth;
-  switch (props.inputlabelwidthtype) {
-    case "XS": {
-      inputLabelWidth = 100;
-      break;
-    }
-    case "SM": {
-      inputLabelWidth = 120;
-      break;
-    }
-    case "MD": {
-      inputLabelWidth = 140;
-      break;
-    }
-    case "LG": {
-      inputLabelWidth = 160;
-      break;
-    }
-    case "XL": {
-      inputLabelWidth = 180;
-      break;
-    }
-    case "XXL": {
-      inputLabelWidth = 200;
-      break;
-    }
-    case "XXXL": {
-      inputLabelWidth = 220;
-      break;
-    }
-  }
-  inputContainerWidth = inputLabelWidth * 3;
+function EmsAppFormSelect(props) {
+  const inputLabelWidthBasedOnType = getInputLabelWidthBasedOnType(
+    props.inputlabelwidthtype,
+  );
   return (
     <div
       className={`${stylesMyForm.inputContainer} input-group input-group-sm m-1`}
-      style={{ width: `${inputContainerWidth}px` }}
+      style={{ width: `${inputLabelWidthBasedOnType.inputContainerWidth}px` }}
     >
       <div
         className={`${stylesMyForm.inputLabel} input-group-text`}
-        style={{ width: `${inputLabelWidth}px` }}
+        style={{ width: `${inputLabelWidthBasedOnType.inputLabelWidth}px` }}
       >
         {props.label}
       </div>
@@ -63,9 +35,9 @@ function MyFormSelect(props) {
   );
 }
 
-export default MyFormSelect;
+export default EmsAppFormSelect;
 
-MyFormSelect.propTypes = {
+EmsAppFormSelect.propTypes = {
   label: PropTypes.string,
   options: PropTypes.array,
   inputlabelwidthtype: PropTypes.string,

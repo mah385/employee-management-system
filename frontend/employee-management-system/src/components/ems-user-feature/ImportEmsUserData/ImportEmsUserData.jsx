@@ -1,14 +1,12 @@
 // import styles from "./ImportEmsUserData.module.css";
 /*-------------------------------------------------------------------*/
-import EmsAppFileUpload from "./EmsAppFileUpload.jsx";
+import EmsAppFileUpload from "../../util/EmsAppFileUpload/EmsAppFileUpload.jsx";
 
 /*-------------------------------------------------------------------*/
 
 const ImportEmsUserData = () => {
   return (
-    <div
-      className={`h-100 d-flex flex-column justify-content-center align-items-center gap-4`}
-    >
+    <div className="h-100 d-flex flex-column justify-content-center align-items-center gap-4">
       <EmsAppFileUpload
         fileInputAccept=".csv"
         fileInputLabel="Upload Data using CSV File"

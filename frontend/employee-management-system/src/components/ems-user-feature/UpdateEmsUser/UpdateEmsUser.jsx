@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 /*-------------------------------------------------------------------*/
 import { useLocation, useNavigate } from "react-router-dom";
 /*-------------------------------------------------------------------*/
-import MyFormInput from "../../MyForm/MyFormInput/MyFormInput.jsx";
-import MyFormSelect from "../../MyForm/MyFormSelect/MyFormSelect.jsx";
+import EmsAppFormInput from "../../ems-app-form/EmsAppFormInput/EmsAppFormInput.jsx";
+import EmsAppFormSelect from "../../ems-app-form/EmsAppFormSelect/EmsAppFormSelect.jsx";
 /*-------------------------------------------------------------------*/
 import * as EmsUserApiResponseService from "../../../axios/ems-user/ems-user-api-response-service.js";
 /*-------------------------------------------------------------------*/
@@ -71,7 +71,7 @@ const UpdateEmsUser = () => {
     >
       <h3>Edit User</h3>
       <div className="d-flex flex-column">
-        <MyFormInput
+        <EmsAppFormInput
           inputlabelwidthtype="SM"
           type="text"
           name="firstName"
@@ -80,7 +80,7 @@ const UpdateEmsUser = () => {
           onChange={(e) => onChangeHandleState(e)}
           required
         />
-        <MyFormInput
+        <EmsAppFormInput
           inputlabelwidthtype="SM"
           type="text"
           name="lastName"
@@ -88,7 +88,7 @@ const UpdateEmsUser = () => {
           value={updatedEmsUser.lastName}
           onChange={(e) => onChangeHandleState(e)}
         />
-        <MyFormSelect
+        <EmsAppFormSelect
           inputlabelwidthtype="SM"
           options={dropdownOfEmsUserGender}
           name="emsUserGender"
@@ -97,7 +97,7 @@ const UpdateEmsUser = () => {
           onChange={(e) => onChangeHandleState(e)}
           required
         />
-        <MyFormInput
+        <EmsAppFormInput
           inputlabelwidthtype="SM"
           type="email"
           name="email"
@@ -105,7 +105,7 @@ const UpdateEmsUser = () => {
           value={updatedEmsUser.email}
           disabled={true}
         />
-        <MyFormInput
+        <EmsAppFormInput
           inputlabelwidthtype="SM"
           type="date"
           name="dateOfBirth"
@@ -113,7 +113,7 @@ const UpdateEmsUser = () => {
           value={updatedEmsUser.dateOfBirth}
           onChange={(e) => onChangeHandleState(e)}
         />
-        <MyFormInput
+        <EmsAppFormInput
           inputlabelwidthtype="SM"
           type="date"
           name="dateOfJoin"
@@ -121,7 +121,7 @@ const UpdateEmsUser = () => {
           value={updatedEmsUser.dateOfJoin}
           onChange={(e) => onChangeHandleState(e)}
         />
-        <MyFormInput
+        <EmsAppFormInput
           inputlabelwidthtype="SM"
           type="number"
           name="salary"
@@ -129,7 +129,7 @@ const UpdateEmsUser = () => {
           value={updatedEmsUser.salary}
           onChange={(e) => onChangeHandleState(e)}
         />
-        <MyFormInput
+        <EmsAppFormInput
           inputlabelwidthtype="SM"
           type="number"
           name="hikePercentage"
@@ -137,7 +137,7 @@ const UpdateEmsUser = () => {
           value={updatedEmsUser.hikePercentage}
           onChange={(e) => onChangeHandleState(e)}
         />
-        <MyFormInput
+        <EmsAppFormInput
           inputlabelwidthtype="SM"
           type="text"
           name="zipCode"
@@ -145,7 +145,7 @@ const UpdateEmsUser = () => {
           value={updatedEmsUser.zipCode}
           onChange={(e) => onChangeHandleState(e)}
         />
-        <MyFormInput
+        <EmsAppFormInput
           inputlabelwidthtype="SM"
           type="text"
           name="mobileNumber"

@@ -1,4 +1,4 @@
-import styles from "./ImportEmsUserData.module.css";
+import styles from "./EmsAppFileUpload.module.css";
 /*-------------------------------------------------------------------*/
 import { useState } from "react";
 /*-------------------------------------------------------------------*/
@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 /*-------------------------------------------------------------------*/
 import PropTypes from "prop-types";
 /*-------------------------------------------------------------------*/
-import MyFormInput from "../../MyForm/MyFormInput/MyFormInput.jsx";
+import EmsAppFormInput from "../../ems-app-form/EmsAppFormInput/EmsAppFormInput.jsx";
 /*-------------------------------------------------------------------*/
 import * as EmsUserApiResponseService from "../../../axios/ems-user/ems-user-api-response-service.js";
 /*-------------------------------------------------------------------*/
@@ -68,7 +68,7 @@ const EmsAppFileUpload = (props) => {
       className={`${styles.myFormContainer} d-flex flex-column justify-content-center align-items-center gap-2`}
     >
       <div>
-        <MyFormInput
+        <EmsAppFormInput
           inputlabelwidthtype="XXXL"
           type="file"
           name="importDataFile"
@@ -78,28 +78,29 @@ const EmsAppFileUpload = (props) => {
           required
         />
       </div>
-      <div className="d-flex gap-5">
-        <button
-          type="submit"
-          className="border border-2 border-success btn btn-outline-success"
-          disabled={!uploadFileInfo.isFileSelected}
-        >
-          Upload File
-        </button>
-        <button
-          type="button"
-          className="border border-2 border-danger btn btn-outline-danger"
-          onClick={onClickHandleRemoveFile}
-          disabled={!uploadFileInfo.isFileSelected}
-        >
-          Remove File
-        </button>
-      </div>
-      <div>
-        <h1 className="display-6">
-          {uploadFileInfo.isFileUploading && "Uploading File... Please Wait."}
-        </h1>
-      </div>
+      {uploadFileInfo.isFileSelected && (
+        <div className="d-flex gap-5 mb-2">
+          <button
+            type="submit"
+            className="border border-2 border-success btn btn-outline-success"
+          >
+            Upload File
+          </button>
+          <button
+            type="button"
+            className="border border-2 border-danger btn btn-outline-danger"
+            onClick={onClickHandleRemoveFile}
+          >
+            Remove File
+          </button>
+        </div>
+      )}
+
+      {uploadFileInfo.isFileUploading && (
+        <div>
+          <h1 className="display-6">Uploading File... Please Wait.</h1>
+        </div>
+      )}
     </form>
   );
 };
