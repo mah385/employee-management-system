@@ -1,4 +1,4 @@
-import empAppAxiosInstance from "../../config/emp-app-axios-instance.js";
+import empAppAxiosInstance from "../emp-app-axios-instance.js";
 
 /*-------------------------------------------------------------------*/
 

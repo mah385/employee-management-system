@@ -1,4 +1,4 @@
-// import styles from "./EmsAppHeader.module.css";
+// import styles from "./EmsAppHeader.module.css"; //USE THIS IMPORT WHEN NEEDED
 
 /*-------------------------------------------------------------------*/
 

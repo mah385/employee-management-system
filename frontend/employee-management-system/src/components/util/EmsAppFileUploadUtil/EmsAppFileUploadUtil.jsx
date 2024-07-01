@@ -1,4 +1,4 @@
-import styles from "./EmsAppFileUpload.module.css";
+import styles from "./EmsAppFileUploadUtil.module.css";
 /*-------------------------------------------------------------------*/
 import { useState } from "react";
 /*-------------------------------------------------------------------*/
@@ -8,15 +8,15 @@ import PropTypes from "prop-types";
 /*-------------------------------------------------------------------*/
 import EmsAppFormInput from "../../ems-app-form/EmsAppFormInput/EmsAppFormInput.jsx";
 /*-------------------------------------------------------------------*/
-import * as EmsUserApiResponseService from "../../../axios/ems-user/ems-user-api-response-service.js";
-/*-------------------------------------------------------------------*/
 import * as EmpAppPathConstant from "../../../constants/emp-app-path-constant.js";
+/*-------------------------------------------------------------------*/
+import * as EmsUserApiResponseService from "../../../axios/ems-user/ems-user-api-response-service.js";
 
 /*-------------------------------------------------------------------*/
 
-const EmsAppFileUpload = (props) => {
+const EmsAppFileUploadUtil = (props) => {
   console.log(
-    "EmsAppFileUpload (props.fileInputAccept): " + props.fileInputAccept,
+    "EmsAppFileUploadUtil (props.fileInputAccept): " + props.fileInputAccept,
   );
   const navigate = useNavigate();
   const [uploadFileInfo, setUploadFileInfo] = useState({
@@ -105,9 +105,9 @@ const EmsAppFileUpload = (props) => {
   );
 };
 
-export default EmsAppFileUpload;
+export default EmsAppFileUploadUtil;
 
-EmsAppFileUpload.propTypes = {
+EmsAppFileUploadUtil.propTypes = {
   fileInputLabel: PropTypes.string,
   fileInputAccept: PropTypes.string,
 };

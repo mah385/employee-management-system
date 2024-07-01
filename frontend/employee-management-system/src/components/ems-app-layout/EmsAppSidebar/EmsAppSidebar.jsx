@@ -1,4 +1,4 @@
-// import styles from "./EmsAppSidebar.module.css";
+// import styles from "./EmsAppSidebar.module.css"; //USE THIS IMPORT WHEN NEEDED
 /*-------------------------------------------------------------------*/
 import {NavLink} from "react-router-dom";
 /*-------------------------------------------------------------------*/

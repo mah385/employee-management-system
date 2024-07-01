@@ -10,7 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 /*-------------------------------------------------------------------*/
 import "./index.css";
 /*-------------------------------------------------------------------*/
-import emsAppBrowserRouter from "./config/ems-app-browser-router.jsx";
+import emsAppBrowserRouter from "./browser-router/ems-app-browser-router.jsx";
 /*-------------------------------------------------------------------*/
 
 ReactDOM.createRoot(document.getElementById("root")).render(
