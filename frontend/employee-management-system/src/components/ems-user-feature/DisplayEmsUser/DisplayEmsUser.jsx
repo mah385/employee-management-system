@@ -10,7 +10,7 @@ import MainLayoutResponse from "../../MainLayoutResponse/MainLayoutResponse.jsx"
 /*-------------------------------------------------------------------*/
 import * as EmpAppPathConstant from "../../../constants/emp-app-path-constant.js";
 /*-------------------------------------------------------------------*/
-import * as EmsUserApiResponseService from "../../../axios/ems-user/ems-user-api-response-service.js";
+import * as EmsUserApiRequestHandlerService from "../../../axios/ems-user/ems-user-api-request-handler-service.js";
 
 /*-------------------------------------------------------------------*/
 
@@ -26,7 +26,7 @@ const DisplayEmsUser = () => {
     let isMounted = true;
     const getAllEmsUser = async () => {
       const responseData =
-        await EmsUserApiResponseService.getAllEmsUserResponseService();
+        await EmsUserApiRequestHandlerService.handleGetAllEmsUser();
       if (isMounted && responseData.payload != null) {
         setEmsUserList(responseData.payload);
       }
@@ -48,7 +48,7 @@ const DisplayEmsUser = () => {
   };
 
   const onClickHandleDeleteEmsUserById = async (id) => {
-    await EmsUserApiResponseService.deleteEmsUserByIdResponseService(id);
+    await EmsUserApiRequestHandlerService.handleDeleteEmsUserById(id);
     setUseEffectTrigger(new Date());
   };
 

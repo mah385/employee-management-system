@@ -9,7 +9,7 @@ import EmsAppFormSelect from "../../ems-app-form/EmsAppFormSelect/EmsAppFormSele
 /*-------------------------------------------------------------------*/
 import * as EmpAppPathConstant from "../../../constants/emp-app-path-constant.js";
 /*-------------------------------------------------------------------*/
-import * as EmsUserApiResponseService from "../../../axios/ems-user/ems-user-api-response-service.js";
+import * as EmsUserApiRequestHandlerService from "../../../axios/ems-user/ems-user-api-request-handler-service.js";
 
 /*-------------------------------------------------------------------*/
 
@@ -38,7 +38,7 @@ const AddNewEmsUser = () => {
     let isMounted = true;
     const getDropdownOfEmsUserGender = async () => {
       const responseData =
-        await EmsUserApiResponseService.getDropdownOfEmsUserGenderResponseService();
+        await EmsUserApiRequestHandlerService.handleGetDropdownOfEmsUserGender();
       if (isMounted && responseData.payload != null) {
         setDropdownOfEmsUserGender(responseData.payload);
       }
@@ -56,7 +56,7 @@ const AddNewEmsUser = () => {
   const onSubmitHandleFormToAddNewEmsUser = async (e) => {
     e.preventDefault();
     const responseData =
-      await EmsUserApiResponseService.addNewEmsUserResponseService(newEmsUser);
+      await EmsUserApiRequestHandlerService.handleAddNewEmsUser(newEmsUser);
     if (responseData.statusCode === 201) {
       onClickHandleClearAll();
       navigate(EmpAppPathConstant.PATH_DISPLAY_EMS_USER);

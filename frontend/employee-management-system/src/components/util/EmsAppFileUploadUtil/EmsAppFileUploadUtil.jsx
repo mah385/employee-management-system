@@ -10,7 +10,7 @@ import EmsAppFormInput from "../../ems-app-form/EmsAppFormInput/EmsAppFormInput.
 /*-------------------------------------------------------------------*/
 import * as EmpAppPathConstant from "../../../constants/emp-app-path-constant.js";
 /*-------------------------------------------------------------------*/
-import * as EmsUserApiResponseService from "../../../axios/ems-user/ems-user-api-response-service.js";
+import * as EmsUserApiRequestHandlerService from "../../../axios/ems-user/ems-user-api-request-handler-service.js";
 
 /*-------------------------------------------------------------------*/
 
@@ -36,7 +36,7 @@ const EmsAppFileUploadUtil = (props) => {
     e.preventDefault();
     toggleFileUploadingStatus();
     const responseData =
-      await EmsUserApiResponseService.importEmsUserDataResponseService(
+      await EmsUserApiRequestHandlerService.handleImportEmsUserData(
         uploadFileInfo.selectedFile,
       );
     toggleFileUploadingStatus();

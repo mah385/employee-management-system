@@ -4,18 +4,15 @@ import * as EmsUserApiRequestService from "./ems-user-api-request-service.js";
 
 /*-------------------------------------------------------------------*/
 
-export const importEmsUserDataResponseService = async (
-  emsUserDataMultipartFile,
-) => {
+export const handleImportEmsUserData = async (emsUserDataMultipartFile) => {
   try {
     const t0 = performance.now();
-    const response =
-      await EmsUserApiRequestService.importEmsUserDataRequestService(
-        emsUserDataMultipartFile,
-      );
+    const response = await EmsUserApiRequestService.importEmsUserData(
+      emsUserDataMultipartFile,
+    );
     const t1 = performance.now();
     toast.success(
-      `Call to importEmsUserDataResponseService took ${t1 - t0} milliseconds.`,
+      `Call to handleImportEmsUserData took ${t1 - t0} milliseconds.`,
     );
     toast.success(response.data.message);
     return response.data;
@@ -25,10 +22,9 @@ export const importEmsUserDataResponseService = async (
   }
 };
 
-export const addNewEmsUserResponseService = async (newEmsUser) => {
+export const handleAddNewEmsUser = async (newEmsUser) => {
   try {
-    const response =
-      await EmsUserApiRequestService.addNewEmsUserRequestService(newEmsUser);
+    const response = await EmsUserApiRequestService.addNewEmsUser(newEmsUser);
     toast.success(response.data.message);
     return response.data;
   } catch (error) {
@@ -37,12 +33,10 @@ export const addNewEmsUserResponseService = async (newEmsUser) => {
   }
 };
 
-export const updateEmsUserResponseService = async (updatedEmsUser) => {
+export const handleUpdateEmsUser = async (updatedEmsUser) => {
   try {
     const response =
-      await EmsUserApiRequestService.updateEmsUserRequestService(
-        updatedEmsUser,
-      );
+      await EmsUserApiRequestService.updateEmsUser(updatedEmsUser);
     toast.success(response.data.message);
     return response.data;
   } catch (error) {
@@ -51,15 +45,12 @@ export const updateEmsUserResponseService = async (updatedEmsUser) => {
   }
 };
 
-export const getAllEmsUserResponseService = async () => {
+export const handleGetAllEmsUser = async () => {
   try {
     const t0 = performance.now();
-    const response =
-      await EmsUserApiRequestService.getAllEmsUserRequestService();
+    const response = await EmsUserApiRequestService.getAllEmsUser();
     const t1 = performance.now();
-    toast.success(
-      `Call to getAllEmsUserResponseService took ${t1 - t0} milliseconds.`,
-    );
+    toast.success(`Call to handleGetAllEmsUser took ${t1 - t0} milliseconds.`);
     toast.success(response.data.message);
     return response.data;
   } catch (error) {
@@ -68,10 +59,9 @@ export const getAllEmsUserResponseService = async () => {
   }
 };
 
-export const deleteEmsUserByIdResponseService = async (id) => {
+export const handleDeleteEmsUserById = async (id) => {
   try {
-    const response =
-      await EmsUserApiRequestService.deleteEmsUserByIdRequestService(id);
+    const response = await EmsUserApiRequestService.deleteEmsUserById(id);
     toast.success(response.data.message);
     return response.data.payload;
   } catch (error) {
@@ -79,10 +69,10 @@ export const deleteEmsUserByIdResponseService = async (id) => {
   }
 };
 
-export const getDropdownOfEmsUserGenderResponseService = async () => {
+export const handleGetDropdownOfEmsUserGender = async () => {
   try {
     const response =
-      await EmsUserApiRequestService.getDropdownOfEmsUserGenderRequestService();
+      await EmsUserApiRequestService.getDropdownOfEmsUserGender();
     // toast.success(response.data.message);
     return response.data;
   } catch (error) {
