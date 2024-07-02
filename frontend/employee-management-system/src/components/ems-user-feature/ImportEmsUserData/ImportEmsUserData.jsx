@@ -4,7 +4,12 @@ import EmsAppFileUploadUtil from "../../util/EmsAppFileUploadUtil/EmsAppFileUplo
 
 /*-------------------------------------------------------------------*/
 
+let renderCountOfImportEmsUserData = 0;
 const ImportEmsUserData = () => {
+  console.log(
+    "renderCountOfImportEmsUserData: " + renderCountOfImportEmsUserData++,
+  );
+
   return (
     <div className="h-100 d-flex flex-column justify-content-center align-items-center gap-4">
       <EmsAppFileUploadUtil

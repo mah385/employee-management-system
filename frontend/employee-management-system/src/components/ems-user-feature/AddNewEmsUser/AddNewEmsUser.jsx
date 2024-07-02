@@ -13,7 +13,10 @@ import * as EmsUserApiRequestHandlerService from "../../../axios/ems-user/ems-us
 
 /*-------------------------------------------------------------------*/
 
+let renderCountOfAddNewEmsUser = 0;
 const AddNewEmsUser = () => {
+  console.log("renderCountOfAddNewEmsUser: " + renderCountOfAddNewEmsUser++);
+
   const navigate = useNavigate();
 
   const initNewEmsUser = () => {

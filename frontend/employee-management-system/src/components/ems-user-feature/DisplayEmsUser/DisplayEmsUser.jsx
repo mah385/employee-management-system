@@ -14,8 +14,9 @@ import * as EmsUserApiRequestHandlerService from "../../../axios/ems-user/ems-us
 
 /*-------------------------------------------------------------------*/
 
+let renderCountOfDisplayEmsUser = 0;
 const DisplayEmsUser = () => {
-  console.log("DisplayEmsUser");
+  console.log("renderCountOfDisplayEmsUser: " + renderCountOfDisplayEmsUser++);
 
   const navigate = useNavigate();
 
@@ -37,7 +38,9 @@ const DisplayEmsUser = () => {
     return () => {
       // Clean up on unmount
       isMounted = false;
-      setEmsUserList([]);
+      if (!emsUserList.length === 0) {
+        setEmsUserList([]);
+      }
     };
   }, [useEffectTrigger]);
 

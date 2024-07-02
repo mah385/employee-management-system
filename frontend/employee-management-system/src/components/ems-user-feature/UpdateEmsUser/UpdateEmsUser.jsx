@@ -13,7 +13,10 @@ import * as EmsUserApiRequestHandlerService from "../../../axios/ems-user/ems-us
 
 /*-------------------------------------------------------------------*/
 
+let renderCountOfUpdateEmsUser = 0;
 const UpdateEmsUser = () => {
+  console.log("renderCountOfUpdateEmsUser: " + renderCountOfUpdateEmsUser++);
+
   const navigate = useNavigate();
   const location = useLocation();
 
