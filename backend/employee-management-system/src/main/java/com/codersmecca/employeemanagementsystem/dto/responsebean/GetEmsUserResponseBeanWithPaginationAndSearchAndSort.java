@@ -1,5 +1,6 @@
 package com.codersmecca.employeemanagementsystem.dto.responsebean;
 
+import com.codersmecca.employeemanagementsystem.dto.bean.EmsAppPaginationMetadata;
 import lombok.*;
 
 import java.util.ArrayList;
@@ -13,8 +14,6 @@ import java.util.List;
 public class GetEmsUserResponseBeanWithPaginationAndSearchAndSort {
 
     private List<GetEmsUserResponseBean> getEmsUserResponseBeanList = new ArrayList<>();
-    private Integer pageNumber;
-    private Integer pageSize;
-    private Integer totalNoOfPage;
+    private EmsAppPaginationMetadata emsAppPaginationMetadata;
 
 }

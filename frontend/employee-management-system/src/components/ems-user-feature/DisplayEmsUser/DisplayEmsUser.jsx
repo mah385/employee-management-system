@@ -38,9 +38,7 @@ const DisplayEmsUser = () => {
     return () => {
       // Clean up on unmount
       isMounted = false;
-      if (!emsUserList.length === 0) {
-        setEmsUserList([]);
-      }
+      setEmsUserList([]);
     };
   }, [useEffectTrigger]);
 

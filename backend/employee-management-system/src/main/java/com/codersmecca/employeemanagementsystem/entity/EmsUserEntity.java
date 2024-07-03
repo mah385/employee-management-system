@@ -17,6 +17,7 @@ import java.time.LocalDate;
 public class EmsUserEntity extends EmsAppBaseEntity {
 
     @Id
+    @Column
     @GeneratedValue(generator = "tbl_ems_user_seq_gen", strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(name = "tbl_ems_user_seq_gen", sequenceName = "tbl_ems_user_seq")
     private Long emsUserId;

@@ -17,8 +17,8 @@ public class EmsUserRequestBeanWithPaginationAndSearchAndSort {
     private String searchLastName;
     private EmsUserGender searchEmsUserGender;
     private String searchEmail;
-    private LocalDate searchDateOfBirth;
-    private LocalDate searchDateOfJoin;
+    private String searchDateOfBirth; //LocalDate
+    private String searchDateOfJoin; //LocalDate
     private BigDecimal searchSalary;
     private BigDecimal searchHikePercentage;
     private Integer searchZipCode;
@@ -33,7 +33,6 @@ public class EmsUserRequestBeanWithPaginationAndSearchAndSort {
     private Sort.Direction sortDirectionForSalary = null;
     private Sort.Direction sortDirectionForHikePercentage = null;
     private Sort.Direction sortDirectionForZipCode = null;
-    private Sort.Direction sortDirectionForMobileNumber = null;
 
     @NotNull(message = "Please provide page number")
     private Integer pageNumber = 1;

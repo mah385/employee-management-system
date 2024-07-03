@@ -1,5 +1,6 @@
 package com.codersmecca.employeemanagementsystem.service.impl;
 
+import com.codersmecca.employeemanagementsystem.dto.bean.EmsAppPaginationMetadata;
 import com.codersmecca.employeemanagementsystem.dto.repositorybean.GetEmsUserRepositoryBean;
 import com.codersmecca.employeemanagementsystem.dto.requestbean.AddNewEmsUserRequestBean;
 import com.codersmecca.employeemanagementsystem.dto.requestbean.EmsUserRequestBeanWithPaginationAndSearchAndSort;
@@ -20,6 +21,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -110,6 +112,47 @@ public class EmsUserServiceImpl implements EmsUserService {
     public ResponseEntity<EmsAppResponseEntity> getAllEmsUserWithPaginationAndSearchAndSort(
             final EmsUserRequestBeanWithPaginationAndSearchAndSort emsUserRequestBeanWithPaginationAndSearchAndSort
     ) {
+        Sort sortByRespectiveField = Sort.unsorted();
+
+        Sort.Direction sortDirectionForFirstName = emsUserRequestBeanWithPaginationAndSearchAndSort.getSortDirectionForFirstName();
+        Sort.Direction sortDirectionForLastName = emsUserRequestBeanWithPaginationAndSearchAndSort.getSortDirectionForLastName();
+        Sort.Direction sortDirectionForEmsUserGender = emsUserRequestBeanWithPaginationAndSearchAndSort.getSortDirectionForEmsUserGender();
+        Sort.Direction sortDirectionForEmail = emsUserRequestBeanWithPaginationAndSearchAndSort.getSortDirectionForEmail();
+        Sort.Direction sortDirectionForDateOfBirth = emsUserRequestBeanWithPaginationAndSearchAndSort.getSortDirectionForDateOfBirth();
+        Sort.Direction sortDirectionForDateOfJoin = emsUserRequestBeanWithPaginationAndSearchAndSort.getSortDirectionForDateOfJoin();
+        Sort.Direction sortDirectionForSalary = emsUserRequestBeanWithPaginationAndSearchAndSort.getSortDirectionForSalary();
+        Sort.Direction sortDirectionForHikePercentage = emsUserRequestBeanWithPaginationAndSearchAndSort.getSortDirectionForHikePercentage();
+        Sort.Direction sortDirectionForZipCode = emsUserRequestBeanWithPaginationAndSearchAndSort.getSortDirectionForZipCode();
+
+        if (sortDirectionForFirstName != null) {
+            Sort sortByFirstName = Sort.by("emsUserFirstName");
+            sortByRespectiveField = sortDirectionForFirstName.isAscending() ? sortByFirstName.ascending() : sortByFirstName.descending();
+        } else if (sortDirectionForLastName != null) {
+            Sort sortByLastName = Sort.by("emsUserLastName");
+            sortByRespectiveField = sortDirectionForLastName.isAscending() ? sortByLastName.ascending() : sortByLastName.descending();
+        } else if (sortDirectionForEmsUserGender != null) {
+            Sort sortByEmsUserGender = Sort.by("emsUserGender");
+            sortByRespectiveField = sortDirectionForEmsUserGender.isAscending() ? sortByEmsUserGender.ascending() : sortByEmsUserGender.descending();
+        } else if (sortDirectionForEmail != null) {
+            Sort sortByEmail = Sort.by("emsUserEmail");
+            sortByRespectiveField = sortDirectionForEmail.isAscending() ? sortByEmail.ascending() : sortByEmail.descending();
+        } else if (sortDirectionForDateOfBirth != null) {
+            Sort sortByDateOfBirth = Sort.by("emsUserDateOfBirth");
+            sortByRespectiveField = sortDirectionForDateOfBirth.isAscending() ? sortByDateOfBirth.ascending() : sortByDateOfBirth.descending();
+        } else if (sortDirectionForDateOfJoin != null) {
+            Sort sortByDateOfJoin = Sort.by("emsUserDateOfJoin");
+            sortByRespectiveField = sortDirectionForDateOfJoin.isAscending() ? sortByDateOfJoin.ascending() : sortByDateOfJoin.descending();
+        } else if (sortDirectionForSalary != null) {
+            Sort sortBySalary = Sort.by("emsUserSalary");
+            sortByRespectiveField = sortDirectionForSalary.isAscending() ? sortBySalary.ascending() : sortBySalary.descending();
+        } else if (sortDirectionForHikePercentage != null) {
+            Sort sortByHikePercentage = Sort.by("emsUserHikePercentage");
+            sortByRespectiveField = sortDirectionForHikePercentage.isAscending() ? sortByHikePercentage.ascending() : sortByHikePercentage.descending();
+        } else if (sortDirectionForZipCode != null) {
+            Sort sortByZipCode = Sort.by("emsUserZipCode");
+            sortByRespectiveField = sortDirectionForZipCode.isAscending() ? sortByZipCode.ascending() : sortByZipCode.descending();
+        }
+
         Page<GetEmsUserRepositoryBean> getEmsUserRepositoryBeanWithPaginationAndSearchAndSort = this.emsUserRepository.findAllEmsUserWithPaginationAndSearchAndSort(
                 emsUserRequestBeanWithPaginationAndSearchAndSort.getSearchFirstName(),
                 emsUserRequestBeanWithPaginationAndSearchAndSort.getSearchLastName(),
@@ -121,16 +164,20 @@ public class EmsUserServiceImpl implements EmsUserService {
                 emsUserRequestBeanWithPaginationAndSearchAndSort.getSearchHikePercentage(),
                 emsUserRequestBeanWithPaginationAndSearchAndSort.getSearchZipCode(),
                 emsUserRequestBeanWithPaginationAndSearchAndSort.getSearchMobileNumber(),
-                PageRequest.of((emsUserRequestBeanWithPaginationAndSearchAndSort.getPageNumber() - 1), emsUserRequestBeanWithPaginationAndSearchAndSort.getPageSize())
+                PageRequest.of((emsUserRequestBeanWithPaginationAndSearchAndSort.getPageNumber() - 1), emsUserRequestBeanWithPaginationAndSearchAndSort.getPageSize(), sortByRespectiveField)
         );
 
         GetEmsUserResponseBeanWithPaginationAndSearchAndSort getEmsUserResponseBeanWithPaginationAndSearchAndSort = GetEmsUserResponseBeanWithPaginationAndSearchAndSort.builder()
                 .getEmsUserResponseBeanList(
                         EntityToBeanMapper.mapMultipleEntityToBeanByUsingGetEmsUserRepositoryBeanAndReturnGetEmsUserResponseBean.apply(getEmsUserRepositoryBeanWithPaginationAndSearchAndSort.getContent())
                 )
-                .pageNumber(getEmsUserRepositoryBeanWithPaginationAndSearchAndSort.getPageable().getPageNumber() + 1)
-                .pageSize(getEmsUserRepositoryBeanWithPaginationAndSearchAndSort.getPageable().getPageSize())
-                .totalNoOfPage(getEmsUserRepositoryBeanWithPaginationAndSearchAndSort.getTotalPages())
+                .emsAppPaginationMetadata(
+                        EmsAppPaginationMetadata.builder()
+                                .pageNumber(getEmsUserRepositoryBeanWithPaginationAndSearchAndSort.getPageable().getPageNumber() + 1)
+                                .pageSize(getEmsUserRepositoryBeanWithPaginationAndSearchAndSort.getPageable().getPageSize())
+                                .totalNoOfPage(getEmsUserRepositoryBeanWithPaginationAndSearchAndSort.getTotalPages())
+                                .build()
+                )
                 .build();
 
         return sendResponse(getEmsUserResponseBeanWithPaginationAndSearchAndSort, HttpStatus.OK, SHOWING_RESPONSE_DATA_MSG);

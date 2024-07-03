@@ -49,8 +49,8 @@ public interface EmsUserRepository extends JpaRepository<EmsUserEntity, Long> {
             "AND ((:searchLastName IS NULL) OR (:searchLastName IS NOT NULL AND lower(eue.emsUserLastName) LIKE lower(concat('%',:searchLastName,'%')))) " +
             "AND ((:searchEmsUserGender IS NULL) OR (:searchEmsUserGender IS NOT NULL AND eue.emsUserGender=:searchEmsUserGender)) " +
             "AND ((:searchEmail IS NULL) OR (:searchEmail IS NOT NULL AND lower(eue.emsUserEmail) LIKE lower(concat('%',:searchEmail,'%')))) " +
-            "AND ((:searchDateOfBirth IS NULL) OR (:searchDateOfBirth IS NOT NULL AND eue.emsUserDateOfBirth=:searchDateOfBirth)) " +
-            "AND ((:searchDateOfJoin IS NULL) OR (:searchDateOfJoin IS NOT NULL AND eue.emsUserDateOfJoin=:searchDateOfJoin)) " +
+            "AND ((:searchDateOfBirth IS NULL) OR (:searchDateOfBirth IS NOT NULL AND concat('', eue.emsUserDateOfBirth) LIKE concat(:searchDateOfBirth,'%'))) " +
+            "AND ((:searchDateOfJoin IS NULL) OR (:searchDateOfJoin IS NOT NULL AND concat('', eue.emsUserDateOfJoin) LIKE concat(:searchDateOfJoin,'%'))) " +
             "AND ((:searchSalary IS NULL) OR (:searchSalary IS NOT NULL AND concat('',eue.emsUserSalary) LIKE concat(:searchSalary,'%'))) " +
             "AND ((:searchHikePercentage IS NULL) OR (:searchHikePercentage IS NOT NULL AND concat('',eue.emsUserHikePercentage) LIKE concat(:searchHikePercentage,'%'))) " +
             "AND ((:searchZipCode IS NULL) OR (:searchZipCode IS NOT NULL AND concat('',eue.emsUserZipCode) LIKE concat('%',:searchZipCode,'%'))) " +
@@ -60,8 +60,8 @@ public interface EmsUserRepository extends JpaRepository<EmsUserEntity, Long> {
             @Param(value = "searchLastName") String searchLastName,
             @Param(value = "searchEmsUserGender") EmsUserGender searchEmsUserGender,
             @Param(value = "searchEmail") String searchEmail,
-            @Param(value = "searchDateOfBirth") LocalDate searchDateOfBirth,
-            @Param(value = "searchDateOfJoin") LocalDate searchDateOfJoin,
+            @Param(value = "searchDateOfBirth") String searchDateOfBirth,
+            @Param(value = "searchDateOfJoin") String searchDateOfJoin,
             @Param(value = "searchSalary") BigDecimal searchSalary,
             @Param(value = "searchHikePercentage") BigDecimal searchHikePercentage,
             @Param(value = "searchZipCode") Integer searchZipCode,
