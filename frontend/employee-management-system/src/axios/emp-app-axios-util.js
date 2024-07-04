@@ -14,7 +14,11 @@ export const handleSuccessResponseUtil = (showToast, successResponse) => {
 export const handleErrorResponseUtil = (showToast, errorResponse) => {
   console.log(errorResponse);
   if (showToast) {
-    toast.error(errorResponse.response.data.message);
+    toast.error(
+      errorResponse.response.data.statusCode !== 500
+        ? errorResponse.response.data.message
+        : errorResponse.response.data.statusRemarks,
+    );
   }
   return errorResponse.response.data;
 };

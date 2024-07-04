@@ -29,7 +29,7 @@ export const handleRequestToAddNewEmsUser = async (newEmsUser) => {
       await EmsUserApiRequestService.requestToAddNewEmsUser(newEmsUser),
     );
   } catch (error) {
-    handleErrorResponseUtil(true, error);
+    return handleErrorResponseUtil(true, error);
   }
 };
 
@@ -40,7 +40,7 @@ export const handleRequestToUpdateEmsUser = async (updatedEmsUser) => {
       await EmsUserApiRequestService.requestToUpdateEmsUser(updatedEmsUser),
     );
   } catch (error) {
-    handleErrorResponseUtil(true, error);
+    return handleErrorResponseUtil(true, error);
   }
 };
 
@@ -51,18 +51,18 @@ export const handleRequestToGetAllEmsUser = async () => {
       await EmsUserApiRequestService.requestToGetAllEmsUser(),
     );
   } catch (error) {
-    handleErrorResponseUtil(true, error);
+    return handleErrorResponseUtil(true, error);
   }
 };
 
 export const handleRequestToDeleteEmsUserById = async (id) => {
   try {
-    handleSuccessResponseUtil(
+    return handleSuccessResponseUtil(
       true,
       await EmsUserApiRequestService.requestToDeleteEmsUserById(id),
     );
   } catch (error) {
-    handleErrorResponseUtil(true, error);
+    return handleErrorResponseUtil(true, error);
   }
 };
 
@@ -73,6 +73,6 @@ export const handleRequestToGetDropdownOfEmsUserGender = async () => {
       await EmsUserApiRequestService.requestToGetDropdownOfEmsUserGender(),
     );
   } catch (error) {
-    handleErrorResponseUtil(true, error);
+    return handleErrorResponseUtil(true, error);
   }
 };

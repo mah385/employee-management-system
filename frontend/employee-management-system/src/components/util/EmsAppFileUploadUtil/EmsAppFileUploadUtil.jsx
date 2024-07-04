@@ -42,13 +42,12 @@ const EmsAppFileUploadUtil = (props) => {
       );
     };
     callApiToImportEmsUserData()
-      .then((successResponseData) => {
-        if (successResponseData.statusCode === 200) {
+      .then((successOrErrorResponseData) => {
+        if (successOrErrorResponseData.statusCode === 200) {
           navigate(EmpAppPathConstant.PATH_DISPLAY_EMS_USER);
-        }
-      })
-      .catch((errorResponseData) => {
-        alert("errorResponseData: " + errorResponseData);
+        } /*else if (successOrErrorResponseData.statusCode !== 200) {
+          // Perform some logic...
+        }*/
       })
       .finally(() => {
         toggleFileUploadingStatus();
