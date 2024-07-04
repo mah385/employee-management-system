@@ -39,18 +39,22 @@ const AddNewEmsUser = () => {
 
   useEffect(() => {
     let isMounted = true;
-    const getDropdownOfEmsUserGender = async () => {
-      const responseData =
-        await EmsUserApiRequestHandlerService.handleGetDropdownOfEmsUserGender();
-      if (isMounted && responseData.payload != null) {
-        setDropdownOfEmsUserGender(responseData.payload);
-      }
-    };
 
-    getDropdownOfEmsUserGender();
+    const callApiToGetDropdownOfEmsUserGender = async () => {
+      return await EmsUserApiRequestHandlerService.handleRequestToGetDropdownOfEmsUserGender();
+    };
+    callApiToGetDropdownOfEmsUserGender().then((successResponseData) => {
+      if (
+        isMounted &&
+        successResponseData.statusCode === 200 &&
+        successResponseData.payload != null
+      ) {
+        setDropdownOfEmsUserGender(successResponseData.payload);
+      }
+    });
 
     return () => {
-      // Clean up on unmount
+      //CLEAN UP OF AddNewEmsUser COMPONENT ON UNMOUNT
       isMounted = false;
       setDropdownOfEmsUserGender([]);
     };
@@ -58,12 +62,18 @@ const AddNewEmsUser = () => {
 
   const onSubmitHandleFormToAddNewEmsUser = async (e) => {
     e.preventDefault();
-    const responseData =
-      await EmsUserApiRequestHandlerService.handleAddNewEmsUser(newEmsUser);
-    if (responseData.statusCode === 201) {
-      onClickHandleClearAll();
-      navigate(EmpAppPathConstant.PATH_DISPLAY_EMS_USER);
-    }
+
+    const callApiToAddNewEmsUser = async () => {
+      return await EmsUserApiRequestHandlerService.handleRequestToAddNewEmsUser(
+        newEmsUser,
+      );
+    };
+    callApiToAddNewEmsUser().then((successResponseData) => {
+      if (successResponseData.statusCode === 201) {
+        onClickHandleClearAll();
+        navigate(EmpAppPathConstant.PATH_DISPLAY_EMS_USER);
+      }
+    });
   };
 
   const onChangeHandleState = (e) => {

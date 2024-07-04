@@ -49,7 +49,7 @@ public class EmsAppConfig {
         corsConfiguration.setAllowCredentials(true);
         corsConfiguration.setAllowedHeaders(EmsAppConstant.ALLOWED_HEADERS_LIST);
         corsConfiguration.setAllowedMethods(EmsAppConstant.ALLOWED_METHODS_LIST);
-        corsConfiguration.setAllowedOrigins(List.of("http://localhost:3000"));
+        corsConfiguration.setAllowedOrigins(List.of("http://localhost:3000", "http://127.0.0.1:3000"));
         corsConfiguration.setExposedHeaders(EmsAppConstant.EXPOSED_HEADERS_LIST);
 
         UrlBasedCorsConfigurationSource urlBasedCorsConfigurationSource = new UrlBasedCorsConfigurationSource();

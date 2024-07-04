@@ -4,55 +4,44 @@ import empAppAxiosInstance from "../emp-app-axios-instance.js";
 
 const EMS_USER_API_PREFIX = "/ems-user";
 
-export const importEmsUserData = async (
-  emsUserDataMultipartFile,
-) => {
+const IMPORT_EMS_USER_DATA = `${EMS_USER_API_PREFIX}/import-ems-user-data`;
+const ADD_NEW_EMS_USER = `${EMS_USER_API_PREFIX}/add-new-ems-user`;
+const UPDATE_EMS_USER = `${EMS_USER_API_PREFIX}/update-ems-user`;
+const GET_ALL_EMS_USER = `${EMS_USER_API_PREFIX}/get-all-ems-user`;
+// const GET_ALL_EMS_USER_WITH_PAGINATION_AND_SEARCH_AND_SORT = `${EMS_USER_API_PREFIX}/get-all-ems-user-with-pagination-and-search-and-sort`;
+const DELETE_EMS_USER_BY_ID = `${EMS_USER_API_PREFIX}/delete-ems-user-by-id`;
+const GET_DROPDOWN_OF_EMS_USER_GENDER = `${EMS_USER_API_PREFIX}/get-dropdown-of-ems-user-gender`;
+
+export const requestToImportEmsUserData = async (emsUserDataMultipartFile) => {
   let formData = new FormData();
   formData.append("emsUserDataMultipartFile", emsUserDataMultipartFile);
-  return await empAppAxiosInstance.post(
-    `${EMS_USER_API_PREFIX}/import-ems-user-data`,
-    formData,
-    {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
+  return await empAppAxiosInstance.post(IMPORT_EMS_USER_DATA, formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
     },
-  );
+  });
 };
 
-export const addNewEmsUser = async (newEmsUser) => {
-  return await empAppAxiosInstance.post(
-    `${EMS_USER_API_PREFIX}/add-new-ems-user`,
-    newEmsUser,
-  );
+export const requestToAddNewEmsUser = async (newEmsUser) => {
+  return await empAppAxiosInstance.post(ADD_NEW_EMS_USER, newEmsUser);
 };
 
-export const updateEmsUser = async (updatedEmsUser) => {
-  return await empAppAxiosInstance.put(
-    `${EMS_USER_API_PREFIX}/update-ems-user`,
-    updatedEmsUser,
-  );
+export const requestToUpdateEmsUser = async (updatedEmsUser) => {
+  return await empAppAxiosInstance.put(UPDATE_EMS_USER, updatedEmsUser);
 };
 
-export const getAllEmsUser = async () => {
-  return await empAppAxiosInstance.get(
-    `${EMS_USER_API_PREFIX}/get-all-ems-user`,
-  );
+export const requestToGetAllEmsUser = async () => {
+  return await empAppAxiosInstance.get(GET_ALL_EMS_USER);
 };
 
-export const deleteEmsUserById = async (id) => {
-  return await empAppAxiosInstance.delete(
-    `${EMS_USER_API_PREFIX}/delete-ems-user-by-id`,
-    {
-      params: {
-        id: id,
-      },
+export const requestToDeleteEmsUserById = async (id) => {
+  return await empAppAxiosInstance.delete(DELETE_EMS_USER_BY_ID, {
+    params: {
+      id: id,
     },
-  );
+  });
 };
 
-export const getDropdownOfEmsUserGender = async () => {
-  return await empAppAxiosInstance.get(
-    `${EMS_USER_API_PREFIX}/get-dropdown-of-ems-user-gender`,
-  );
+export const requestToGetDropdownOfEmsUserGender = async () => {
+  return await empAppAxiosInstance.get(GET_DROPDOWN_OF_EMS_USER_GENDER);
 };

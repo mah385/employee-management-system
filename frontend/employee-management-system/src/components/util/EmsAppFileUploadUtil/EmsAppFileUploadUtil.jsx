@@ -35,15 +35,25 @@ const EmsAppFileUploadUtil = (props) => {
   const onSubmitHandleFormToUploadFile = async (e) => {
     e.preventDefault();
     toggleFileUploadingStatus();
-    const responseData =
-      await EmsUserApiRequestHandlerService.handleImportEmsUserData(
+
+    const callApiToImportEmsUserData = async () => {
+      return await EmsUserApiRequestHandlerService.handleRequestToImportEmsUserData(
         uploadFileInfo.selectedFile,
       );
-    toggleFileUploadingStatus();
-    onClickHandleRemoveFile();
-    if (responseData.statusCode === 200) {
-      navigate(EmpAppPathConstant.PATH_DISPLAY_EMS_USER);
-    }
+    };
+    callApiToImportEmsUserData()
+      .then((successResponseData) => {
+        if (successResponseData.statusCode === 200) {
+          navigate(EmpAppPathConstant.PATH_DISPLAY_EMS_USER);
+        }
+      })
+      .catch((errorResponseData) => {
+        alert("errorResponseData: " + errorResponseData);
+      })
+      .finally(() => {
+        toggleFileUploadingStatus();
+        onClickHandleRemoveUploadedFile();
+      });
   };
 
   const onChangeHandleState = (e) => {
@@ -54,7 +64,7 @@ const EmsAppFileUploadUtil = (props) => {
     }));
   };
 
-  const onClickHandleRemoveFile = () => {
+  const onClickHandleRemoveUploadedFile = () => {
     setUploadFileInfo((prevState) => ({
       ...prevState,
       selectedFile: undefined,
@@ -89,7 +99,7 @@ const EmsAppFileUploadUtil = (props) => {
           <button
             type="button"
             className="border border-2 border-danger btn btn-outline-danger"
-            onClick={onClickHandleRemoveFile}
+            onClick={onClickHandleRemoveUploadedFile}
           >
             Remove File
           </button>

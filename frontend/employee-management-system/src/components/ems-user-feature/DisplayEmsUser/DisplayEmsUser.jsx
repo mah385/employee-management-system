@@ -25,18 +25,22 @@ const DisplayEmsUser = () => {
 
   useEffect(() => {
     let isMounted = true;
-    const getAllEmsUser = async () => {
-      const responseData =
-        await EmsUserApiRequestHandlerService.handleGetAllEmsUser();
-      if (isMounted && responseData.payload != null) {
-        setEmsUserList(responseData.payload);
-      }
-    };
 
-    getAllEmsUser();
+    const callApiToGetAllEmsUser = async () => {
+      return await EmsUserApiRequestHandlerService.handleRequestToGetAllEmsUser();
+    };
+    callApiToGetAllEmsUser().then((successResponseData) => {
+      if (
+        isMounted &&
+        successResponseData.statusCode === 200 &&
+        successResponseData.payload != null
+      ) {
+        setEmsUserList(successResponseData.payload);
+      }
+    });
 
     return () => {
-      // Clean up on unmount
+      //CLEAN UP OF DisplayEmsUser COMPONENT ON UNMOUNT
       isMounted = false;
       setEmsUserList([]);
     };
@@ -49,8 +53,16 @@ const DisplayEmsUser = () => {
   };
 
   const onClickHandleDeleteEmsUserById = async (id) => {
-    await EmsUserApiRequestHandlerService.handleDeleteEmsUserById(id);
-    setUseEffectTrigger(new Date());
+    const callApiToDeleteEmsUserById = async () => {
+      return await EmsUserApiRequestHandlerService.handleRequestToDeleteEmsUserById(
+        id,
+      );
+    };
+    callApiToDeleteEmsUserById().then((successResponseData) => {
+      if (successResponseData.statusCode === 200) {
+        setUseEffectTrigger(new Date());
+      }
+    });
   };
 
   return (
@@ -81,24 +93,26 @@ const DisplayEmsUser = () => {
             </tr>
           </thead>
           <tbody>
-            {emsUserList.map((emsUserTemp, index) => {
+            {emsUserList.map((emsUser, index) => {
               return (
-                <tr key={emsUserTemp.id}>
+                <tr key={emsUser.id}>
                   <td>{index + 1}</td>
-                  <td>{emsUserTemp.firstName}</td>
-                  <td>{emsUserTemp.lastName}</td>
-                  <td>{emsUserTemp.emsUserGender}</td>
-                  <td>{emsUserTemp.email}</td>
-                  <td>{emsUserTemp.dateOfBirth}</td>
-                  <td>{emsUserTemp.dateOfJoin}</td>
-                  <td>{emsUserTemp.salary.toFixed(2)}</td>
-                  <td>{emsUserTemp.hikePercentage.toFixed(2)}</td>
-                  <td>{emsUserTemp.zipCode}</td>
-                  <td>{emsUserTemp.mobileNumber}</td>
+                  <td>{emsUser.firstName}</td>
+                  <td>{emsUser.lastName}</td>
+                  <td>{emsUser.emsUserGender}</td>
+                  <td>{emsUser.email}</td>
+                  <td>{emsUser.dateOfBirth}</td>
+                  <td>{emsUser.dateOfJoin}</td>
+                  <td className="text-end">{emsUser.salary.toFixed(2)}</td>
+                  <td className="text-end">
+                    {emsUser.hikePercentage.toFixed(2)}
+                  </td>
+                  <td>{emsUser.zipCode}</td>
+                  <td>{emsUser.mobileNumber}</td>
                   <td
                     className="text-primary"
                     style={{ cursor: "pointer" }}
-                    onClick={() => onClickHandleUpdateEmsUser(emsUserTemp)}
+                    onClick={() => onClickHandleUpdateEmsUser(emsUser)}
                   >
                     <span>
                       <MdOutlineEdit />
@@ -107,9 +121,7 @@ const DisplayEmsUser = () => {
                   <td
                     className="text-danger"
                     style={{ cursor: "pointer" }}
-                    onClick={() =>
-                      onClickHandleDeleteEmsUserById(emsUserTemp.id)
-                    }
+                    onClick={() => onClickHandleDeleteEmsUserById(emsUser.id)}
                   >
                     <span>
                       <MdDeleteForever />

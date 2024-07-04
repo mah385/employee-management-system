@@ -27,18 +27,22 @@ const UpdateEmsUser = () => {
 
   useEffect(() => {
     let isMounted = true;
-    const getDropdownOfEmsUserGender = async () => {
-      const responseData =
-        await EmsUserApiRequestHandlerService.handleGetDropdownOfEmsUserGender();
-      if (isMounted && responseData.payload != null) {
-        setDropdownOfEmsUserGender(responseData.payload);
-      }
-    };
 
-    getDropdownOfEmsUserGender();
+    const callApiToGetDropdownOfEmsUserGender = async () => {
+      return await EmsUserApiRequestHandlerService.handleRequestToGetDropdownOfEmsUserGender();
+    };
+    callApiToGetDropdownOfEmsUserGender().then((successResponseData) => {
+      if (
+        isMounted &&
+        successResponseData.statusCode === 200 &&
+        successResponseData.payload != null
+      ) {
+        setDropdownOfEmsUserGender(successResponseData.payload);
+      }
+    });
 
     return () => {
-      // Clean up on unmount
+      //CLEAN UP OF UpdateEmsUser COMPONENT ON UNMOUNT
       isMounted = false;
       setDropdownOfEmsUserGender([]);
     };
@@ -46,11 +50,17 @@ const UpdateEmsUser = () => {
 
   const onSubmitHandleFormToUpdateEmsUser = async (e) => {
     e.preventDefault();
-    const responseData =
-      await EmsUserApiRequestHandlerService.handleUpdateEmsUser(updatedEmsUser);
-    if (responseData.statusCode === 200) {
-      navigate(EmpAppPathConstant.PATH_DISPLAY_EMS_USER);
-    }
+
+    const callApiToUpdateEmsUser = async () => {
+      return await EmsUserApiRequestHandlerService.handleRequestToUpdateEmsUser(
+        updatedEmsUser,
+      );
+    };
+    callApiToUpdateEmsUser().then((successResponseData) => {
+      if (successResponseData.statusCode === 200) {
+        navigate(EmpAppPathConstant.PATH_DISPLAY_EMS_USER);
+      }
+    });
   };
 
   const onChangeHandleState = (e) => {

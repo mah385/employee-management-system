@@ -1,82 +1,78 @@
-import { toast } from "react-toastify";
-/*-------------------------------------------------------------------*/
 import * as EmsUserApiRequestService from "./ems-user-api-request-service.js";
+/*-------------------------------------------------------------------*/
+import {
+  handleErrorResponseUtil,
+  handleSuccessResponseUtil,
+} from "../emp-app-axios-util.js";
 
 /*-------------------------------------------------------------------*/
 
-export const handleImportEmsUserData = async (emsUserDataMultipartFile) => {
+export const handleRequestToImportEmsUserData = async (
+  emsUserDataMultipartFile,
+) => {
   try {
-    const t0 = performance.now();
-    const response = await EmsUserApiRequestService.importEmsUserData(
-      emsUserDataMultipartFile,
+    return handleSuccessResponseUtil(
+      true,
+      await EmsUserApiRequestService.requestToImportEmsUserData(
+        emsUserDataMultipartFile,
+      ),
     );
-    const t1 = performance.now();
-    toast.success(
-      `Call to handleImportEmsUserData took ${t1 - t0} milliseconds.`,
+  } catch (error) {
+    return handleErrorResponseUtil(true, error);
+  }
+};
+
+export const handleRequestToAddNewEmsUser = async (newEmsUser) => {
+  try {
+    return handleSuccessResponseUtil(
+      true,
+      await EmsUserApiRequestService.requestToAddNewEmsUser(newEmsUser),
     );
-    toast.success(response.data.message);
-    return response.data;
   } catch (error) {
-    toast.error(error.response.data.message);
-    return error.response.data;
+    handleErrorResponseUtil(true, error);
   }
 };
 
-export const handleAddNewEmsUser = async (newEmsUser) => {
+export const handleRequestToUpdateEmsUser = async (updatedEmsUser) => {
   try {
-    const response = await EmsUserApiRequestService.addNewEmsUser(newEmsUser);
-    toast.success(response.data.message);
-    return response.data;
+    return handleSuccessResponseUtil(
+      true,
+      await EmsUserApiRequestService.requestToUpdateEmsUser(updatedEmsUser),
+    );
   } catch (error) {
-    toast.error(error.response.data.message);
-    return error.response.data;
+    handleErrorResponseUtil(true, error);
   }
 };
 
-export const handleUpdateEmsUser = async (updatedEmsUser) => {
+export const handleRequestToGetAllEmsUser = async () => {
   try {
-    const response =
-      await EmsUserApiRequestService.updateEmsUser(updatedEmsUser);
-    toast.success(response.data.message);
-    return response.data;
+    return handleSuccessResponseUtil(
+      true,
+      await EmsUserApiRequestService.requestToGetAllEmsUser(),
+    );
   } catch (error) {
-    toast.error(error.response.data.message);
-    return error.response.data;
+    handleErrorResponseUtil(true, error);
   }
 };
 
-export const handleGetAllEmsUser = async () => {
+export const handleRequestToDeleteEmsUserById = async (id) => {
   try {
-    const t0 = performance.now();
-    const response = await EmsUserApiRequestService.getAllEmsUser();
-    const t1 = performance.now();
-    toast.success(`Call to handleGetAllEmsUser took ${t1 - t0} milliseconds.`);
-    toast.success(response.data.message);
-    return response.data;
+    handleSuccessResponseUtil(
+      true,
+      await EmsUserApiRequestService.requestToDeleteEmsUserById(id),
+    );
   } catch (error) {
-    toast.error(error.response.data.message);
-    return error.response.data;
+    handleErrorResponseUtil(true, error);
   }
 };
 
-export const handleDeleteEmsUserById = async (id) => {
+export const handleRequestToGetDropdownOfEmsUserGender = async () => {
   try {
-    const response = await EmsUserApiRequestService.deleteEmsUserById(id);
-    toast.success(response.data.message);
-    return response.data.payload;
+    return handleSuccessResponseUtil(
+      false,
+      await EmsUserApiRequestService.requestToGetDropdownOfEmsUserGender(),
+    );
   } catch (error) {
-    // HANDLE ERROR...
-  }
-};
-
-export const handleGetDropdownOfEmsUserGender = async () => {
-  try {
-    const response =
-      await EmsUserApiRequestService.getDropdownOfEmsUserGender();
-    // toast.success(response.data.message);
-    return response.data;
-  } catch (error) {
-    toast.error(error.response.data.message);
-    return error.response.data;
+    handleErrorResponseUtil(true, error);
   }
 };
