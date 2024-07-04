@@ -31,13 +31,13 @@ const UpdateEmsUser = () => {
     const callApiToGetDropdownOfEmsUserGender = async () => {
       return await EmsUserApiRequestHandlerService.handleRequestToGetDropdownOfEmsUserGender();
     };
-    callApiToGetDropdownOfEmsUserGender().then((successResponseData) => {
+    callApiToGetDropdownOfEmsUserGender().then((successOrErrorResponseData) => {
       if (
         isMounted &&
-        successResponseData.statusCode === 200 &&
-        successResponseData.payload != null
+        successOrErrorResponseData.statusCode === 200 &&
+        successOrErrorResponseData.payload != null
       ) {
-        setDropdownOfEmsUserGender(successResponseData.payload);
+        setDropdownOfEmsUserGender(successOrErrorResponseData.payload);
       }
     });
 
@@ -56,8 +56,8 @@ const UpdateEmsUser = () => {
         updatedEmsUser,
       );
     };
-    callApiToUpdateEmsUser().then((successResponseData) => {
-      if (successResponseData.statusCode === 200) {
+    callApiToUpdateEmsUser().then((successOrErrorResponseData) => {
+      if (successOrErrorResponseData.statusCode === 200) {
         navigate(EmpAppPathConstant.PATH_DISPLAY_EMS_USER);
       }
     });

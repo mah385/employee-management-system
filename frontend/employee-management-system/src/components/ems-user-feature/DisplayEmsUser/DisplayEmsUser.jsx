@@ -29,13 +29,13 @@ const DisplayEmsUser = () => {
     const callApiToGetAllEmsUser = async () => {
       return await EmsUserApiRequestHandlerService.handleRequestToGetAllEmsUser();
     };
-    callApiToGetAllEmsUser().then((successResponseData) => {
+    callApiToGetAllEmsUser().then((successOrErrorResponseData) => {
       if (
         isMounted &&
-        successResponseData.statusCode === 200 &&
-        successResponseData.payload != null
+        successOrErrorResponseData.statusCode === 200 &&
+        successOrErrorResponseData.payload != null
       ) {
-        setEmsUserList(successResponseData.payload);
+        setEmsUserList(successOrErrorResponseData.payload);
       }
     });
 
@@ -58,8 +58,8 @@ const DisplayEmsUser = () => {
         id,
       );
     };
-    callApiToDeleteEmsUserById().then((successResponseData) => {
-      if (successResponseData.statusCode === 200) {
+    callApiToDeleteEmsUserById().then((successOrErrorResponseData) => {
+      if (successOrErrorResponseData.statusCode === 200) {
         setUseEffectTrigger(new Date());
       }
     });
