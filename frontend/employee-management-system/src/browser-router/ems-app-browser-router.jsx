@@ -6,6 +6,7 @@ import ImportEmsUserData from "../components/ems-user-feature/ImportEmsUserData/
 import AddNewEmsUser from "../components/ems-user-feature/AddNewEmsUser/AddNewEmsUser.jsx";
 import UpdateEmsUser from "../components/ems-user-feature/UpdateEmsUser/UpdateEmsUser.jsx";
 import DisplayEmsUser from "../components/ems-user-feature/DisplayEmsUser/DisplayEmsUser.jsx";
+import DisplayEmsUserWithPagination from "../components/ems-user-feature/DisplayEmsUserWithPagination/DisplayEmsUserWithPagination.jsx";
 /*-------------------------------------------------------------------*/
 import * as EmpAppPathConstant from "../constants/emp-app-path-constant.js";
 
@@ -32,6 +33,10 @@ const emsAppBrowserRouter = createBrowserRouter([
       {
         path: EmpAppPathConstant.PATH_DISPLAY_EMS_USER,
         element: <DisplayEmsUser />,
+      },
+      {
+        path: EmpAppPathConstant.PATH_DISPLAY_EMS_USER_WITH_PAGINATION,
+        element: <DisplayEmsUserWithPagination />,
       },
     ],
   },

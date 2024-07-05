@@ -47,7 +47,7 @@ export const handleRequestToUpdateEmsUser = async (updatedEmsUser) => {
 export const handleRequestToGetAllEmsUser = async () => {
   try {
     return handleSuccessResponseUtil(
-      true,
+      false,
       await EmsUserApiRequestService.requestToGetAllEmsUser(),
     );
   } catch (error) {

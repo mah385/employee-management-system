@@ -1,6 +1,6 @@
 // import styles from "./EmsAppSidebar.module.css"; //USE THIS IMPORT WHEN NEEDED
 /*-------------------------------------------------------------------*/
-import {NavLink} from "react-router-dom";
+import { NavLink } from "react-router-dom";
 /*-------------------------------------------------------------------*/
 import * as EmpAppPathConstant from "../../../constants/emp-app-path-constant.js";
 
@@ -27,6 +27,12 @@ const EmsAppSidebar = () => {
           to={EmpAppPathConstant.PATH_DISPLAY_EMS_USER}
         >
           Display EMS User
+        </NavLink>
+        <NavLink
+          className="list-group-item list-group-item-action"
+          to={EmpAppPathConstant.PATH_DISPLAY_EMS_USER_WITH_PAGINATION}
+        >
+          Display EMS User With Pagination
         </NavLink>
       </div>
     </aside>
