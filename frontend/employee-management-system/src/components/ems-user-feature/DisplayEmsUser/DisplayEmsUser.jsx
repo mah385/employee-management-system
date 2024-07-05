@@ -1,18 +1,19 @@
 import styles from "./DisplayEmsUser.module.css";
-/*-------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------------------------------------------------*/
 import { useEffect, useState } from "react";
-/*-------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------------------------------------------------*/
 import { useNavigate } from "react-router-dom";
-/*-------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------------------------------------------------*/
 import { MdDeleteForever, MdOutlineEdit } from "react-icons/md";
-/*-------------------------------------------------------------------*/
-import MainLayoutResponse from "../../MainLayoutResponse/MainLayoutResponse.jsx";
-/*-------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------------------------------------------------*/
+import EmsAppLoader from "../../util/EmsAppLoader/EmsAppLoader.jsx";
+import EmsAppDataNotFound from "../../util/EmsAppDataNotFound/EmsAppDataNotFound.jsx";
+/*--------------------------------------------------------------------------------------------------------------------*/
 import * as EmpAppPathConstant from "../../../constants/emp-app-path-constant.js";
-/*-------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------------------------------------------------*/
 import * as EmsUserApiRequestHandlerService from "../../../axios/ems-user/ems-user-api-request-handler-service.js";
 
-/*-------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------------------------------------------------*/
 
 let renderCountOfDisplayEmsUser = 0;
 const DisplayEmsUser = () => {
@@ -22,22 +23,27 @@ const DisplayEmsUser = () => {
 
   const [emsUserList, setEmsUserList] = useState([]);
   const [useEffectTrigger, setUseEffectTrigger] = useState(new Date());
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     let isMounted = true;
-
+    setIsLoading(true);
     const callApiToGetAllEmsUser = async () => {
       return await EmsUserApiRequestHandlerService.handleRequestToGetAllEmsUser();
     };
-    callApiToGetAllEmsUser().then((successOrErrorResponseData) => {
-      if (
-        isMounted &&
-        successOrErrorResponseData.statusCode === 200 &&
-        successOrErrorResponseData.payload != null
-      ) {
-        setEmsUserList(successOrErrorResponseData.payload);
-      }
-    });
+    callApiToGetAllEmsUser()
+      .then((successOrErrorResponseData) => {
+        if (
+          isMounted &&
+          successOrErrorResponseData.statusCode === 200 &&
+          successOrErrorResponseData.payload != null
+        ) {
+          setEmsUserList(successOrErrorResponseData.payload);
+        }
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
 
     return () => {
       //CLEAN UP OF DisplayEmsUser COMPONENT ON UNMOUNT
@@ -53,22 +59,29 @@ const DisplayEmsUser = () => {
   };
 
   const onClickHandleDeleteEmsUserById = async (id) => {
+    setIsLoading(true);
     const callApiToDeleteEmsUserById = async () => {
       return await EmsUserApiRequestHandlerService.handleRequestToDeleteEmsUserById(
         id,
       );
     };
-    callApiToDeleteEmsUserById().then((successOrErrorResponseData) => {
-      if (successOrErrorResponseData.statusCode === 200) {
-        setUseEffectTrigger(new Date());
-      }
-    });
+    callApiToDeleteEmsUserById()
+      .then((successOrErrorResponseData) => {
+        if (successOrErrorResponseData.statusCode === 200) {
+          setUseEffectTrigger(new Date());
+        }
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   return (
     <>
-      {emsUserList.length === 0 ? (
-        <MainLayoutResponse />
+      {isLoading ? (
+        <EmsAppLoader />
+      ) : emsUserList.length === 0 ? (
+        <EmsAppDataNotFound />
       ) : (
         <table
           className={`${styles.displayEmsUserTable} w-100 table-bordered text-center`}

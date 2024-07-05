@@ -1,4 +1,4 @@
-const MainLayoutResponse = () => {
+const EmsAppDataNotFound = () => {
   return (
     <div className="h-100 align-content-center text-center">
       <h1 className="display-1">Data Not Found.</h1>
@@ -6,4 +6,4 @@ const MainLayoutResponse = () => {
   );
 };
 
-export default MainLayoutResponse;
+export default EmsAppDataNotFound;

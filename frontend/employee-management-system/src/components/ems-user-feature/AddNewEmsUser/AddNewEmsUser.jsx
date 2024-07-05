@@ -1,17 +1,17 @@
 import styles from "./AddNewEmsUser.module.css";
-/*-------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------------------------------------------------*/
 import { useEffect, useState } from "react";
-/*-------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------------------------------------------------*/
 import { useNavigate } from "react-router-dom";
-/*-------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------------------------------------------------*/
 import EmsAppFormInput from "../../ems-app-form/EmsAppFormInput/EmsAppFormInput.jsx";
 import EmsAppFormSelect from "../../ems-app-form/EmsAppFormSelect/EmsAppFormSelect.jsx";
-/*-------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------------------------------------------------*/
 import * as EmpAppPathConstant from "../../../constants/emp-app-path-constant.js";
-/*-------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------------------------------------------------*/
 import * as EmsUserApiRequestHandlerService from "../../../axios/ems-user/ems-user-api-request-handler-service.js";
 
-/*-------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------------------------------------------------*/
 
 let renderCountOfAddNewEmsUser = 0;
 const AddNewEmsUser = () => {
@@ -70,7 +70,7 @@ const AddNewEmsUser = () => {
     };
     callApiToAddNewEmsUser().then((successOrErrorResponseData) => {
       if (successOrErrorResponseData.statusCode === 201) {
-        onClickHandleClearAll();
+        onClickHandleClearAllInputFields();
         navigate(EmpAppPathConstant.PATH_DISPLAY_EMS_USER);
       }
     });
@@ -83,7 +83,7 @@ const AddNewEmsUser = () => {
     }));
   };
 
-  const onClickHandleClearAll = () => {
+  const onClickHandleClearAllInputFields = () => {
     setNewEmsUser(initNewEmsUser());
   };
 
@@ -186,7 +186,7 @@ const AddNewEmsUser = () => {
         <button
           type="button"
           className="border border-2 border-danger btn btn-outline-danger"
-          onClick={onClickHandleClearAll}
+          onClick={onClickHandleClearAllInputFields}
         >
           Clear All
         </button>
