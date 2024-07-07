@@ -55,6 +55,20 @@ export const handleRequestToGetAllEmsUser = async () => {
   }
 };
 
+export const handleRequestToGetAllEmsUserWithPaginationAndSearchAndSort =
+  async (emsUserRequestBeanWithPaginationAndSearchAndSort) => {
+    try {
+      return handleSuccessResponseUtil(
+        false,
+        await EmsUserApiRequestService.requestToGetAllEmsUserWithPaginationAndSearchAndSort(
+          emsUserRequestBeanWithPaginationAndSearchAndSort,
+        ),
+      );
+    } catch (error) {
+      return handleErrorResponseUtil(true, error);
+    }
+  };
+
 export const handleRequestToDeleteEmsUserById = async (id) => {
   try {
     return handleSuccessResponseUtil(

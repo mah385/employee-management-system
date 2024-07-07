@@ -6,7 +6,7 @@ import ImportEmsUserData from "../components/ems-user-feature/ImportEmsUserData/
 import AddNewEmsUser from "../components/ems-user-feature/AddNewEmsUser/AddNewEmsUser.jsx";
 import UpdateEmsUser from "../components/ems-user-feature/UpdateEmsUser/UpdateEmsUser.jsx";
 import DisplayEmsUser from "../components/ems-user-feature/DisplayEmsUser/DisplayEmsUser.jsx";
-import DisplayEmsUserAdvanced from "../components/ems-user-feature/DisplayEmsUserWithPagination/DisplayEmsUserAdvanced.jsx";
+import DisplayEmsUserAdvanced from "../components/ems-user-feature/DisplayEmsUserAdvanced/DisplayEmsUserAdvanced.jsx";
 /*-------------------------------------------------------------------*/
 import * as EmpAppPathConstant from "../constants/emp-app-path-constant.js";
 
