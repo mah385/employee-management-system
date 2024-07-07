@@ -35,29 +35,7 @@ export const requestToGetAllEmsUser = async () => {
 };
 
 export const requestToGetAllEmsUserWithPaginationAndSearchAndSort = async (
-  emsUserRequestBeanWithPaginationAndSearchAndSort = {
-    searchFirstName: null,
-    searchLastName: null,
-    searchEmsUserGender: null,
-    searchEmail: null,
-    searchDateOfBirth: null,
-    searchDateOfJoin: null,
-    searchSalary: null,
-    searchHikePercentage: null,
-    searchZipCode: null,
-    searchMobileNumber: null,
-    sortDirectionForFirstName: null,
-    sortDirectionForLastName: null,
-    sortDirectionForEmsUserGender: null,
-    sortDirectionForEmail: null,
-    sortDirectionForDateOfBirth: null,
-    sortDirectionForDateOfJoin: null,
-    sortDirectionForSalary: null,
-    sortDirectionForHikePercentage: null,
-    sortDirectionForZipCode: null,
-    pageNumber: 1,
-    pageSize: 30,
-  },
+  emsUserRequestBeanWithPaginationAndSearchAndSort,
 ) => {
   return await empAppAxiosInstance.post(
     GET_ALL_EMS_USER_WITH_PAGINATION_AND_SEARCH_AND_SORT,

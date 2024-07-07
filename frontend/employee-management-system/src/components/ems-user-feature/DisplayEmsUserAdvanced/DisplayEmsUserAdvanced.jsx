@@ -262,9 +262,9 @@ const DisplayEmsUserAdvanced = () => {
                       >
                         <span>
                           {optionForFirstName.showFilterInputForFirstName ? (
-                            <TbFilterFilled />
+                            <TbFilterFilled size={20} />
                           ) : (
-                            <TbFilter />
+                            <TbFilter size={20} />
                           )}
                         </span>
                       </div>
@@ -274,15 +274,15 @@ const DisplayEmsUserAdvanced = () => {
                       >
                         {!optionForFirstName.showAscendingSortForFirstName &&
                           !optionForFirstName.showDescendingSortForFirstName && (
-                            <LiaSortSolid />
+                            <LiaSortSolid size={20} />
                           )}
                         {optionForFirstName.showAscendingSortForFirstName &&
                           !optionForFirstName.showDescendingSortForFirstName && (
-                            <TiArrowSortedUp />
+                            <TiArrowSortedUp size={20} />
                           )}
                         {!optionForFirstName.showAscendingSortForFirstName &&
                           optionForFirstName.showDescendingSortForFirstName && (
-                            <TiArrowSortedDown />
+                            <TiArrowSortedDown size={20} />
                           )}
                       </div>
                     </div>
@@ -291,7 +291,7 @@ const DisplayEmsUserAdvanced = () => {
                         <input
                           type="text"
                           name="searchFirstName"
-                          label="First Name"
+                          placeholder="Search First Name"
                           value={emsUserRequestBeanWithSearch.searchFirstName}
                           onChange={(e) => onChangeHandleState(e)}
                           required
@@ -318,9 +318,9 @@ const DisplayEmsUserAdvanced = () => {
                       >
                         <span>
                           {optionForLastName.showFilterInputForLastName ? (
-                            <TbFilterFilled />
+                            <TbFilterFilled size={20} />
                           ) : (
-                            <TbFilter />
+                            <TbFilter size={20} />
                           )}
                         </span>
                       </div>
@@ -330,15 +330,15 @@ const DisplayEmsUserAdvanced = () => {
                       >
                         {!optionForLastName.showAscendingSortForLastName &&
                           !optionForLastName.showDescendingSortForLastName && (
-                            <LiaSortSolid />
+                            <LiaSortSolid size={20} />
                           )}
                         {optionForLastName.showAscendingSortForLastName &&
                           !optionForLastName.showDescendingSortForLastName && (
-                            <TiArrowSortedUp />
+                            <TiArrowSortedUp size={20} />
                           )}
                         {!optionForLastName.showAscendingSortForLastName &&
                           optionForLastName.showDescendingSortForLastName && (
-                            <TiArrowSortedDown />
+                            <TiArrowSortedDown size={20} />
                           )}
                       </div>
                     </div>
@@ -347,7 +347,7 @@ const DisplayEmsUserAdvanced = () => {
                         <input
                           type="text"
                           name="searchLastName"
-                          label="Last Name"
+                          placeholder="Search Last Name"
                           value={emsUserRequestBeanWithSearch.searchLastName}
                           onChange={(e) => onChangeHandleState(e)}
                           required

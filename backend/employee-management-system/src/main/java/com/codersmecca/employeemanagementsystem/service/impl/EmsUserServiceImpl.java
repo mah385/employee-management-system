@@ -154,16 +154,16 @@ public class EmsUserServiceImpl implements EmsUserService {
         }
 
         Page<GetEmsUserRepositoryBean> getEmsUserRepositoryBeanWithPaginationAndSearchAndSort = this.emsUserRepository.findAllEmsUserWithPaginationAndSearchAndSort(
-                emsUserRequestBeanWithPaginationAndSearchAndSort.getSearchFirstName(),
-                emsUserRequestBeanWithPaginationAndSearchAndSort.getSearchLastName(),
+                emsUserRequestBeanWithPaginationAndSearchAndSort.getSearchFirstName().strip(),
+                emsUserRequestBeanWithPaginationAndSearchAndSort.getSearchLastName().strip(),
                 emsUserRequestBeanWithPaginationAndSearchAndSort.getSearchEmsUserGender(),
-                emsUserRequestBeanWithPaginationAndSearchAndSort.getSearchEmail(),
-                emsUserRequestBeanWithPaginationAndSearchAndSort.getSearchDateOfBirth(),
-                emsUserRequestBeanWithPaginationAndSearchAndSort.getSearchDateOfJoin(),
+                emsUserRequestBeanWithPaginationAndSearchAndSort.getSearchEmail().strip(),
+                emsUserRequestBeanWithPaginationAndSearchAndSort.getSearchDateOfBirth().strip(),
+                emsUserRequestBeanWithPaginationAndSearchAndSort.getSearchDateOfJoin().strip(),
                 emsUserRequestBeanWithPaginationAndSearchAndSort.getSearchSalary(),
                 emsUserRequestBeanWithPaginationAndSearchAndSort.getSearchHikePercentage(),
                 emsUserRequestBeanWithPaginationAndSearchAndSort.getSearchZipCode(),
-                emsUserRequestBeanWithPaginationAndSearchAndSort.getSearchMobileNumber(),
+                emsUserRequestBeanWithPaginationAndSearchAndSort.getSearchMobileNumber().strip(),
                 PageRequest.of((emsUserRequestBeanWithPaginationAndSearchAndSort.getPageNumber() - 1), emsUserRequestBeanWithPaginationAndSearchAndSort.getPageSize(), sortByRespectiveField)
         );
 

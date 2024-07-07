@@ -56,7 +56,31 @@ export const handleRequestToGetAllEmsUser = async () => {
 };
 
 export const handleRequestToGetAllEmsUserWithPaginationAndSearchAndSort =
-  async (emsUserRequestBeanWithPaginationAndSearchAndSort) => {
+  async (
+    emsUserRequestBeanWithPaginationAndSearchAndSort = {
+      searchFirstName: null,
+      searchLastName: null,
+      searchEmsUserGender: null,
+      searchEmail: null,
+      searchDateOfBirth: null,
+      searchDateOfJoin: null,
+      searchSalary: null,
+      searchHikePercentage: null,
+      searchZipCode: null,
+      searchMobileNumber: null,
+      sortDirectionForFirstName: null,
+      sortDirectionForLastName: null,
+      sortDirectionForEmsUserGender: null,
+      sortDirectionForEmail: null,
+      sortDirectionForDateOfBirth: null,
+      sortDirectionForDateOfJoin: null,
+      sortDirectionForSalary: null,
+      sortDirectionForHikePercentage: null,
+      sortDirectionForZipCode: null,
+      pageNumber: 1,
+      pageSize: 15,
+    },
+  ) => {
     try {
       return handleSuccessResponseUtil(
         false,
