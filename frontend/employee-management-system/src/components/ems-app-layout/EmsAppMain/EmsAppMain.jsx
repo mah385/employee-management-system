@@ -6,7 +6,7 @@ import { Outlet } from "react-router-dom";
 
 const EmsAppMain = () => {
   return (
-    <main className="app-main border-start border-bottom">
+    <main className="app-main border-start border-bottom border-black">
       <Outlet />
     </main>
   );

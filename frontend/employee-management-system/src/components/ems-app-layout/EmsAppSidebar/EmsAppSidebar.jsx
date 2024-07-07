@@ -30,9 +30,9 @@ const EmsAppSidebar = () => {
         </NavLink>
         <NavLink
           className="list-group-item list-group-item-action"
-          to={EmpAppPathConstant.PATH_DISPLAY_EMS_USER_WITH_PAGINATION}
+          to={EmpAppPathConstant.PATH_DISPLAY_EMS_USER_ADVANCED}
         >
-          Display EMS User With Pagination
+          Display EMS User Advanced
         </NavLink>
       </div>
     </aside>
