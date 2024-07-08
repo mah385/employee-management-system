@@ -112,6 +112,28 @@ public class EmsUserServiceImpl implements EmsUserService {
     public ResponseEntity<EmsAppResponseEntity> getAllEmsUserWithPaginationAndSearchAndSort(
             final EmsUserRequestBeanWithPaginationAndSearchAndSort emsUserRequestBeanWithPaginationAndSearchAndSort
     ) {
+        /*------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+        if (emsUserRequestBeanWithPaginationAndSearchAndSort.getSearchFirstName() != null) {
+            emsUserRequestBeanWithPaginationAndSearchAndSort.setSearchFirstName(emsUserRequestBeanWithPaginationAndSearchAndSort.getSearchFirstName().strip());
+        }
+        if (emsUserRequestBeanWithPaginationAndSearchAndSort.getSearchLastName() != null) {
+            emsUserRequestBeanWithPaginationAndSearchAndSort.setSearchLastName(emsUserRequestBeanWithPaginationAndSearchAndSort.getSearchLastName().strip());
+        }
+        if (emsUserRequestBeanWithPaginationAndSearchAndSort.getSearchEmail() != null) {
+            emsUserRequestBeanWithPaginationAndSearchAndSort.setSearchEmail(emsUserRequestBeanWithPaginationAndSearchAndSort.getSearchEmail().strip());
+        }
+        if (emsUserRequestBeanWithPaginationAndSearchAndSort.getSearchDateOfBirth() != null) {
+            emsUserRequestBeanWithPaginationAndSearchAndSort.setSearchDateOfBirth(emsUserRequestBeanWithPaginationAndSearchAndSort.getSearchDateOfBirth().strip());
+        }
+        if (emsUserRequestBeanWithPaginationAndSearchAndSort.getSearchDateOfJoin() != null) {
+            emsUserRequestBeanWithPaginationAndSearchAndSort.setSearchDateOfJoin(emsUserRequestBeanWithPaginationAndSearchAndSort.getSearchDateOfJoin().strip());
+        }
+        if (emsUserRequestBeanWithPaginationAndSearchAndSort.getSearchMobileNumber() != null) {
+            emsUserRequestBeanWithPaginationAndSearchAndSort.setSearchMobileNumber(emsUserRequestBeanWithPaginationAndSearchAndSort.getSearchMobileNumber().strip());
+        }
+        /*------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+        /*------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
         Sort sortByRespectiveField = Sort.unsorted();
 
         Sort.Direction sortDirectionForFirstName = emsUserRequestBeanWithPaginationAndSearchAndSort.getSortDirectionForFirstName();
@@ -127,43 +149,52 @@ public class EmsUserServiceImpl implements EmsUserService {
         if (sortDirectionForFirstName != null) {
             Sort sortByFirstName = Sort.by("emsUserFirstName");
             sortByRespectiveField = sortDirectionForFirstName.isAscending() ? sortByFirstName.ascending() : sortByFirstName.descending();
-        } else if (sortDirectionForLastName != null) {
+        }
+        if (sortDirectionForLastName != null) {
             Sort sortByLastName = Sort.by("emsUserLastName");
             sortByRespectiveField = sortDirectionForLastName.isAscending() ? sortByLastName.ascending() : sortByLastName.descending();
-        } else if (sortDirectionForEmsUserGender != null) {
+        }
+        if (sortDirectionForEmsUserGender != null) {
             Sort sortByEmsUserGender = Sort.by("emsUserGender");
             sortByRespectiveField = sortDirectionForEmsUserGender.isAscending() ? sortByEmsUserGender.ascending() : sortByEmsUserGender.descending();
-        } else if (sortDirectionForEmail != null) {
+        }
+        if (sortDirectionForEmail != null) {
             Sort sortByEmail = Sort.by("emsUserEmail");
             sortByRespectiveField = sortDirectionForEmail.isAscending() ? sortByEmail.ascending() : sortByEmail.descending();
-        } else if (sortDirectionForDateOfBirth != null) {
+        }
+        if (sortDirectionForDateOfBirth != null) {
             Sort sortByDateOfBirth = Sort.by("emsUserDateOfBirth");
             sortByRespectiveField = sortDirectionForDateOfBirth.isAscending() ? sortByDateOfBirth.ascending() : sortByDateOfBirth.descending();
-        } else if (sortDirectionForDateOfJoin != null) {
+        }
+        if (sortDirectionForDateOfJoin != null) {
             Sort sortByDateOfJoin = Sort.by("emsUserDateOfJoin");
             sortByRespectiveField = sortDirectionForDateOfJoin.isAscending() ? sortByDateOfJoin.ascending() : sortByDateOfJoin.descending();
-        } else if (sortDirectionForSalary != null) {
+        }
+        if (sortDirectionForSalary != null) {
             Sort sortBySalary = Sort.by("emsUserSalary");
             sortByRespectiveField = sortDirectionForSalary.isAscending() ? sortBySalary.ascending() : sortBySalary.descending();
-        } else if (sortDirectionForHikePercentage != null) {
+        }
+        if (sortDirectionForHikePercentage != null) {
             Sort sortByHikePercentage = Sort.by("emsUserHikePercentage");
             sortByRespectiveField = sortDirectionForHikePercentage.isAscending() ? sortByHikePercentage.ascending() : sortByHikePercentage.descending();
-        } else if (sortDirectionForZipCode != null) {
+        }
+        if (sortDirectionForZipCode != null) {
             Sort sortByZipCode = Sort.by("emsUserZipCode");
             sortByRespectiveField = sortDirectionForZipCode.isAscending() ? sortByZipCode.ascending() : sortByZipCode.descending();
         }
+        /*------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
         Page<GetEmsUserRepositoryBean> getEmsUserRepositoryBeanWithPaginationAndSearchAndSort = this.emsUserRepository.findAllEmsUserWithPaginationAndSearchAndSort(
-                emsUserRequestBeanWithPaginationAndSearchAndSort.getSearchFirstName().strip(),
-                emsUserRequestBeanWithPaginationAndSearchAndSort.getSearchLastName().strip(),
+                emsUserRequestBeanWithPaginationAndSearchAndSort.getSearchFirstName(),
+                emsUserRequestBeanWithPaginationAndSearchAndSort.getSearchLastName(),
                 emsUserRequestBeanWithPaginationAndSearchAndSort.getSearchEmsUserGender(),
-                emsUserRequestBeanWithPaginationAndSearchAndSort.getSearchEmail().strip(),
-                emsUserRequestBeanWithPaginationAndSearchAndSort.getSearchDateOfBirth().strip(),
-                emsUserRequestBeanWithPaginationAndSearchAndSort.getSearchDateOfJoin().strip(),
+                emsUserRequestBeanWithPaginationAndSearchAndSort.getSearchEmail(),
+                emsUserRequestBeanWithPaginationAndSearchAndSort.getSearchDateOfBirth(),
+                emsUserRequestBeanWithPaginationAndSearchAndSort.getSearchDateOfJoin(),
                 emsUserRequestBeanWithPaginationAndSearchAndSort.getSearchSalary(),
                 emsUserRequestBeanWithPaginationAndSearchAndSort.getSearchHikePercentage(),
                 emsUserRequestBeanWithPaginationAndSearchAndSort.getSearchZipCode(),
-                emsUserRequestBeanWithPaginationAndSearchAndSort.getSearchMobileNumber().strip(),
+                emsUserRequestBeanWithPaginationAndSearchAndSort.getSearchMobileNumber(),
                 PageRequest.of((emsUserRequestBeanWithPaginationAndSearchAndSort.getPageNumber() - 1), emsUserRequestBeanWithPaginationAndSearchAndSort.getPageSize(), sortByRespectiveField)
         );
 
