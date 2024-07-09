@@ -390,6 +390,143 @@ const DisplayEmsUserAdvanced = () => {
                     </div>
                   )}
                 </th>
+                <th>
+                  <div className="d-flex justify-content-center align-items-center gap-1">
+                    <label>Gender</label>
+                    <div
+                      className={`${styles.cursorPointer}`}
+                      onClick={() =>
+                        onClickHandleToggleShowFilterInputByFieldName(
+                          "emsUserGender",
+                        )
+                      }
+                    >
+                      <span>
+                        {allSearchAndSortFieldForEmsUser["emsUserGender"]
+                          .showFilterInput ? (
+                          <TbFilterFilled size={20} />
+                        ) : (
+                          <TbFilter size={20} />
+                        )}
+                      </span>
+                    </div>
+                    <div
+                      onClick={() =>
+                        onClickHandleToggleSortFlagByFieldName("emsUserGender")
+                      }
+                      className={`${styles.cursorPointer}`}
+                    >
+                      {!allSearchAndSortFieldForEmsUser["emsUserGender"]
+                        .showAscendingSort &&
+                        !allSearchAndSortFieldForEmsUser["emsUserGender"]
+                          .showDescendingSort && <LiaSortSolid size={20} />}
+                      {allSearchAndSortFieldForEmsUser["emsUserGender"]
+                        .showAscendingSort &&
+                        !allSearchAndSortFieldForEmsUser["emsUserGender"]
+                          .showDescendingSort && <TiArrowSortedUp size={20} />}
+                      {!allSearchAndSortFieldForEmsUser["emsUserGender"]
+                        .showAscendingSort &&
+                        allSearchAndSortFieldForEmsUser["emsUserGender"]
+                          .showDescendingSort && (
+                          <TiArrowSortedDown size={20} />
+                        )}
+                    </div>
+                  </div>
+                  {allSearchAndSortFieldForEmsUser["emsUserGender"]
+                    .showFilterInput && (
+                    <div className="d-flex justify-content-center align-items-center gap-1">
+                      <input
+                        type="text"
+                        name="emsUserGender"
+                        placeholder="Search Gender"
+                        value={
+                          allSearchAndSortFieldForEmsUser["emsUserGender"]
+                            .searchFirstName
+                        }
+                        onChange={(e) =>
+                          onChangeHandleSearchFieldStateByFieldName(e)
+                        }
+                        required
+                      />
+                      <button
+                        type="button"
+                        onClick={() =>
+                          onClickHandleToggleShowFilterInputByFieldName(
+                            "emsUserGender",
+                          )
+                        }
+                      >
+                        <MdOutlineClose />
+                      </button>
+                    </div>
+                  )}
+                </th>
+                <th>
+                  <div className="d-flex justify-content-center align-items-center gap-1">
+                    <label>Email</label>
+                    <div
+                      className={`${styles.cursorPointer}`}
+                      onClick={() =>
+                        onClickHandleToggleShowFilterInputByFieldName("email")
+                      }
+                    >
+                      <span>
+                        {allSearchAndSortFieldForEmsUser["email"]
+                          .showFilterInput ? (
+                          <TbFilterFilled size={20} />
+                        ) : (
+                          <TbFilter size={20} />
+                        )}
+                      </span>
+                    </div>
+                    <div
+                      onClick={() =>
+                        onClickHandleToggleSortFlagByFieldName("email")
+                      }
+                      className={`${styles.cursorPointer}`}
+                    >
+                      {!allSearchAndSortFieldForEmsUser["email"]
+                        .showAscendingSort &&
+                        !allSearchAndSortFieldForEmsUser["email"]
+                          .showDescendingSort && <LiaSortSolid size={20} />}
+                      {allSearchAndSortFieldForEmsUser["email"]
+                        .showAscendingSort &&
+                        !allSearchAndSortFieldForEmsUser["email"]
+                          .showDescendingSort && <TiArrowSortedUp size={20} />}
+                      {!allSearchAndSortFieldForEmsUser["email"]
+                        .showAscendingSort &&
+                        allSearchAndSortFieldForEmsUser["email"]
+                          .showDescendingSort && (
+                          <TiArrowSortedDown size={20} />
+                        )}
+                    </div>
+                  </div>
+                  {allSearchAndSortFieldForEmsUser["email"].showFilterInput && (
+                    <div className="d-flex justify-content-center align-items-center gap-1">
+                      <input
+                        type="text"
+                        name="email"
+                        placeholder="Search Email"
+                        value={
+                          allSearchAndSortFieldForEmsUser["email"]
+                            .searchFirstName
+                        }
+                        onChange={(e) =>
+                          onChangeHandleSearchFieldStateByFieldName(e)
+                        }
+                        required
+                      />
+                      <button
+                        type="button"
+                        onClick={() =>
+                          onClickHandleToggleShowFilterInputByFieldName("email")
+                        }
+                      >
+                        <MdOutlineClose />
+                      </button>
+                    </div>
+                  )}
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -399,6 +536,8 @@ const DisplayEmsUserAdvanced = () => {
                     <td>{index + 1}</td>
                     <td>{emsUser.firstName}</td>
                     <td>{emsUser.lastName}</td>
+                    <td>{emsUser.emsUserGender}</td>
+                    <td>{emsUser.email}</td>
                   </tr>
                 );
               })}
