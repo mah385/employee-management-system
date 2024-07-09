@@ -304,7 +304,6 @@ const DisplayEmsUserAdvanced = () => {
                         onChange={(e) =>
                           onChangeHandleSearchFieldStateByFieldName(e)
                         }
-                        required
                       />
                       <button
                         type="button"
@@ -375,7 +374,6 @@ const DisplayEmsUserAdvanced = () => {
                         onChange={(e) =>
                           onChangeHandleSearchFieldStateByFieldName(e)
                         }
-                        required
                       />
                       <button
                         type="button"
@@ -446,7 +444,6 @@ const DisplayEmsUserAdvanced = () => {
                         onChange={(e) =>
                           onChangeHandleSearchFieldStateByFieldName(e)
                         }
-                        required
                       />
                       <button
                         type="button"
@@ -514,12 +511,219 @@ const DisplayEmsUserAdvanced = () => {
                         onChange={(e) =>
                           onChangeHandleSearchFieldStateByFieldName(e)
                         }
-                        required
                       />
                       <button
                         type="button"
                         onClick={() =>
                           onClickHandleToggleShowFilterInputByFieldName("email")
+                        }
+                      >
+                        <MdOutlineClose />
+                      </button>
+                    </div>
+                  )}
+                </th>
+                <th>
+                  <div className="d-flex justify-content-center align-items-center gap-1">
+                    <label>Date Of Birth</label>
+                    <div
+                      className={`${styles.cursorPointer}`}
+                      onClick={() =>
+                        onClickHandleToggleShowFilterInputByFieldName(
+                          "dateOfBirth",
+                        )
+                      }
+                    >
+                      <span>
+                        {allSearchAndSortFieldForEmsUser["dateOfBirth"]
+                          .showFilterInput ? (
+                          <TbFilterFilled size={20} />
+                        ) : (
+                          <TbFilter size={20} />
+                        )}
+                      </span>
+                    </div>
+                    <div
+                      onClick={() =>
+                        onClickHandleToggleSortFlagByFieldName("dateOfBirth")
+                      }
+                      className={`${styles.cursorPointer}`}
+                    >
+                      {!allSearchAndSortFieldForEmsUser["dateOfBirth"]
+                        .showAscendingSort &&
+                        !allSearchAndSortFieldForEmsUser["dateOfBirth"]
+                          .showDescendingSort && <LiaSortSolid size={20} />}
+                      {allSearchAndSortFieldForEmsUser["dateOfBirth"]
+                        .showAscendingSort &&
+                        !allSearchAndSortFieldForEmsUser["dateOfBirth"]
+                          .showDescendingSort && <TiArrowSortedUp size={20} />}
+                      {!allSearchAndSortFieldForEmsUser["dateOfBirth"]
+                        .showAscendingSort &&
+                        allSearchAndSortFieldForEmsUser["dateOfBirth"]
+                          .showDescendingSort && (
+                          <TiArrowSortedDown size={20} />
+                        )}
+                    </div>
+                  </div>
+                  {allSearchAndSortFieldForEmsUser["dateOfBirth"]
+                    .showFilterInput && (
+                    <div className="d-flex justify-content-center align-items-center gap-1">
+                      <input
+                        type="text"
+                        name="dateOfBirth"
+                        placeholder="Search Date Of Birth [yyyy-MM-dd]"
+                        value={
+                          allSearchAndSortFieldForEmsUser["dateOfBirth"]
+                            .searchFirstName
+                        }
+                        onChange={(e) =>
+                          onChangeHandleSearchFieldStateByFieldName(e)
+                        }
+                      />
+                      <button
+                        type="button"
+                        onClick={() =>
+                          onClickHandleToggleShowFilterInputByFieldName(
+                            "dateOfBirth",
+                          )
+                        }
+                      >
+                        <MdOutlineClose />
+                      </button>
+                    </div>
+                  )}
+                </th>
+                <th>
+                  <div className="d-flex justify-content-center align-items-center gap-1">
+                    <label>Date Of Join</label>
+                    <div
+                      className={`${styles.cursorPointer}`}
+                      onClick={() =>
+                        onClickHandleToggleShowFilterInputByFieldName(
+                          "dateOfJoin",
+                        )
+                      }
+                    >
+                      <span>
+                        {allSearchAndSortFieldForEmsUser["dateOfJoin"]
+                          .showFilterInput ? (
+                          <TbFilterFilled size={20} />
+                        ) : (
+                          <TbFilter size={20} />
+                        )}
+                      </span>
+                    </div>
+                    <div
+                      onClick={() =>
+                        onClickHandleToggleSortFlagByFieldName("dateOfJoin")
+                      }
+                      className={`${styles.cursorPointer}`}
+                    >
+                      {!allSearchAndSortFieldForEmsUser["dateOfJoin"]
+                        .showAscendingSort &&
+                        !allSearchAndSortFieldForEmsUser["dateOfJoin"]
+                          .showDescendingSort && <LiaSortSolid size={20} />}
+                      {allSearchAndSortFieldForEmsUser["dateOfJoin"]
+                        .showAscendingSort &&
+                        !allSearchAndSortFieldForEmsUser["dateOfJoin"]
+                          .showDescendingSort && <TiArrowSortedUp size={20} />}
+                      {!allSearchAndSortFieldForEmsUser["dateOfJoin"]
+                        .showAscendingSort &&
+                        allSearchAndSortFieldForEmsUser["dateOfJoin"]
+                          .showDescendingSort && (
+                          <TiArrowSortedDown size={20} />
+                        )}
+                    </div>
+                  </div>
+                  {allSearchAndSortFieldForEmsUser["dateOfJoin"]
+                    .showFilterInput && (
+                    <div className="d-flex justify-content-center align-items-center gap-1">
+                      <input
+                        type="text"
+                        name="dateOfJoin"
+                        placeholder="Search Date Of Join [yyyy-MM-dd]"
+                        value={
+                          allSearchAndSortFieldForEmsUser["dateOfJoin"]
+                            .searchFirstName
+                        }
+                        onChange={(e) =>
+                          onChangeHandleSearchFieldStateByFieldName(e)
+                        }
+                      />
+                      <button
+                        type="button"
+                        onClick={() =>
+                          onClickHandleToggleShowFilterInputByFieldName(
+                            "dateOfJoin",
+                          )
+                        }
+                      >
+                        <MdOutlineClose />
+                      </button>
+                    </div>
+                  )}
+                </th>
+                <th>
+                  <div className="d-flex justify-content-center align-items-center gap-1">
+                    <label>Salary</label>
+                    <div
+                      className={`${styles.cursorPointer}`}
+                      onClick={() =>
+                        onClickHandleToggleShowFilterInputByFieldName("salary")
+                      }
+                    >
+                      <span>
+                        {allSearchAndSortFieldForEmsUser["salary"]
+                          .showFilterInput ? (
+                          <TbFilterFilled size={20} />
+                        ) : (
+                          <TbFilter size={20} />
+                        )}
+                      </span>
+                    </div>
+                    <div
+                      onClick={() =>
+                        onClickHandleToggleSortFlagByFieldName("salary")
+                      }
+                      className={`${styles.cursorPointer}`}
+                    >
+                      {!allSearchAndSortFieldForEmsUser["salary"]
+                        .showAscendingSort &&
+                        !allSearchAndSortFieldForEmsUser["salary"]
+                          .showDescendingSort && <LiaSortSolid size={20} />}
+                      {allSearchAndSortFieldForEmsUser["salary"]
+                        .showAscendingSort &&
+                        !allSearchAndSortFieldForEmsUser["salary"]
+                          .showDescendingSort && <TiArrowSortedUp size={20} />}
+                      {!allSearchAndSortFieldForEmsUser["salary"]
+                        .showAscendingSort &&
+                        allSearchAndSortFieldForEmsUser["salary"]
+                          .showDescendingSort && (
+                          <TiArrowSortedDown size={20} />
+                        )}
+                    </div>
+                  </div>
+                  {allSearchAndSortFieldForEmsUser["salary"]
+                    .showFilterInput && (
+                    <div className="d-flex justify-content-center align-items-center gap-1">
+                      <input
+                        type="number"
+                        name="salary"
+                        placeholder="Search Salary"
+                        value={
+                          allSearchAndSortFieldForEmsUser["salary"]
+                            .searchFirstName
+                        }
+                        onChange={(e) =>
+                          onChangeHandleSearchFieldStateByFieldName(e)
+                        }
+                      />
+                      <button
+                        type="button"
+                        onClick={() =>
+                          onClickHandleToggleShowFilterInputByFieldName(
+                            "salary",
+                          )
                         }
                       >
                         <MdOutlineClose />
@@ -538,6 +742,9 @@ const DisplayEmsUserAdvanced = () => {
                     <td>{emsUser.lastName}</td>
                     <td>{emsUser.emsUserGender}</td>
                     <td>{emsUser.email}</td>
+                    <td>{emsUser.dateOfBirth}</td>
+                    <td>{emsUser.dateOfJoin}</td>
+                    <td className="text-end">{emsUser.salary.toFixed(2)}</td>
                   </tr>
                 );
               })}
