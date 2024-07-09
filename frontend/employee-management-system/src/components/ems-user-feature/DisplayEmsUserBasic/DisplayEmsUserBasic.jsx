@@ -1,4 +1,4 @@
-import styles from "./DisplayEmsUser.module.css";
+import styles from "./DisplayEmsUserBasic.module.css";
 /*--------------------------------------------------------------------------------------------------------------------*/
 import { useEffect, useState } from "react";
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -15,9 +15,11 @@ import * as EmsUserApiRequestHandlerService from "../../../axios/ems-user/ems-us
 
 /*--------------------------------------------------------------------------------------------------------------------*/
 
-let renderCountOfDisplayEmsUser = 0;
-const DisplayEmsUser = () => {
-  console.log("renderCountOfDisplayEmsUser: " + renderCountOfDisplayEmsUser++);
+let renderCountOfDisplayEmsUserBasic = 0;
+const DisplayEmsUserBasic = () => {
+  console.log(
+    "renderCountOfDisplayEmsUserBasic: " + renderCountOfDisplayEmsUserBasic++,
+  );
 
   const navigate = useNavigate();
 
@@ -46,7 +48,7 @@ const DisplayEmsUser = () => {
       });
 
     return () => {
-      //CLEAN UP OF DisplayEmsUser COMPONENT ON UNMOUNT
+      //CLEAN UP OF DisplayEmsUserBasic COMPONENT ON UNMOUNT
       isMounted = false;
       setEmsUserList([]);
     };
@@ -150,4 +152,4 @@ const DisplayEmsUser = () => {
   );
 };
 
-export default DisplayEmsUser;
+export default DisplayEmsUserBasic;

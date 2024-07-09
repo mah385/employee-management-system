@@ -24,9 +24,9 @@ const EmsAppSidebar = () => {
         </NavLink>
         <NavLink
           className="list-group-item list-group-item-action"
-          to={EmpAppPathConstant.PATH_DISPLAY_EMS_USER}
+          to={EmpAppPathConstant.PATH_DISPLAY_EMS_USER_BASIC}
         >
-          Display EMS User
+          Display EMS User Basic
         </NavLink>
         <NavLink
           className="list-group-item list-group-item-action"

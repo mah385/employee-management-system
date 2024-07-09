@@ -71,7 +71,7 @@ const AddNewEmsUser = () => {
     callApiToAddNewEmsUser().then((successOrErrorResponseData) => {
       if (successOrErrorResponseData.statusCode === 201) {
         onClickHandleClearAllInputFields();
-        navigate(EmpAppPathConstant.PATH_DISPLAY_EMS_USER);
+        navigate(EmpAppPathConstant.PATH_DISPLAY_EMS_USER_BASIC);
       }
     });
   };

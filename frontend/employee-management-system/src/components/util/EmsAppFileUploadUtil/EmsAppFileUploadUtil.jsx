@@ -44,7 +44,7 @@ const EmsAppFileUploadUtil = (props) => {
     callApiToImportEmsUserData()
       .then((successOrErrorResponseData) => {
         if (successOrErrorResponseData.statusCode === 200) {
-          navigate(EmpAppPathConstant.PATH_DISPLAY_EMS_USER);
+          navigate(EmpAppPathConstant.PATH_DISPLAY_EMS_USER_BASIC);
         } /*else if (successOrErrorResponseData.statusCode !== 200) {
           // Perform some logic...
         }*/

@@ -5,7 +5,7 @@ import EmsAppErrorPage from "../error/EmsAppErrorPage/EmsAppErrorPage.jsx";
 import ImportEmsUserData from "../components/ems-user-feature/ImportEmsUserData/ImportEmsUserData.jsx";
 import AddNewEmsUser from "../components/ems-user-feature/AddNewEmsUser/AddNewEmsUser.jsx";
 import UpdateEmsUser from "../components/ems-user-feature/UpdateEmsUser/UpdateEmsUser.jsx";
-import DisplayEmsUser from "../components/ems-user-feature/DisplayEmsUser/DisplayEmsUser.jsx";
+import DisplayEmsUserBasic from "../components/ems-user-feature/DisplayEmsUserBasic/DisplayEmsUserBasic.jsx";
 import DisplayEmsUserAdvancedOptimized from "../components/ems-user-feature/DisplayEmsUserAdvancedOptimized/DisplayEmsUserAdvancedOptimized.jsx";
 /*-------------------------------------------------------------------*/
 import * as EmpAppPathConstant from "../constants/emp-app-path-constant.js";
@@ -31,8 +31,8 @@ const emsAppBrowserRouter = createBrowserRouter([
         element: <UpdateEmsUser />,
       },
       {
-        path: EmpAppPathConstant.PATH_DISPLAY_EMS_USER,
-        element: <DisplayEmsUser />,
+        path: EmpAppPathConstant.PATH_DISPLAY_EMS_USER_BASIC,
+        element: <DisplayEmsUserBasic />,
       },
       {
         path: EmpAppPathConstant.PATH_DISPLAY_EMS_USER_ADVANCED,

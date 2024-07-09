@@ -58,7 +58,7 @@ const UpdateEmsUser = () => {
     };
     callApiToUpdateEmsUser().then((successOrErrorResponseData) => {
       if (successOrErrorResponseData.statusCode === 200) {
-        navigate(EmpAppPathConstant.PATH_DISPLAY_EMS_USER);
+        navigate(EmpAppPathConstant.PATH_DISPLAY_EMS_USER_BASIC);
       }
     });
   };
@@ -72,7 +72,7 @@ const UpdateEmsUser = () => {
 
   const onClickHandleCancel = () => {
     setUpdatedEmsUser({});
-    navigate(EmpAppPathConstant.PATH_DISPLAY_EMS_USER);
+    navigate(EmpAppPathConstant.PATH_DISPLAY_EMS_USER_BASIC);
   };
 
   return (
