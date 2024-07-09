@@ -731,6 +731,214 @@ const DisplayEmsUserAdvanced = () => {
                     </div>
                   )}
                 </th>
+                <th>
+                  <div className="d-flex justify-content-center align-items-center gap-1">
+                    <label>Hike Percentage</label>
+                    <div
+                      className={`${styles.cursorPointer}`}
+                      onClick={() =>
+                        onClickHandleToggleShowFilterInputByFieldName(
+                          "hikePercentage",
+                        )
+                      }
+                    >
+                      <span>
+                        {allSearchAndSortFieldForEmsUser["hikePercentage"]
+                          .showFilterInput ? (
+                          <TbFilterFilled size={20} />
+                        ) : (
+                          <TbFilter size={20} />
+                        )}
+                      </span>
+                    </div>
+                    <div
+                      onClick={() =>
+                        onClickHandleToggleSortFlagByFieldName("hikePercentage")
+                      }
+                      className={`${styles.cursorPointer}`}
+                    >
+                      {!allSearchAndSortFieldForEmsUser["hikePercentage"]
+                        .showAscendingSort &&
+                        !allSearchAndSortFieldForEmsUser["hikePercentage"]
+                          .showDescendingSort && <LiaSortSolid size={20} />}
+                      {allSearchAndSortFieldForEmsUser["hikePercentage"]
+                        .showAscendingSort &&
+                        !allSearchAndSortFieldForEmsUser["hikePercentage"]
+                          .showDescendingSort && <TiArrowSortedUp size={20} />}
+                      {!allSearchAndSortFieldForEmsUser["hikePercentage"]
+                        .showAscendingSort &&
+                        allSearchAndSortFieldForEmsUser["hikePercentage"]
+                          .showDescendingSort && (
+                          <TiArrowSortedDown size={20} />
+                        )}
+                    </div>
+                  </div>
+                  {allSearchAndSortFieldForEmsUser["hikePercentage"]
+                    .showFilterInput && (
+                    <div className="d-flex justify-content-center align-items-center gap-1">
+                      <input
+                        type="number"
+                        name="hikePercentage"
+                        placeholder="Search Hike Percentage"
+                        value={
+                          allSearchAndSortFieldForEmsUser["hikePercentage"]
+                            .searchFirstName
+                        }
+                        onChange={(e) =>
+                          onChangeHandleSearchFieldStateByFieldName(e)
+                        }
+                      />
+                      <button
+                        type="button"
+                        onClick={() =>
+                          onClickHandleToggleShowFilterInputByFieldName(
+                            "hikePercentage",
+                          )
+                        }
+                      >
+                        <MdOutlineClose />
+                      </button>
+                    </div>
+                  )}
+                </th>
+                <th>
+                  <div className="d-flex justify-content-center align-items-center gap-1">
+                    <label>Zip Code</label>
+                    <div
+                      className={`${styles.cursorPointer}`}
+                      onClick={() =>
+                        onClickHandleToggleShowFilterInputByFieldName("zipCode")
+                      }
+                    >
+                      <span>
+                        {allSearchAndSortFieldForEmsUser["zipCode"]
+                          .showFilterInput ? (
+                          <TbFilterFilled size={20} />
+                        ) : (
+                          <TbFilter size={20} />
+                        )}
+                      </span>
+                    </div>
+                    <div
+                      onClick={() =>
+                        onClickHandleToggleSortFlagByFieldName("zipCode")
+                      }
+                      className={`${styles.cursorPointer}`}
+                    >
+                      {!allSearchAndSortFieldForEmsUser["zipCode"]
+                        .showAscendingSort &&
+                        !allSearchAndSortFieldForEmsUser["zipCode"]
+                          .showDescendingSort && <LiaSortSolid size={20} />}
+                      {allSearchAndSortFieldForEmsUser["zipCode"]
+                        .showAscendingSort &&
+                        !allSearchAndSortFieldForEmsUser["zipCode"]
+                          .showDescendingSort && <TiArrowSortedUp size={20} />}
+                      {!allSearchAndSortFieldForEmsUser["zipCode"]
+                        .showAscendingSort &&
+                        allSearchAndSortFieldForEmsUser["zipCode"]
+                          .showDescendingSort && (
+                          <TiArrowSortedDown size={20} />
+                        )}
+                    </div>
+                  </div>
+                  {allSearchAndSortFieldForEmsUser["zipCode"]
+                    .showFilterInput && (
+                    <div className="d-flex justify-content-center align-items-center gap-1">
+                      <input
+                        type="text"
+                        name="zipCode"
+                        placeholder="Search Zip Code"
+                        value={
+                          allSearchAndSortFieldForEmsUser["zipCode"]
+                            .searchFirstName
+                        }
+                        onChange={(e) =>
+                          onChangeHandleSearchFieldStateByFieldName(e)
+                        }
+                      />
+                      <button
+                        type="button"
+                        onClick={() =>
+                          onClickHandleToggleShowFilterInputByFieldName(
+                            "zipCode",
+                          )
+                        }
+                      >
+                        <MdOutlineClose />
+                      </button>
+                    </div>
+                  )}
+                </th>
+                <th>
+                  <div className="d-flex justify-content-center align-items-center gap-1">
+                    <label>Mobile Number</label>
+                    <div
+                      className={`${styles.cursorPointer}`}
+                      onClick={() =>
+                        onClickHandleToggleShowFilterInputByFieldName(
+                          "mobileNumber",
+                        )
+                      }
+                    >
+                      <span>
+                        {allSearchAndSortFieldForEmsUser["mobileNumber"]
+                          .showFilterInput ? (
+                          <TbFilterFilled size={20} />
+                        ) : (
+                          <TbFilter size={20} />
+                        )}
+                      </span>
+                    </div>
+                    <div
+                      onClick={() =>
+                        onClickHandleToggleSortFlagByFieldName("mobileNumber")
+                      }
+                      className={`${styles.cursorPointer}`}
+                    >
+                      {!allSearchAndSortFieldForEmsUser["mobileNumber"]
+                        .showAscendingSort &&
+                        !allSearchAndSortFieldForEmsUser["mobileNumber"]
+                          .showDescendingSort && <LiaSortSolid size={20} />}
+                      {allSearchAndSortFieldForEmsUser["mobileNumber"]
+                        .showAscendingSort &&
+                        !allSearchAndSortFieldForEmsUser["mobileNumber"]
+                          .showDescendingSort && <TiArrowSortedUp size={20} />}
+                      {!allSearchAndSortFieldForEmsUser["mobileNumber"]
+                        .showAscendingSort &&
+                        allSearchAndSortFieldForEmsUser["mobileNumber"]
+                          .showDescendingSort && (
+                          <TiArrowSortedDown size={20} />
+                        )}
+                    </div>
+                  </div>
+                  {allSearchAndSortFieldForEmsUser["mobileNumber"]
+                    .showFilterInput && (
+                    <div className="d-flex justify-content-center align-items-center gap-1">
+                      <input
+                        type="text"
+                        name="mobileNumber"
+                        placeholder="Search Mobile Number"
+                        value={
+                          allSearchAndSortFieldForEmsUser["mobileNumber"]
+                            .searchFirstName
+                        }
+                        onChange={(e) =>
+                          onChangeHandleSearchFieldStateByFieldName(e)
+                        }
+                      />
+                      <button
+                        type="button"
+                        onClick={() =>
+                          onClickHandleToggleShowFilterInputByFieldName(
+                            "mobileNumber",
+                          )
+                        }
+                      >
+                        <MdOutlineClose />
+                      </button>
+                    </div>
+                  )}
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -745,6 +953,11 @@ const DisplayEmsUserAdvanced = () => {
                     <td>{emsUser.dateOfBirth}</td>
                     <td>{emsUser.dateOfJoin}</td>
                     <td className="text-end">{emsUser.salary.toFixed(2)}</td>
+                    <td className="text-end">
+                      {emsUser.hikePercentage.toFixed(2)}
+                    </td>
+                    <td>{emsUser.zipCode}</td>
+                    <td>{emsUser.mobileNumber}</td>
                   </tr>
                 );
               })}
