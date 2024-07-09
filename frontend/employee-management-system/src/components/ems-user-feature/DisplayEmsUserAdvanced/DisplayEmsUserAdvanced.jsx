@@ -319,6 +319,77 @@ const DisplayEmsUserAdvanced = () => {
                     </div>
                   )}
                 </th>
+                <th>
+                  <div className="d-flex justify-content-center align-items-center gap-1">
+                    <label>Last Name</label>
+                    <div
+                      className={`${styles.cursorPointer}`}
+                      onClick={() =>
+                        onClickHandleToggleShowFilterInputByFieldName(
+                          "lastName",
+                        )
+                      }
+                    >
+                      <span>
+                        {allSearchAndSortFieldForEmsUser["lastName"]
+                          .showFilterInput ? (
+                          <TbFilterFilled size={20} />
+                        ) : (
+                          <TbFilter size={20} />
+                        )}
+                      </span>
+                    </div>
+                    <div
+                      onClick={() =>
+                        onClickHandleToggleSortFlagByFieldName("lastName")
+                      }
+                      className={`${styles.cursorPointer}`}
+                    >
+                      {!allSearchAndSortFieldForEmsUser["lastName"]
+                        .showAscendingSort &&
+                        !allSearchAndSortFieldForEmsUser["lastName"]
+                          .showDescendingSort && <LiaSortSolid size={20} />}
+                      {allSearchAndSortFieldForEmsUser["lastName"]
+                        .showAscendingSort &&
+                        !allSearchAndSortFieldForEmsUser["lastName"]
+                          .showDescendingSort && <TiArrowSortedUp size={20} />}
+                      {!allSearchAndSortFieldForEmsUser["lastName"]
+                        .showAscendingSort &&
+                        allSearchAndSortFieldForEmsUser["lastName"]
+                          .showDescendingSort && (
+                          <TiArrowSortedDown size={20} />
+                        )}
+                    </div>
+                  </div>
+                  {allSearchAndSortFieldForEmsUser["lastName"]
+                    .showFilterInput && (
+                    <div className="d-flex justify-content-center align-items-center gap-1">
+                      <input
+                        type="text"
+                        name="lastName"
+                        placeholder="Search Last Name"
+                        value={
+                          allSearchAndSortFieldForEmsUser["lastName"]
+                            .searchFirstName
+                        }
+                        onChange={(e) =>
+                          onChangeHandleSearchFieldStateByFieldName(e)
+                        }
+                        required
+                      />
+                      <button
+                        type="button"
+                        onClick={() =>
+                          onClickHandleToggleShowFilterInputByFieldName(
+                            "lastName",
+                          )
+                        }
+                      >
+                        <MdOutlineClose />
+                      </button>
+                    </div>
+                  )}
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -327,6 +398,7 @@ const DisplayEmsUserAdvanced = () => {
                   <tr key={emsUser.id}>
                     <td>{index + 1}</td>
                     <td>{emsUser.firstName}</td>
+                    <td>{emsUser.lastName}</td>
                   </tr>
                 );
               })}
