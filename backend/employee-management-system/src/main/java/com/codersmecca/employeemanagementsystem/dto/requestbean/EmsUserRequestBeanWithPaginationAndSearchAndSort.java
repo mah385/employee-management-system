@@ -7,22 +7,21 @@ import lombok.Setter;
 import org.springframework.data.domain.Sort;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 
 @Getter
 @Setter
 public class EmsUserRequestBeanWithPaginationAndSearchAndSort {
 
-    private String searchFirstName;
-    private String searchLastName;
-    private EmsUserGender searchEmsUserGender;
-    private String searchEmail;
-    private String searchDateOfBirth; //LocalDate
-    private String searchDateOfJoin; //LocalDate
-    private BigDecimal searchSalary;
-    private BigDecimal searchHikePercentage;
-    private Integer searchZipCode;
-    private String searchMobileNumber;
+    private String searchValueForFirstName;
+    private String searchValueForLastName;
+    private EmsUserGender searchValueForEmsUserGender;
+    private String searchValueForEmail;
+    private String searchValueForDateOfBirth; //LocalDate
+    private String searchValueForDateOfJoin; //LocalDate
+    private BigDecimal searchValueForSalary;
+    private BigDecimal searchValueForHikePercentage;
+    private Integer searchValueForZipCode;
+    private String searchValueForMobileNumber;
 
     private Sort.Direction sortDirectionForFirstName = null;
     private Sort.Direction sortDirectionForLastName = null;
@@ -35,9 +34,9 @@ public class EmsUserRequestBeanWithPaginationAndSearchAndSort {
     private Sort.Direction sortDirectionForZipCode = null;
 
     @NotNull(message = "Please provide page number")
-    private Integer pageNumber = 1;
+    private Integer pageNumber;
 
     @NotNull(message = "Please provide page size")
-    private Integer pageSize = 20;
+    private Integer pageSize;
 
 }

@@ -12,41 +12,15 @@ import { TiArrowSortedDown, TiArrowSortedUp } from "react-icons/ti";
 import EmsAppLoader from "../../util/EmsAppLoader/EmsAppLoader.jsx";
 import EmsAppDataNotFound from "../../util/EmsAppDataNotFound/EmsAppDataNotFound.jsx";
 /*--------------------------------------------------------------------------------------------------------------------*/
-/*import {
+import {
   ASC_STRING,
   DESC_STRING,
-} from "../../../constants/emp-app-constant.js";*/
+} from "../../../constants/emp-app-constant.js";
 // import * as EmpAppPathConstant from "../../../constants/emp-app-path-constant.js";
 /*--------------------------------------------------------------------------------------------------------------------*/
 import * as EmsUserApiRequestHandlerService from "../../../axios/ems-user/ems-user-api-request-handler-service.js";
 
 /*--------------------------------------------------------------------------------------------------------------------*/
-
-const getSearchFieldNameByFieldName = (fieldName) => {
-  let searchFieldName = "";
-  if ("firstName" === fieldName) {
-    searchFieldName = "searchFirstName";
-  } else if ("lastName" === fieldName) {
-    searchFieldName = "searchLastName";
-  } else if ("emsUserGender" === fieldName) {
-    searchFieldName = "searchEmsUserGender";
-  } else if ("email" === fieldName) {
-    searchFieldName = "searchEmail";
-  } else if ("dateOfBirth" === fieldName) {
-    searchFieldName = "searchDateOfBirth";
-  } else if ("dateOfJoin" === fieldName) {
-    searchFieldName = "searchDateOfJoin";
-  } else if ("salary" === fieldName) {
-    searchFieldName = "searchSalary";
-  } else if ("hikePercentage" === fieldName) {
-    searchFieldName = "searchHikePercentage";
-  } else if ("zipCode" === fieldName) {
-    searchFieldName = "searchZipCode";
-  } else if ("mobileNumber" === fieldName) {
-    searchFieldName = "searchMobileNumber";
-  }
-  return searchFieldName;
-};
 
 let renderCountOfDisplayEmsUserAdvanced = 0;
 const DisplayEmsUserAdvanced = () => {
@@ -65,61 +39,61 @@ const DisplayEmsUserAdvanced = () => {
         showFilterInput: false,
         showAscendingSort: false,
         showDescendingSort: false,
-        searchFirstName: "",
+        searchValue: "",
       },
       lastName: {
         showFilterInput: false,
         showAscendingSort: false,
         showDescendingSort: false,
-        searchLastName: "",
+        searchValue: "",
       },
       emsUserGender: {
         showFilterInput: false,
         showAscendingSort: false,
         showDescendingSort: false,
-        searchEmsUserGender: "",
+        searchValue: "",
       },
       email: {
         showFilterInput: false,
         showAscendingSort: false,
         showDescendingSort: false,
-        searchEmail: "",
+        searchValue: "",
       },
       dateOfBirth: {
         showFilterInput: false,
         showAscendingSort: false,
         showDescendingSort: false,
-        searchDateOfBirth: "",
+        searchValue: "",
       },
       dateOfJoin: {
         showFilterInput: false,
         showAscendingSort: false,
         showDescendingSort: false,
-        searchDateOfJoin: "",
+        searchValue: "",
       },
       salary: {
         showFilterInput: false,
         showAscendingSort: false,
         showDescendingSort: false,
-        searchSalary: "",
+        searchValue: "",
       },
       hikePercentage: {
         showFilterInput: false,
         showAscendingSort: false,
         showDescendingSort: false,
-        searchHikePercentage: "",
+        searchValue: "",
       },
       zipCode: {
         showFilterInput: false,
         showAscendingSort: false,
         showDescendingSort: false,
-        searchZipCode: "",
+        searchValue: "",
       },
       mobileNumber: {
         showFilterInput: false,
         showAscendingSort: false,
         showDescendingSort: false,
-        searchMobileNumber: "",
+        searchValue: "",
       },
     });
   /*--------------------------------------------------------------------------------------------------------*/
@@ -159,8 +133,7 @@ const DisplayEmsUserAdvanced = () => {
     };
     tempSearchAndSortFieldForEmsUser.showFilterInput =
       !tempSearchAndSortFieldForEmsUser.showFilterInput;
-    tempSearchAndSortFieldForEmsUser[getSearchFieldNameByFieldName(fieldName)] =
-      "";
+    tempSearchAndSortFieldForEmsUser.searchValue = "";
     setAllSearchAndSortFieldForEmsUser((prevState) => ({
       ...prevState,
       [fieldName]: tempSearchAndSortFieldForEmsUser,
@@ -195,9 +168,7 @@ const DisplayEmsUserAdvanced = () => {
     const tempSearchAndSortFieldForEmsUser = {
       ...allSearchAndSortFieldForEmsUser[e.target.name],
     };
-    tempSearchAndSortFieldForEmsUser[
-      getSearchFieldNameByFieldName(e.target.name)
-    ] = e.target.value;
+    tempSearchAndSortFieldForEmsUser.searchValue = e.target.value;
     setAllSearchAndSortFieldForEmsUser((prevState) => ({
       ...prevState,
       [e.target.name]: tempSearchAndSortFieldForEmsUser,
@@ -205,7 +176,69 @@ const DisplayEmsUserAdvanced = () => {
   };
   /*--------------------------------------------------------------------------------------------------------*/
   const onClickHandleSearch = async () => {
-    console.log(JSON.stringify(allSearchAndSortFieldForEmsUser, null, 2));
+    const allSearchFieldForEmsUser = Object.create({});
+    const allSortFieldForEmsUser = Object.create({});
+
+    Object.keys(allSearchAndSortFieldForEmsUser).forEach((item) => {
+      const fieldNameCapitalized = item
+        .charAt(0)
+        .toUpperCase()
+        .concat(item.slice(1));
+      allSearchFieldForEmsUser[`searchValueFor${fieldNameCapitalized}`] =
+        allSearchAndSortFieldForEmsUser[item].searchValue === ""
+          ? null
+          : allSearchAndSortFieldForEmsUser[item].searchValue;
+
+      if (
+        allSearchAndSortFieldForEmsUser[item].showAscendingSort &&
+        !allSearchAndSortFieldForEmsUser[item].showDescendingSort
+      ) {
+        allSortFieldForEmsUser[`sortDirectionFor${fieldNameCapitalized}`] =
+          ASC_STRING;
+      } else if (
+        !allSearchAndSortFieldForEmsUser[item].showAscendingSort &&
+        allSearchAndSortFieldForEmsUser[item].showDescendingSort
+      ) {
+        allSortFieldForEmsUser[`sortDirectionFor${fieldNameCapitalized}`] =
+          DESC_STRING;
+      } else {
+        allSortFieldForEmsUser[`sortDirectionFor${fieldNameCapitalized}`] =
+          null;
+      }
+    });
+
+    const allSearchAndSortFieldForEmsUserWithPagination = {
+      ...allSearchFieldForEmsUser,
+      ...allSortFieldForEmsUser,
+      pageNumber: 1,
+      pageSize: 10,
+    };
+
+    console.log("allSearchAndSortFieldForEmsUserWithPagination");
+    console.log(
+      JSON.stringify(allSearchAndSortFieldForEmsUserWithPagination, null, 2),
+    );
+
+    setIsLoading(true);
+    const callApiToGetAllEmsUserWithPaginationAndSearchAndSort = async () => {
+      return await EmsUserApiRequestHandlerService.handleRequestToGetAllEmsUserWithPaginationAndSearchAndSort(
+        allSearchAndSortFieldForEmsUserWithPagination,
+      );
+    };
+    callApiToGetAllEmsUserWithPaginationAndSearchAndSort()
+      .then((successOrErrorResponseData) => {
+        if (
+          successOrErrorResponseData.statusCode === 200 &&
+          successOrErrorResponseData.payload.getEmsUserResponseBeanList != null
+        ) {
+          setEmsUserList(
+            successOrErrorResponseData.payload.getEmsUserResponseBeanList,
+          );
+        }
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
   /*--------------------------------------------------------------------------------------------------------*/
 
@@ -310,7 +343,7 @@ const DisplayEmsUserAdvanced = () => {
                         placeholder="Search First Name"
                         value={
                           allSearchAndSortFieldForEmsUser["firstName"]
-                            .searchFirstName
+                            .searchValue
                         }
                         onChange={(e) =>
                           onChangeHandleSearchFieldStateByFieldName(e)
@@ -380,7 +413,7 @@ const DisplayEmsUserAdvanced = () => {
                         placeholder="Search Last Name"
                         value={
                           allSearchAndSortFieldForEmsUser["lastName"]
-                            .searchLastName
+                            .searchValue
                         }
                         onChange={(e) =>
                           onChangeHandleSearchFieldStateByFieldName(e)
@@ -450,7 +483,7 @@ const DisplayEmsUserAdvanced = () => {
                         placeholder="Search Gender"
                         value={
                           allSearchAndSortFieldForEmsUser["emsUserGender"]
-                            .searchEmsUserGender
+                            .searchValue
                         }
                         onChange={(e) =>
                           onChangeHandleSearchFieldStateByFieldName(e)
@@ -516,7 +549,7 @@ const DisplayEmsUserAdvanced = () => {
                         name="email"
                         placeholder="Search Email"
                         value={
-                          allSearchAndSortFieldForEmsUser["email"].searchEmail
+                          allSearchAndSortFieldForEmsUser["email"].searchValue
                         }
                         onChange={(e) =>
                           onChangeHandleSearchFieldStateByFieldName(e)
@@ -584,7 +617,7 @@ const DisplayEmsUserAdvanced = () => {
                         placeholder="Search Date Of Birth [yyyy-MM-dd]"
                         value={
                           allSearchAndSortFieldForEmsUser["dateOfBirth"]
-                            .searchDateOfBirth
+                            .searchValue
                         }
                         onChange={(e) =>
                           onChangeHandleSearchFieldStateByFieldName(e)
@@ -654,7 +687,7 @@ const DisplayEmsUserAdvanced = () => {
                         placeholder="Search Date Of Join [yyyy-MM-dd]"
                         value={
                           allSearchAndSortFieldForEmsUser["dateOfJoin"]
-                            .searchDateOfJoin
+                            .searchValue
                         }
                         onChange={(e) =>
                           onChangeHandleSearchFieldStateByFieldName(e)
@@ -721,7 +754,7 @@ const DisplayEmsUserAdvanced = () => {
                         name="salary"
                         placeholder="Search Salary"
                         value={
-                          allSearchAndSortFieldForEmsUser["salary"].searchSalary
+                          allSearchAndSortFieldForEmsUser["salary"].searchValue
                         }
                         onChange={(e) =>
                           onChangeHandleSearchFieldStateByFieldName(e)
@@ -791,7 +824,7 @@ const DisplayEmsUserAdvanced = () => {
                         placeholder="Search Hike Percentage"
                         value={
                           allSearchAndSortFieldForEmsUser["hikePercentage"]
-                            .searchHikePercentage
+                            .searchValue
                         }
                         onChange={(e) =>
                           onChangeHandleSearchFieldStateByFieldName(e)
@@ -858,8 +891,7 @@ const DisplayEmsUserAdvanced = () => {
                         name="zipCode"
                         placeholder="Search Zip Code"
                         value={
-                          allSearchAndSortFieldForEmsUser["zipCode"]
-                            .searchZipCode
+                          allSearchAndSortFieldForEmsUser["zipCode"].searchValue
                         }
                         onChange={(e) =>
                           onChangeHandleSearchFieldStateByFieldName(e)
@@ -929,7 +961,7 @@ const DisplayEmsUserAdvanced = () => {
                         placeholder="Search Mobile Number"
                         value={
                           allSearchAndSortFieldForEmsUser["mobileNumber"]
-                            .searchMobileNumber
+                            .searchValue
                         }
                         onChange={(e) =>
                           onChangeHandleSearchFieldStateByFieldName(e)

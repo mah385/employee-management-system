@@ -57,17 +57,17 @@ export const handleRequestToGetAllEmsUser = async () => {
 
 export const handleRequestToGetAllEmsUserWithPaginationAndSearchAndSort =
   async (
-    emsUserRequestBeanWithPaginationAndSearchAndSort = {
-      searchFirstName: null,
-      searchLastName: null,
-      searchEmsUserGender: null,
-      searchEmail: null,
-      searchDateOfBirth: null,
-      searchDateOfJoin: null,
-      searchSalary: null,
-      searchHikePercentage: null,
-      searchZipCode: null,
-      searchMobileNumber: null,
+    allSearchAndSortFieldForEmsUserWithPagination = {
+      searchValueForFirstName: null,
+      searchValueForLastName: null,
+      searchValueForEmsUserGender: null,
+      searchValueForEmail: null,
+      searchValueForDateOfBirth: null,
+      searchValueForDateOfJoin: null,
+      searchValueForSalary: null,
+      searchValueForHikePercentage: null,
+      searchValueForZipCode: null,
+      searchValueForMobileNumber: null,
       sortDirectionForFirstName: null,
       sortDirectionForLastName: null,
       sortDirectionForEmsUserGender: null,
@@ -85,7 +85,7 @@ export const handleRequestToGetAllEmsUserWithPaginationAndSearchAndSort =
       return handleSuccessResponseUtil(
         false,
         await EmsUserApiRequestService.requestToGetAllEmsUserWithPaginationAndSearchAndSort(
-          emsUserRequestBeanWithPaginationAndSearchAndSort,
+          allSearchAndSortFieldForEmsUserWithPagination,
         ),
       );
     } catch (error) {
