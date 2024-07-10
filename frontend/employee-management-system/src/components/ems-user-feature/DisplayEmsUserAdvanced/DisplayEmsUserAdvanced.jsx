@@ -204,6 +204,10 @@ const DisplayEmsUserAdvanced = () => {
     }));
   };
   /*--------------------------------------------------------------------------------------------------------*/
+  const onClickHandleSearch = async () => {
+    console.log(JSON.stringify(allSearchAndSortFieldForEmsUser, null, 2));
+  };
+  /*--------------------------------------------------------------------------------------------------------*/
 
   return (
     <>
@@ -240,6 +244,13 @@ const DisplayEmsUserAdvanced = () => {
           <div>
             {JSON.stringify(allSearchAndSortFieldForEmsUser["mobileNumber"])}
           </div>
+          <button
+            type="button"
+            className="border border-2 border-success btn btn-outline-success"
+            onClick={onClickHandleSearch}
+          >
+            Search
+          </button>
           <table className="w-100 table-bordered text-center">
             <thead
               className={`${styles.displayEmsUserTableHeading} sticky-top bg-warning`}
@@ -369,7 +380,7 @@ const DisplayEmsUserAdvanced = () => {
                         placeholder="Search Last Name"
                         value={
                           allSearchAndSortFieldForEmsUser["lastName"]
-                            .searchFirstName
+                            .searchLastName
                         }
                         onChange={(e) =>
                           onChangeHandleSearchFieldStateByFieldName(e)
@@ -439,7 +450,7 @@ const DisplayEmsUserAdvanced = () => {
                         placeholder="Search Gender"
                         value={
                           allSearchAndSortFieldForEmsUser["emsUserGender"]
-                            .searchFirstName
+                            .searchEmsUserGender
                         }
                         onChange={(e) =>
                           onChangeHandleSearchFieldStateByFieldName(e)
@@ -505,8 +516,7 @@ const DisplayEmsUserAdvanced = () => {
                         name="email"
                         placeholder="Search Email"
                         value={
-                          allSearchAndSortFieldForEmsUser["email"]
-                            .searchFirstName
+                          allSearchAndSortFieldForEmsUser["email"].searchEmail
                         }
                         onChange={(e) =>
                           onChangeHandleSearchFieldStateByFieldName(e)
@@ -574,7 +584,7 @@ const DisplayEmsUserAdvanced = () => {
                         placeholder="Search Date Of Birth [yyyy-MM-dd]"
                         value={
                           allSearchAndSortFieldForEmsUser["dateOfBirth"]
-                            .searchFirstName
+                            .searchDateOfBirth
                         }
                         onChange={(e) =>
                           onChangeHandleSearchFieldStateByFieldName(e)
@@ -644,7 +654,7 @@ const DisplayEmsUserAdvanced = () => {
                         placeholder="Search Date Of Join [yyyy-MM-dd]"
                         value={
                           allSearchAndSortFieldForEmsUser["dateOfJoin"]
-                            .searchFirstName
+                            .searchDateOfJoin
                         }
                         onChange={(e) =>
                           onChangeHandleSearchFieldStateByFieldName(e)
@@ -711,8 +721,7 @@ const DisplayEmsUserAdvanced = () => {
                         name="salary"
                         placeholder="Search Salary"
                         value={
-                          allSearchAndSortFieldForEmsUser["salary"]
-                            .searchFirstName
+                          allSearchAndSortFieldForEmsUser["salary"].searchSalary
                         }
                         onChange={(e) =>
                           onChangeHandleSearchFieldStateByFieldName(e)
@@ -782,7 +791,7 @@ const DisplayEmsUserAdvanced = () => {
                         placeholder="Search Hike Percentage"
                         value={
                           allSearchAndSortFieldForEmsUser["hikePercentage"]
-                            .searchFirstName
+                            .searchHikePercentage
                         }
                         onChange={(e) =>
                           onChangeHandleSearchFieldStateByFieldName(e)
@@ -850,7 +859,7 @@ const DisplayEmsUserAdvanced = () => {
                         placeholder="Search Zip Code"
                         value={
                           allSearchAndSortFieldForEmsUser["zipCode"]
-                            .searchFirstName
+                            .searchZipCode
                         }
                         onChange={(e) =>
                           onChangeHandleSearchFieldStateByFieldName(e)
@@ -920,7 +929,7 @@ const DisplayEmsUserAdvanced = () => {
                         placeholder="Search Mobile Number"
                         value={
                           allSearchAndSortFieldForEmsUser["mobileNumber"]
-                            .searchFirstName
+                            .searchMobileNumber
                         }
                         onChange={(e) =>
                           onChangeHandleSearchFieldStateByFieldName(e)
