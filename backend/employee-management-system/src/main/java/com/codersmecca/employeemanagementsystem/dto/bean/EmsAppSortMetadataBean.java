@@ -10,18 +10,18 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class EmsAppSortMetadata {
+public class EmsAppSortMetadataBean {
 
-    private LocalDateTime sortOrderTimestamp;
-    private Sort.Direction sortDirection;
     private String sortDirectionInputFieldName;
+    private Sort.Direction sortDirection;
+    private LocalDateTime sortOrderTimestamp;
 
     @Override
     public String toString() {
         return "{" +
-                "sortOrderTimestamp=" + sortOrderTimestamp +
+                "sortDirectionInputFieldName='" + sortDirectionInputFieldName + '\'' +
                 ", sortDirection=" + sortDirection +
-                ", sortDirectionInputFieldName='" + sortDirectionInputFieldName + '\'' +
+                ", sortOrderTimestamp=" + sortOrderTimestamp +
                 '}';
     }
 

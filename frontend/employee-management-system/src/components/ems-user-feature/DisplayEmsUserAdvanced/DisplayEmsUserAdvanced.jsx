@@ -111,10 +111,10 @@ const DisplayEmsUserAdvanced = () => {
     let isMounted = true;
     setIsLoading(true);
 
-    const callApiToGetAllEmsUserWithPaginationAndSearchAndSort = async () => {
-      return await EmsUserApiRequestHandlerService.handleRequestToGetAllEmsUserWithPaginationAndSearchAndSort();
+    const callApiToGetAllEmsUserWithPaginationAndSortAndSearch = async () => {
+      return await EmsUserApiRequestHandlerService.handleRequestToGetAllEmsUserWithPaginationAndSortAndSearch();
     };
-    callApiToGetAllEmsUserWithPaginationAndSearchAndSort()
+    callApiToGetAllEmsUserWithPaginationAndSortAndSearch()
       .then((successOrErrorResponseData) => {
         if (
           isMounted &&
@@ -238,12 +238,12 @@ const DisplayEmsUserAdvanced = () => {
     );
 
     setIsLoading(true);
-    const callApiToGetAllEmsUserWithPaginationAndSearchAndSort = async () => {
-      return await EmsUserApiRequestHandlerService.handleRequestToGetAllEmsUserWithPaginationAndSearchAndSort(
+    const callApiToGetAllEmsUserWithPaginationAndSortAndSearch = async () => {
+      return await EmsUserApiRequestHandlerService.handleRequestToGetAllEmsUserWithPaginationAndSortAndSearch(
         allSearchAndSortFieldForEmsUserWithPagination,
       );
     };
-    callApiToGetAllEmsUserWithPaginationAndSearchAndSort()
+    callApiToGetAllEmsUserWithPaginationAndSortAndSearch()
       .then((successOrErrorResponseData) => {
         if (
           successOrErrorResponseData.statusCode === 200 &&

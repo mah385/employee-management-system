@@ -8,7 +8,7 @@ const IMPORT_EMS_USER_DATA = `${EMS_USER_API_PREFIX}/import-ems-user-data`;
 const ADD_NEW_EMS_USER = `${EMS_USER_API_PREFIX}/add-new-ems-user`;
 const UPDATE_EMS_USER = `${EMS_USER_API_PREFIX}/update-ems-user`;
 const GET_ALL_EMS_USER = `${EMS_USER_API_PREFIX}/get-all-ems-user`;
-const GET_ALL_EMS_USER_WITH_PAGINATION_AND_SEARCH_AND_SORT = `${EMS_USER_API_PREFIX}/get-all-ems-user-with-pagination-and-search-and-sort`;
+const GET_ALL_EMS_USER_WITH_PAGINATION_AND_SORT_AND_SEARCH = `${EMS_USER_API_PREFIX}/get-all-ems-user-with-pagination-and-sort-and-search`;
 const DELETE_EMS_USER_BY_ID = `${EMS_USER_API_PREFIX}/delete-ems-user-by-id`;
 const GET_DROPDOWN_OF_EMS_USER_GENDER = `${EMS_USER_API_PREFIX}/get-dropdown-of-ems-user-gender`;
 
@@ -34,11 +34,11 @@ export const requestToGetAllEmsUser = async () => {
   return await empAppAxiosInstance.get(GET_ALL_EMS_USER);
 };
 
-export const requestToGetAllEmsUserWithPaginationAndSearchAndSort = async (
+export const requestToGetAllEmsUserWithPaginationAndSortAndSearch = async (
   allSearchAndSortFieldForEmsUserWithPagination,
 ) => {
   return await empAppAxiosInstance.post(
-    GET_ALL_EMS_USER_WITH_PAGINATION_AND_SEARCH_AND_SORT,
+    GET_ALL_EMS_USER_WITH_PAGINATION_AND_SORT_AND_SEARCH,
     allSearchAndSortFieldForEmsUserWithPagination,
   );
 };

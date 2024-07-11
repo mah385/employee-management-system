@@ -55,17 +55,22 @@ export const handleRequestToGetAllEmsUser = async () => {
   }
 };
 
-export const handleRequestToGetAllEmsUserWithPaginationAndSearchAndSort =
+export const handleRequestToGetAllEmsUserWithPaginationAndSortAndSearch =
   async (
     allSearchAndSortFieldForEmsUserWithPagination = {
-      pageNumber: 1,
-      pageSize: 15,
+      emsAppPaginationMetadataAndSortMetadataBean: {
+        emsAppPaginationMetadataBean: {
+          pageNumber: 1,
+          pageSize: 15,
+          totalNoOfPage: null,
+        },
+      },
     },
   ) => {
     try {
       return handleSuccessResponseUtil(
         false,
-        await EmsUserApiRequestService.requestToGetAllEmsUserWithPaginationAndSearchAndSort(
+        await EmsUserApiRequestService.requestToGetAllEmsUserWithPaginationAndSortAndSearch(
           allSearchAndSortFieldForEmsUserWithPagination,
         ),
       );

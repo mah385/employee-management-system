@@ -1,7 +1,7 @@
 package com.codersmecca.employeemanagementsystem.controller;
 
 import com.codersmecca.employeemanagementsystem.dto.requestbean.AddNewEmsUserRequestBean;
-import com.codersmecca.employeemanagementsystem.dto.requestbean.EmsUserRequestBeanWithPaginationAndSearchAndSort;
+import com.codersmecca.employeemanagementsystem.dto.requestbean.EmsUserRequestBeanWithPaginationAndSortAndSearch;
 import com.codersmecca.employeemanagementsystem.dto.requestbean.UpdateEmsUserRequestBean;
 import com.codersmecca.employeemanagementsystem.service.EmsUserService;
 import com.codersmecca.employeemanagementsystem.utils.EmsAppResponseEntity;
@@ -48,11 +48,11 @@ public class EmsUserController {
         return this.emsUserService.getAllEmsUser();
     }
 
-    @PostMapping(value = "/get-all-ems-user-with-pagination-and-search-and-sort", consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<EmsAppResponseEntity> getAllEmsUserWithPaginationAndSearchAndSort(
-            @Valid @RequestBody EmsUserRequestBeanWithPaginationAndSearchAndSort emsUserRequestBeanWithPaginationAndSearchAndSort
+    @PostMapping(value = "/get-all-ems-user-with-pagination-and-sort-and-search", consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<EmsAppResponseEntity> getAllEmsUserWithPaginationAndSortAndSearch(
+            @Valid @RequestBody EmsUserRequestBeanWithPaginationAndSortAndSearch emsUserRequestBeanWithPaginationAndSortAndSearch
     ) {
-        return this.emsUserService.getAllEmsUserWithPaginationAndSearchAndSort(emsUserRequestBeanWithPaginationAndSearchAndSort);
+        return this.emsUserService.getAllEmsUserWithPaginationAndSortAndSearch(emsUserRequestBeanWithPaginationAndSortAndSearch);
     }
 
     @DeleteMapping(value = "/delete-ems-user-by-id", produces = {MediaType.APPLICATION_JSON_VALUE})

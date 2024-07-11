@@ -1,7 +1,7 @@
 package com.codersmecca.employeemanagementsystem.service;
 
 import com.codersmecca.employeemanagementsystem.dto.requestbean.AddNewEmsUserRequestBean;
-import com.codersmecca.employeemanagementsystem.dto.requestbean.EmsUserRequestBeanWithPaginationAndSearchAndSort;
+import com.codersmecca.employeemanagementsystem.dto.requestbean.EmsUserRequestBeanWithPaginationAndSortAndSearch;
 import com.codersmecca.employeemanagementsystem.dto.requestbean.UpdateEmsUserRequestBean;
 import com.codersmecca.employeemanagementsystem.utils.EmsAppResponseEntity;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +19,7 @@ public interface EmsUserService {
 
     ResponseEntity<EmsAppResponseEntity> getAllEmsUser();
 
-    ResponseEntity<EmsAppResponseEntity> getAllEmsUserWithPaginationAndSearchAndSort(EmsUserRequestBeanWithPaginationAndSearchAndSort emsUserRequestBeanWithPaginationAndSearchAndSort);
+    ResponseEntity<EmsAppResponseEntity> getAllEmsUserWithPaginationAndSortAndSearch(EmsUserRequestBeanWithPaginationAndSortAndSearch emsUserRequestBeanWithPaginationAndSortAndSearch);
 
     ResponseEntity<EmsAppResponseEntity> deleteEmsUserById(Long id);
 
