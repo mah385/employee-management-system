@@ -36,63 +36,73 @@ const DisplayEmsUserAdvanced = () => {
   const [allSearchAndSortFieldForEmsUser, setAllSearchAndSortFieldForEmsUser] =
     useState({
       firstName: {
-        showFilterInput: false,
+        sortOrderTimestamp: "",
         showAscendingSort: false,
         showDescendingSort: false,
+        showFilterInput: false,
         searchValue: "",
       },
       lastName: {
-        showFilterInput: false,
+        sortOrderTimestamp: "",
         showAscendingSort: false,
         showDescendingSort: false,
+        showFilterInput: false,
         searchValue: "",
       },
       emsUserGender: {
-        showFilterInput: false,
+        sortOrderTimestamp: "",
         showAscendingSort: false,
         showDescendingSort: false,
+        showFilterInput: false,
         searchValue: "",
       },
       email: {
-        showFilterInput: false,
+        sortOrderTimestamp: "",
         showAscendingSort: false,
         showDescendingSort: false,
+        showFilterInput: false,
         searchValue: "",
       },
       dateOfBirth: {
-        showFilterInput: false,
+        sortOrderTimestamp: "",
         showAscendingSort: false,
         showDescendingSort: false,
+        showFilterInput: false,
         searchValue: "",
       },
       dateOfJoin: {
-        showFilterInput: false,
+        sortOrderTimestamp: "",
         showAscendingSort: false,
         showDescendingSort: false,
+        showFilterInput: false,
         searchValue: "",
       },
       salary: {
-        showFilterInput: false,
+        sortOrderTimestamp: "",
         showAscendingSort: false,
         showDescendingSort: false,
+        showFilterInput: false,
         searchValue: "",
       },
       hikePercentage: {
-        showFilterInput: false,
+        sortOrderTimestamp: "",
         showAscendingSort: false,
         showDescendingSort: false,
+        showFilterInput: false,
         searchValue: "",
       },
       zipCode: {
-        showFilterInput: false,
+        sortOrderTimestamp: "",
         showAscendingSort: false,
         showDescendingSort: false,
+        showFilterInput: false,
         searchValue: "",
       },
       mobileNumber: {
-        showFilterInput: false,
+        sortOrderTimestamp: "",
         showAscendingSort: false,
         showDescendingSort: false,
+        showFilterInput: false,
         searchValue: "",
       },
     });
@@ -148,9 +158,11 @@ const DisplayEmsUserAdvanced = () => {
       !tempSearchAndSortFieldForEmsUser.showAscendingSort &&
       tempSearchAndSortFieldForEmsUser.showDescendingSort
     ) {
+      tempSearchAndSortFieldForEmsUser.sortOrderTimestamp = "";
       tempSearchAndSortFieldForEmsUser.showAscendingSort = false;
       tempSearchAndSortFieldForEmsUser.showDescendingSort = false;
     } else {
+      tempSearchAndSortFieldForEmsUser.sortOrderTimestamp = new Date();
       const tempShowAscendingSortFlag =
         tempSearchAndSortFieldForEmsUser.showAscendingSort;
       tempSearchAndSortFieldForEmsUser.showAscendingSort =
@@ -177,7 +189,8 @@ const DisplayEmsUserAdvanced = () => {
   /*--------------------------------------------------------------------------------------------------------*/
   const onClickHandleSearch = async () => {
     const allSearchFieldForEmsUser = Object.create({});
-    const allSortFieldForEmsUser = Object.create({});
+
+    const allSortFieldForEmsUserList = [];
 
     Object.keys(allSearchAndSortFieldForEmsUser).forEach((item) => {
       const fieldNameCapitalized = item
@@ -189,29 +202,34 @@ const DisplayEmsUserAdvanced = () => {
           ? null
           : allSearchAndSortFieldForEmsUser[item].searchValue;
 
+      const emsAppSortMetadata = Object.create({});
+
       if (
         allSearchAndSortFieldForEmsUser[item].showAscendingSort &&
         !allSearchAndSortFieldForEmsUser[item].showDescendingSort
       ) {
-        allSortFieldForEmsUser[`sortDirectionFor${fieldNameCapitalized}`] =
-          ASC_STRING;
+        emsAppSortMetadata.sortOrderTimestamp =
+          allSearchAndSortFieldForEmsUser[item].sortOrderTimestamp;
+        emsAppSortMetadata.sortDirection = ASC_STRING;
+        emsAppSortMetadata.sortDirectionInputFieldName = item;
+        allSortFieldForEmsUserList.push(emsAppSortMetadata);
       } else if (
         !allSearchAndSortFieldForEmsUser[item].showAscendingSort &&
         allSearchAndSortFieldForEmsUser[item].showDescendingSort
       ) {
-        allSortFieldForEmsUser[`sortDirectionFor${fieldNameCapitalized}`] =
-          DESC_STRING;
-      } else {
-        allSortFieldForEmsUser[`sortDirectionFor${fieldNameCapitalized}`] =
-          null;
+        emsAppSortMetadata.sortOrderTimestamp =
+          allSearchAndSortFieldForEmsUser[item].sortOrderTimestamp;
+        emsAppSortMetadata.sortDirection = DESC_STRING;
+        emsAppSortMetadata.sortDirectionInputFieldName = item;
+        allSortFieldForEmsUserList.push(emsAppSortMetadata);
       }
     });
 
     const allSearchAndSortFieldForEmsUserWithPagination = {
       ...allSearchFieldForEmsUser,
-      ...allSortFieldForEmsUser,
+      emsAppSortMetadataList: allSortFieldForEmsUserList,
       pageNumber: 1,
-      pageSize: 10,
+      pageSize: 100,
     };
 
     console.log("allSearchAndSortFieldForEmsUserWithPagination");
@@ -251,32 +269,15 @@ const DisplayEmsUserAdvanced = () => {
       ) : (
         <>
           <div>{new Date().toString()}</div>
-          <div>
-            {JSON.stringify(allSearchAndSortFieldForEmsUser["firstName"])}
-          </div>
-          <div>
-            {JSON.stringify(allSearchAndSortFieldForEmsUser["lastName"])}
-          </div>
-          <div>
-            {JSON.stringify(allSearchAndSortFieldForEmsUser["emsUserGender"])}
-          </div>
-          <div>{JSON.stringify(allSearchAndSortFieldForEmsUser["email"])}</div>
-          <div>
-            {JSON.stringify(allSearchAndSortFieldForEmsUser["dateOfBirth"])}
-          </div>
-          <div>
-            {JSON.stringify(allSearchAndSortFieldForEmsUser["dateOfJoin"])}
-          </div>
-          <div>{JSON.stringify(allSearchAndSortFieldForEmsUser["salary"])}</div>
-          <div>
-            {JSON.stringify(allSearchAndSortFieldForEmsUser["hikePercentage"])}
-          </div>
-          <div>
-            {JSON.stringify(allSearchAndSortFieldForEmsUser["zipCode"])}
-          </div>
-          <div>
-            {JSON.stringify(allSearchAndSortFieldForEmsUser["mobileNumber"])}
-          </div>
+          {Object.keys(allSearchAndSortFieldForEmsUser).map((item) => {
+            return (
+              <div key={item}>
+                {JSON.stringify(allSearchAndSortFieldForEmsUser[item]) +
+                  " --- " +
+                  item}
+              </div>
+            );
+          })}
           <button
             type="button"
             className="border border-2 border-success btn btn-outline-success"

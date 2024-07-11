@@ -1,12 +1,14 @@
 package com.codersmecca.employeemanagementsystem.dto.requestbean;
 
+import com.codersmecca.employeemanagementsystem.dto.bean.EmsAppSortMetadata;
 import com.codersmecca.employeemanagementsystem.enums.EmsUserGender;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.domain.Sort;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -23,15 +25,7 @@ public class EmsUserRequestBeanWithPaginationAndSearchAndSort {
     private Integer searchValueForZipCode;
     private String searchValueForMobileNumber;
 
-    private Sort.Direction sortDirectionForFirstName = null;
-    private Sort.Direction sortDirectionForLastName = null;
-    private Sort.Direction sortDirectionForEmsUserGender = null;
-    private Sort.Direction sortDirectionForEmail = null;
-    private Sort.Direction sortDirectionForDateOfBirth = null;
-    private Sort.Direction sortDirectionForDateOfJoin = null;
-    private Sort.Direction sortDirectionForSalary = null;
-    private Sort.Direction sortDirectionForHikePercentage = null;
-    private Sort.Direction sortDirectionForZipCode = null;
+    private List<EmsAppSortMetadata> emsAppSortMetadataList = new ArrayList<>();
 
     @NotNull(message = "Please provide page number")
     private Integer pageNumber;
