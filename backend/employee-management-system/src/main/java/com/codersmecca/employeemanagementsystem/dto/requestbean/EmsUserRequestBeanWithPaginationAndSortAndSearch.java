@@ -12,6 +12,9 @@ import java.math.BigDecimal;
 @Setter
 public class EmsUserRequestBeanWithPaginationAndSortAndSearch {
 
+    @Valid
+    private EmsAppPaginationMetadataAndSortMetadataBean emsAppPaginationMetadataAndSortMetadataBean;
+
     private String searchValueForFirstName;
     private String searchValueForLastName;
     private EmsUserGender searchValueForEmsUserGender;
@@ -22,8 +25,5 @@ public class EmsUserRequestBeanWithPaginationAndSortAndSearch {
     private BigDecimal searchValueForHikePercentage;
     private Integer searchValueForZipCode;
     private String searchValueForMobileNumber;
-
-    @Valid
-    private EmsAppPaginationMetadataAndSortMetadataBean emsAppPaginationMetadataAndSortMetadataBean;
 
 }

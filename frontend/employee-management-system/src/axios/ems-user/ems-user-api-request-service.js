@@ -35,11 +35,11 @@ export const requestToGetAllEmsUser = async () => {
 };
 
 export const requestToGetAllEmsUserWithPaginationAndSortAndSearch = async (
-  allSearchAndSortFieldForEmsUserWithPagination,
+  emsUserRequestBeanWithPaginationAndSortAndSearch,
 ) => {
   return await empAppAxiosInstance.post(
     GET_ALL_EMS_USER_WITH_PAGINATION_AND_SORT_AND_SEARCH,
-    allSearchAndSortFieldForEmsUserWithPagination,
+    emsUserRequestBeanWithPaginationAndSortAndSearch,
   );
 };
 

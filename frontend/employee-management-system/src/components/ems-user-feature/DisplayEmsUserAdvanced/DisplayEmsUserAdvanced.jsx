@@ -33,79 +33,78 @@ const DisplayEmsUserAdvanced = () => {
   // const [useEffectTrigger, setUseEffectTrigger] = useState(new Date());
   const [isLoading, setIsLoading] = useState(true);
   /*--------------------------------------------------------------------------------------------------------*/
-  const [allSearchAndSortFieldForEmsUser, setAllSearchAndSortFieldForEmsUser] =
-    useState({
-      firstName: {
-        sortOrderTimestamp: "",
-        showAscendingSort: false,
-        showDescendingSort: false,
-        showFilterInput: false,
-        searchValue: "",
-      },
-      lastName: {
-        sortOrderTimestamp: "",
-        showAscendingSort: false,
-        showDescendingSort: false,
-        showFilterInput: false,
-        searchValue: "",
-      },
-      emsUserGender: {
-        sortOrderTimestamp: "",
-        showAscendingSort: false,
-        showDescendingSort: false,
-        showFilterInput: false,
-        searchValue: "",
-      },
-      email: {
-        sortOrderTimestamp: "",
-        showAscendingSort: false,
-        showDescendingSort: false,
-        showFilterInput: false,
-        searchValue: "",
-      },
-      dateOfBirth: {
-        sortOrderTimestamp: "",
-        showAscendingSort: false,
-        showDescendingSort: false,
-        showFilterInput: false,
-        searchValue: "",
-      },
-      dateOfJoin: {
-        sortOrderTimestamp: "",
-        showAscendingSort: false,
-        showDescendingSort: false,
-        showFilterInput: false,
-        searchValue: "",
-      },
-      salary: {
-        sortOrderTimestamp: "",
-        showAscendingSort: false,
-        showDescendingSort: false,
-        showFilterInput: false,
-        searchValue: "",
-      },
-      hikePercentage: {
-        sortOrderTimestamp: "",
-        showAscendingSort: false,
-        showDescendingSort: false,
-        showFilterInput: false,
-        searchValue: "",
-      },
-      zipCode: {
-        sortOrderTimestamp: "",
-        showAscendingSort: false,
-        showDescendingSort: false,
-        showFilterInput: false,
-        searchValue: "",
-      },
-      mobileNumber: {
-        sortOrderTimestamp: "",
-        showAscendingSort: false,
-        showDescendingSort: false,
-        showFilterInput: false,
-        searchValue: "",
-      },
-    });
+  const [
+    emsUserRequestBeanWithPaginationAndSortAndSearch,
+    setEmsUserRequestBeanWithPaginationAndSortAndSearch,
+  ] = useState({
+    firstName: {
+      sortOrderTimestamp: "",
+      showAscendingSort: false,
+      showDescendingSort: false,
+      showFilterInput: false,
+      searchValue: "",
+    },
+    lastName: {
+      sortOrderTimestamp: "",
+      showAscendingSort: false,
+      showDescendingSort: false,
+      showFilterInput: false,
+      searchValue: "",
+    },
+    emsUserGender: {
+      sortOrderTimestamp: "",
+      showAscendingSort: false,
+      showDescendingSort: false,
+      showFilterInput: false,
+      searchValue: "",
+    },
+    email: {
+      sortOrderTimestamp: "",
+      showAscendingSort: false,
+      showDescendingSort: false,
+      showFilterInput: false,
+      searchValue: "",
+    },
+    dateOfBirth: {
+      sortOrderTimestamp: "",
+      showAscendingSort: false,
+      showDescendingSort: false,
+      showFilterInput: false,
+      searchValue: "",
+    },
+    dateOfJoin: {
+      sortOrderTimestamp: "",
+      showAscendingSort: false,
+      showDescendingSort: false,
+      showFilterInput: false,
+      searchValue: "",
+    },
+    salary: {
+      sortOrderTimestamp: "",
+      showAscendingSort: false,
+      showDescendingSort: false,
+      showFilterInput: false,
+      searchValue: "",
+    },
+    hikePercentage: {
+      sortOrderTimestamp: "",
+      showAscendingSort: false,
+      showDescendingSort: false,
+      showFilterInput: false,
+      searchValue: "",
+    },
+    zipCode: {
+      sortOrderTimestamp: "",
+      showAscendingSort: false,
+      showDescendingSort: false,
+      showFilterInput: false,
+      searchValue: "",
+    },
+    mobileNumber: {
+      showFilterInput: false,
+      searchValue: "",
+    },
+  });
   /*--------------------------------------------------------------------------------------------------------*/
   useEffect(() => {
     let isMounted = true;
@@ -138,109 +137,119 @@ const DisplayEmsUserAdvanced = () => {
   }, []);
   /*--------------------------------------------------------------------------------------------------------*/
   const onClickHandleToggleShowFilterInputByFieldName = (fieldName) => {
-    const tempSearchAndSortFieldForEmsUser = {
-      ...allSearchAndSortFieldForEmsUser[fieldName],
+    const tempEmsUserRequestBeanWithPaginationAndSortAndSearch = {
+      ...emsUserRequestBeanWithPaginationAndSortAndSearch[fieldName],
     };
-    tempSearchAndSortFieldForEmsUser.showFilterInput =
-      !tempSearchAndSortFieldForEmsUser.showFilterInput;
-    tempSearchAndSortFieldForEmsUser.searchValue = "";
-    setAllSearchAndSortFieldForEmsUser((prevState) => ({
+    tempEmsUserRequestBeanWithPaginationAndSortAndSearch.showFilterInput =
+      !tempEmsUserRequestBeanWithPaginationAndSortAndSearch.showFilterInput;
+    tempEmsUserRequestBeanWithPaginationAndSortAndSearch.searchValue = "";
+    setEmsUserRequestBeanWithPaginationAndSortAndSearch((prevState) => ({
       ...prevState,
-      [fieldName]: tempSearchAndSortFieldForEmsUser,
+      [fieldName]: tempEmsUserRequestBeanWithPaginationAndSortAndSearch,
     }));
   };
   /*--------------------------------------------------------------------------------------------------------*/
   const onClickHandleToggleSortFlagByFieldName = (fieldName) => {
-    const tempSearchAndSortFieldForEmsUser = {
-      ...allSearchAndSortFieldForEmsUser[fieldName],
+    const tempEmsUserRequestBeanWithPaginationAndSortAndSearch = {
+      ...emsUserRequestBeanWithPaginationAndSortAndSearch[fieldName],
     };
     if (
-      !tempSearchAndSortFieldForEmsUser.showAscendingSort &&
-      tempSearchAndSortFieldForEmsUser.showDescendingSort
+      !tempEmsUserRequestBeanWithPaginationAndSortAndSearch.showAscendingSort &&
+      tempEmsUserRequestBeanWithPaginationAndSortAndSearch.showDescendingSort
     ) {
-      tempSearchAndSortFieldForEmsUser.sortOrderTimestamp = "";
-      tempSearchAndSortFieldForEmsUser.showAscendingSort = false;
-      tempSearchAndSortFieldForEmsUser.showDescendingSort = false;
+      tempEmsUserRequestBeanWithPaginationAndSortAndSearch.sortOrderTimestamp =
+        "";
+      tempEmsUserRequestBeanWithPaginationAndSortAndSearch.showAscendingSort = false;
+      tempEmsUserRequestBeanWithPaginationAndSortAndSearch.showDescendingSort = false;
     } else {
-      tempSearchAndSortFieldForEmsUser.sortOrderTimestamp = new Date();
+      tempEmsUserRequestBeanWithPaginationAndSortAndSearch.sortOrderTimestamp =
+        new Date();
       const tempShowAscendingSortFlag =
-        tempSearchAndSortFieldForEmsUser.showAscendingSort;
-      tempSearchAndSortFieldForEmsUser.showAscendingSort =
+        tempEmsUserRequestBeanWithPaginationAndSortAndSearch.showAscendingSort;
+      tempEmsUserRequestBeanWithPaginationAndSortAndSearch.showAscendingSort =
         !tempShowAscendingSortFlag;
-      tempSearchAndSortFieldForEmsUser.showDescendingSort =
+      tempEmsUserRequestBeanWithPaginationAndSortAndSearch.showDescendingSort =
         tempShowAscendingSortFlag;
     }
-    setAllSearchAndSortFieldForEmsUser((prevState) => ({
+    setEmsUserRequestBeanWithPaginationAndSortAndSearch((prevState) => ({
       ...prevState,
-      [fieldName]: tempSearchAndSortFieldForEmsUser,
+      [fieldName]: tempEmsUserRequestBeanWithPaginationAndSortAndSearch,
     }));
   };
   /*--------------------------------------------------------------------------------------------------------*/
   const onChangeHandleSearchFieldStateByFieldName = (e) => {
-    const tempSearchAndSortFieldForEmsUser = {
-      ...allSearchAndSortFieldForEmsUser[e.target.name],
+    const tempEmsUserRequestBeanWithPaginationAndSortAndSearch = {
+      ...emsUserRequestBeanWithPaginationAndSortAndSearch[e.target.name],
     };
-    tempSearchAndSortFieldForEmsUser.searchValue = e.target.value;
-    setAllSearchAndSortFieldForEmsUser((prevState) => ({
+    tempEmsUserRequestBeanWithPaginationAndSortAndSearch.searchValue =
+      e.target.value;
+    setEmsUserRequestBeanWithPaginationAndSortAndSearch((prevState) => ({
       ...prevState,
-      [e.target.name]: tempSearchAndSortFieldForEmsUser,
+      [e.target.name]: tempEmsUserRequestBeanWithPaginationAndSortAndSearch,
     }));
   };
   /*--------------------------------------------------------------------------------------------------------*/
   const onClickHandleSearch = async () => {
-    const allSearchFieldForEmsUser = Object.create({});
+    const emsAppSortMetadataBeanList = [];
+    const emsUserRequestBeanWithSearch = Object.create({});
+    Object.keys(emsUserRequestBeanWithPaginationAndSortAndSearch).forEach(
+      (item) => {
+        const fieldNameCapitalized = item
+          .charAt(0)
+          .toUpperCase()
+          .concat(item.slice(1));
 
-    const allSortFieldForEmsUserList = [];
+        if (
+          emsUserRequestBeanWithPaginationAndSortAndSearch[item].searchValue !==
+          ""
+        ) {
+          emsUserRequestBeanWithSearch[
+            `searchValueFor${fieldNameCapitalized}`
+          ] =
+            emsUserRequestBeanWithPaginationAndSortAndSearch[item].searchValue;
+        }
 
-    Object.keys(allSearchAndSortFieldForEmsUser).forEach((item) => {
-      const fieldNameCapitalized = item
-        .charAt(0)
-        .toUpperCase()
-        .concat(item.slice(1));
-      allSearchFieldForEmsUser[`searchValueFor${fieldNameCapitalized}`] =
-        allSearchAndSortFieldForEmsUser[item].searchValue === ""
-          ? null
-          : allSearchAndSortFieldForEmsUser[item].searchValue;
+        const emsAppSortMetadataBean = Object.create({});
 
-      const emsAppSortMetadata = Object.create({});
-
-      if (
-        allSearchAndSortFieldForEmsUser[item].showAscendingSort &&
-        !allSearchAndSortFieldForEmsUser[item].showDescendingSort
-      ) {
-        emsAppSortMetadata.sortOrderTimestamp =
-          allSearchAndSortFieldForEmsUser[item].sortOrderTimestamp;
-        emsAppSortMetadata.sortDirection = ASC_STRING;
-        emsAppSortMetadata.sortDirectionInputFieldName = item;
-        allSortFieldForEmsUserList.push(emsAppSortMetadata);
-      } else if (
-        !allSearchAndSortFieldForEmsUser[item].showAscendingSort &&
-        allSearchAndSortFieldForEmsUser[item].showDescendingSort
-      ) {
-        emsAppSortMetadata.sortOrderTimestamp =
-          allSearchAndSortFieldForEmsUser[item].sortOrderTimestamp;
-        emsAppSortMetadata.sortDirection = DESC_STRING;
-        emsAppSortMetadata.sortDirectionInputFieldName = item;
-        allSortFieldForEmsUserList.push(emsAppSortMetadata);
-      }
-    });
-
-    const allSearchAndSortFieldForEmsUserWithPagination = {
-      ...allSearchFieldForEmsUser,
-      emsAppSortMetadataList: allSortFieldForEmsUserList,
-      pageNumber: 1,
-      pageSize: 100,
-    };
-
-    console.log("allSearchAndSortFieldForEmsUserWithPagination");
-    console.log(
-      JSON.stringify(allSearchAndSortFieldForEmsUserWithPagination, null, 2),
+        if (
+          emsUserRequestBeanWithPaginationAndSortAndSearch[item]
+            .showAscendingSort &&
+          !emsUserRequestBeanWithPaginationAndSortAndSearch[item]
+            .showDescendingSort
+        ) {
+          emsAppSortMetadataBean.sortDirectionInputFieldName = item;
+          emsAppSortMetadataBean.sortDirection = ASC_STRING;
+          emsAppSortMetadataBean.sortOrderTimestamp =
+            emsUserRequestBeanWithPaginationAndSortAndSearch[
+              item
+            ].sortOrderTimestamp;
+          emsAppSortMetadataBeanList.push(emsAppSortMetadataBean);
+        } else if (
+          !emsUserRequestBeanWithPaginationAndSortAndSearch[item]
+            .showAscendingSort &&
+          emsUserRequestBeanWithPaginationAndSortAndSearch[item]
+            .showDescendingSort
+        ) {
+          emsAppSortMetadataBean.sortDirectionInputFieldName = item;
+          emsAppSortMetadataBean.sortDirection = DESC_STRING;
+          emsAppSortMetadataBean.sortOrderTimestamp =
+            emsUserRequestBeanWithPaginationAndSortAndSearch[
+              item
+            ].sortOrderTimestamp;
+          emsAppSortMetadataBeanList.push(emsAppSortMetadataBean);
+        }
+      },
     );
 
     setIsLoading(true);
     const callApiToGetAllEmsUserWithPaginationAndSortAndSearch = async () => {
       return await EmsUserApiRequestHandlerService.handleRequestToGetAllEmsUserWithPaginationAndSortAndSearch(
-        allSearchAndSortFieldForEmsUserWithPagination,
+        {
+          pageNumber: 1,
+          pageSize: 200,
+        },
+        emsAppSortMetadataBeanList,
+        emsUserRequestBeanWithSearch,
       );
     };
     callApiToGetAllEmsUserWithPaginationAndSortAndSearch()
@@ -269,15 +278,19 @@ const DisplayEmsUserAdvanced = () => {
       ) : (
         <>
           <div>{new Date().toString()}</div>
-          {Object.keys(allSearchAndSortFieldForEmsUser).map((item) => {
-            return (
-              <div key={item}>
-                {JSON.stringify(allSearchAndSortFieldForEmsUser[item]) +
-                  " --- " +
-                  item}
-              </div>
-            );
-          })}
+          {Object.keys(emsUserRequestBeanWithPaginationAndSortAndSearch).map(
+            (item) => {
+              return (
+                <div key={item}>
+                  {JSON.stringify(
+                    emsUserRequestBeanWithPaginationAndSortAndSearch[item],
+                  ) +
+                    " --- " +
+                    item}
+                </div>
+              );
+            },
+          )}
           <button
             type="button"
             className="border border-2 border-success btn btn-outline-success"
@@ -305,8 +318,9 @@ const DisplayEmsUserAdvanced = () => {
                       }
                     >
                       <span>
-                        {allSearchAndSortFieldForEmsUser["firstName"]
-                          .showFilterInput ? (
+                        {emsUserRequestBeanWithPaginationAndSortAndSearch[
+                          "firstName"
+                        ].showFilterInput ? (
                           <TbFilterFilled size={20} />
                         ) : (
                           <TbFilter size={20} />
@@ -319,23 +333,27 @@ const DisplayEmsUserAdvanced = () => {
                       }
                       className={`${styles.cursorPointer}`}
                     >
-                      {!allSearchAndSortFieldForEmsUser["firstName"]
-                        .showAscendingSort &&
-                        !allSearchAndSortFieldForEmsUser["firstName"]
-                          .showDescendingSort && <LiaSortSolid size={20} />}
-                      {allSearchAndSortFieldForEmsUser["firstName"]
-                        .showAscendingSort &&
-                        !allSearchAndSortFieldForEmsUser["firstName"]
-                          .showDescendingSort && <TiArrowSortedUp size={20} />}
-                      {!allSearchAndSortFieldForEmsUser["firstName"]
-                        .showAscendingSort &&
-                        allSearchAndSortFieldForEmsUser["firstName"]
-                          .showDescendingSort && (
-                          <TiArrowSortedDown size={20} />
-                        )}
+                      {!emsUserRequestBeanWithPaginationAndSortAndSearch[
+                        "firstName"
+                      ].showAscendingSort &&
+                        !emsUserRequestBeanWithPaginationAndSortAndSearch[
+                          "firstName"
+                        ].showDescendingSort && <LiaSortSolid size={20} />}
+                      {emsUserRequestBeanWithPaginationAndSortAndSearch[
+                        "firstName"
+                      ].showAscendingSort &&
+                        !emsUserRequestBeanWithPaginationAndSortAndSearch[
+                          "firstName"
+                        ].showDescendingSort && <TiArrowSortedUp size={20} />}
+                      {!emsUserRequestBeanWithPaginationAndSortAndSearch[
+                        "firstName"
+                      ].showAscendingSort &&
+                        emsUserRequestBeanWithPaginationAndSortAndSearch[
+                          "firstName"
+                        ].showDescendingSort && <TiArrowSortedDown size={20} />}
                     </div>
                   </div>
-                  {allSearchAndSortFieldForEmsUser["firstName"]
+                  {emsUserRequestBeanWithPaginationAndSortAndSearch["firstName"]
                     .showFilterInput && (
                     <div className="d-flex justify-content-center align-items-center gap-1">
                       <input
@@ -343,8 +361,9 @@ const DisplayEmsUserAdvanced = () => {
                         name="firstName"
                         placeholder="Search First Name"
                         value={
-                          allSearchAndSortFieldForEmsUser["firstName"]
-                            .searchValue
+                          emsUserRequestBeanWithPaginationAndSortAndSearch[
+                            "firstName"
+                          ].searchValue
                         }
                         onChange={(e) =>
                           onChangeHandleSearchFieldStateByFieldName(e)
@@ -375,8 +394,9 @@ const DisplayEmsUserAdvanced = () => {
                       }
                     >
                       <span>
-                        {allSearchAndSortFieldForEmsUser["lastName"]
-                          .showFilterInput ? (
+                        {emsUserRequestBeanWithPaginationAndSortAndSearch[
+                          "lastName"
+                        ].showFilterInput ? (
                           <TbFilterFilled size={20} />
                         ) : (
                           <TbFilter size={20} />
@@ -389,23 +409,27 @@ const DisplayEmsUserAdvanced = () => {
                       }
                       className={`${styles.cursorPointer}`}
                     >
-                      {!allSearchAndSortFieldForEmsUser["lastName"]
-                        .showAscendingSort &&
-                        !allSearchAndSortFieldForEmsUser["lastName"]
-                          .showDescendingSort && <LiaSortSolid size={20} />}
-                      {allSearchAndSortFieldForEmsUser["lastName"]
-                        .showAscendingSort &&
-                        !allSearchAndSortFieldForEmsUser["lastName"]
-                          .showDescendingSort && <TiArrowSortedUp size={20} />}
-                      {!allSearchAndSortFieldForEmsUser["lastName"]
-                        .showAscendingSort &&
-                        allSearchAndSortFieldForEmsUser["lastName"]
-                          .showDescendingSort && (
-                          <TiArrowSortedDown size={20} />
-                        )}
+                      {!emsUserRequestBeanWithPaginationAndSortAndSearch[
+                        "lastName"
+                      ].showAscendingSort &&
+                        !emsUserRequestBeanWithPaginationAndSortAndSearch[
+                          "lastName"
+                        ].showDescendingSort && <LiaSortSolid size={20} />}
+                      {emsUserRequestBeanWithPaginationAndSortAndSearch[
+                        "lastName"
+                      ].showAscendingSort &&
+                        !emsUserRequestBeanWithPaginationAndSortAndSearch[
+                          "lastName"
+                        ].showDescendingSort && <TiArrowSortedUp size={20} />}
+                      {!emsUserRequestBeanWithPaginationAndSortAndSearch[
+                        "lastName"
+                      ].showAscendingSort &&
+                        emsUserRequestBeanWithPaginationAndSortAndSearch[
+                          "lastName"
+                        ].showDescendingSort && <TiArrowSortedDown size={20} />}
                     </div>
                   </div>
-                  {allSearchAndSortFieldForEmsUser["lastName"]
+                  {emsUserRequestBeanWithPaginationAndSortAndSearch["lastName"]
                     .showFilterInput && (
                     <div className="d-flex justify-content-center align-items-center gap-1">
                       <input
@@ -413,8 +437,9 @@ const DisplayEmsUserAdvanced = () => {
                         name="lastName"
                         placeholder="Search Last Name"
                         value={
-                          allSearchAndSortFieldForEmsUser["lastName"]
-                            .searchValue
+                          emsUserRequestBeanWithPaginationAndSortAndSearch[
+                            "lastName"
+                          ].searchValue
                         }
                         onChange={(e) =>
                           onChangeHandleSearchFieldStateByFieldName(e)
@@ -445,8 +470,9 @@ const DisplayEmsUserAdvanced = () => {
                       }
                     >
                       <span>
-                        {allSearchAndSortFieldForEmsUser["emsUserGender"]
-                          .showFilterInput ? (
+                        {emsUserRequestBeanWithPaginationAndSortAndSearch[
+                          "emsUserGender"
+                        ].showFilterInput ? (
                           <TbFilterFilled size={20} />
                         ) : (
                           <TbFilter size={20} />
@@ -459,32 +485,38 @@ const DisplayEmsUserAdvanced = () => {
                       }
                       className={`${styles.cursorPointer}`}
                     >
-                      {!allSearchAndSortFieldForEmsUser["emsUserGender"]
-                        .showAscendingSort &&
-                        !allSearchAndSortFieldForEmsUser["emsUserGender"]
-                          .showDescendingSort && <LiaSortSolid size={20} />}
-                      {allSearchAndSortFieldForEmsUser["emsUserGender"]
-                        .showAscendingSort &&
-                        !allSearchAndSortFieldForEmsUser["emsUserGender"]
-                          .showDescendingSort && <TiArrowSortedUp size={20} />}
-                      {!allSearchAndSortFieldForEmsUser["emsUserGender"]
-                        .showAscendingSort &&
-                        allSearchAndSortFieldForEmsUser["emsUserGender"]
-                          .showDescendingSort && (
-                          <TiArrowSortedDown size={20} />
-                        )}
+                      {!emsUserRequestBeanWithPaginationAndSortAndSearch[
+                        "emsUserGender"
+                      ].showAscendingSort &&
+                        !emsUserRequestBeanWithPaginationAndSortAndSearch[
+                          "emsUserGender"
+                        ].showDescendingSort && <LiaSortSolid size={20} />}
+                      {emsUserRequestBeanWithPaginationAndSortAndSearch[
+                        "emsUserGender"
+                      ].showAscendingSort &&
+                        !emsUserRequestBeanWithPaginationAndSortAndSearch[
+                          "emsUserGender"
+                        ].showDescendingSort && <TiArrowSortedUp size={20} />}
+                      {!emsUserRequestBeanWithPaginationAndSortAndSearch[
+                        "emsUserGender"
+                      ].showAscendingSort &&
+                        emsUserRequestBeanWithPaginationAndSortAndSearch[
+                          "emsUserGender"
+                        ].showDescendingSort && <TiArrowSortedDown size={20} />}
                     </div>
                   </div>
-                  {allSearchAndSortFieldForEmsUser["emsUserGender"]
-                    .showFilterInput && (
+                  {emsUserRequestBeanWithPaginationAndSortAndSearch[
+                    "emsUserGender"
+                  ].showFilterInput && (
                     <div className="d-flex justify-content-center align-items-center gap-1">
                       <input
                         type="text"
                         name="emsUserGender"
                         placeholder="Search Gender"
                         value={
-                          allSearchAndSortFieldForEmsUser["emsUserGender"]
-                            .searchValue
+                          emsUserRequestBeanWithPaginationAndSortAndSearch[
+                            "emsUserGender"
+                          ].searchValue
                         }
                         onChange={(e) =>
                           onChangeHandleSearchFieldStateByFieldName(e)
@@ -513,8 +545,9 @@ const DisplayEmsUserAdvanced = () => {
                       }
                     >
                       <span>
-                        {allSearchAndSortFieldForEmsUser["email"]
-                          .showFilterInput ? (
+                        {emsUserRequestBeanWithPaginationAndSortAndSearch[
+                          "email"
+                        ].showFilterInput ? (
                           <TbFilterFilled size={20} />
                         ) : (
                           <TbFilter size={20} />
@@ -527,30 +560,36 @@ const DisplayEmsUserAdvanced = () => {
                       }
                       className={`${styles.cursorPointer}`}
                     >
-                      {!allSearchAndSortFieldForEmsUser["email"]
+                      {!emsUserRequestBeanWithPaginationAndSortAndSearch[
+                        "email"
+                      ].showAscendingSort &&
+                        !emsUserRequestBeanWithPaginationAndSortAndSearch[
+                          "email"
+                        ].showDescendingSort && <LiaSortSolid size={20} />}
+                      {emsUserRequestBeanWithPaginationAndSortAndSearch["email"]
                         .showAscendingSort &&
-                        !allSearchAndSortFieldForEmsUser["email"]
-                          .showDescendingSort && <LiaSortSolid size={20} />}
-                      {allSearchAndSortFieldForEmsUser["email"]
-                        .showAscendingSort &&
-                        !allSearchAndSortFieldForEmsUser["email"]
-                          .showDescendingSort && <TiArrowSortedUp size={20} />}
-                      {!allSearchAndSortFieldForEmsUser["email"]
-                        .showAscendingSort &&
-                        allSearchAndSortFieldForEmsUser["email"]
-                          .showDescendingSort && (
-                          <TiArrowSortedDown size={20} />
-                        )}
+                        !emsUserRequestBeanWithPaginationAndSortAndSearch[
+                          "email"
+                        ].showDescendingSort && <TiArrowSortedUp size={20} />}
+                      {!emsUserRequestBeanWithPaginationAndSortAndSearch[
+                        "email"
+                      ].showAscendingSort &&
+                        emsUserRequestBeanWithPaginationAndSortAndSearch[
+                          "email"
+                        ].showDescendingSort && <TiArrowSortedDown size={20} />}
                     </div>
                   </div>
-                  {allSearchAndSortFieldForEmsUser["email"].showFilterInput && (
+                  {emsUserRequestBeanWithPaginationAndSortAndSearch["email"]
+                    .showFilterInput && (
                     <div className="d-flex justify-content-center align-items-center gap-1">
                       <input
                         type="text"
                         name="email"
                         placeholder="Search Email"
                         value={
-                          allSearchAndSortFieldForEmsUser["email"].searchValue
+                          emsUserRequestBeanWithPaginationAndSortAndSearch[
+                            "email"
+                          ].searchValue
                         }
                         onChange={(e) =>
                           onChangeHandleSearchFieldStateByFieldName(e)
@@ -579,8 +618,9 @@ const DisplayEmsUserAdvanced = () => {
                       }
                     >
                       <span>
-                        {allSearchAndSortFieldForEmsUser["dateOfBirth"]
-                          .showFilterInput ? (
+                        {emsUserRequestBeanWithPaginationAndSortAndSearch[
+                          "dateOfBirth"
+                        ].showFilterInput ? (
                           <TbFilterFilled size={20} />
                         ) : (
                           <TbFilter size={20} />
@@ -593,32 +633,38 @@ const DisplayEmsUserAdvanced = () => {
                       }
                       className={`${styles.cursorPointer}`}
                     >
-                      {!allSearchAndSortFieldForEmsUser["dateOfBirth"]
-                        .showAscendingSort &&
-                        !allSearchAndSortFieldForEmsUser["dateOfBirth"]
-                          .showDescendingSort && <LiaSortSolid size={20} />}
-                      {allSearchAndSortFieldForEmsUser["dateOfBirth"]
-                        .showAscendingSort &&
-                        !allSearchAndSortFieldForEmsUser["dateOfBirth"]
-                          .showDescendingSort && <TiArrowSortedUp size={20} />}
-                      {!allSearchAndSortFieldForEmsUser["dateOfBirth"]
-                        .showAscendingSort &&
-                        allSearchAndSortFieldForEmsUser["dateOfBirth"]
-                          .showDescendingSort && (
-                          <TiArrowSortedDown size={20} />
-                        )}
+                      {!emsUserRequestBeanWithPaginationAndSortAndSearch[
+                        "dateOfBirth"
+                      ].showAscendingSort &&
+                        !emsUserRequestBeanWithPaginationAndSortAndSearch[
+                          "dateOfBirth"
+                        ].showDescendingSort && <LiaSortSolid size={20} />}
+                      {emsUserRequestBeanWithPaginationAndSortAndSearch[
+                        "dateOfBirth"
+                      ].showAscendingSort &&
+                        !emsUserRequestBeanWithPaginationAndSortAndSearch[
+                          "dateOfBirth"
+                        ].showDescendingSort && <TiArrowSortedUp size={20} />}
+                      {!emsUserRequestBeanWithPaginationAndSortAndSearch[
+                        "dateOfBirth"
+                      ].showAscendingSort &&
+                        emsUserRequestBeanWithPaginationAndSortAndSearch[
+                          "dateOfBirth"
+                        ].showDescendingSort && <TiArrowSortedDown size={20} />}
                     </div>
                   </div>
-                  {allSearchAndSortFieldForEmsUser["dateOfBirth"]
-                    .showFilterInput && (
+                  {emsUserRequestBeanWithPaginationAndSortAndSearch[
+                    "dateOfBirth"
+                  ].showFilterInput && (
                     <div className="d-flex justify-content-center align-items-center gap-1">
                       <input
                         type="text"
                         name="dateOfBirth"
                         placeholder="Search Date Of Birth [yyyy-MM-dd]"
                         value={
-                          allSearchAndSortFieldForEmsUser["dateOfBirth"]
-                            .searchValue
+                          emsUserRequestBeanWithPaginationAndSortAndSearch[
+                            "dateOfBirth"
+                          ].searchValue
                         }
                         onChange={(e) =>
                           onChangeHandleSearchFieldStateByFieldName(e)
@@ -649,8 +695,9 @@ const DisplayEmsUserAdvanced = () => {
                       }
                     >
                       <span>
-                        {allSearchAndSortFieldForEmsUser["dateOfJoin"]
-                          .showFilterInput ? (
+                        {emsUserRequestBeanWithPaginationAndSortAndSearch[
+                          "dateOfJoin"
+                        ].showFilterInput ? (
                           <TbFilterFilled size={20} />
                         ) : (
                           <TbFilter size={20} />
@@ -663,32 +710,38 @@ const DisplayEmsUserAdvanced = () => {
                       }
                       className={`${styles.cursorPointer}`}
                     >
-                      {!allSearchAndSortFieldForEmsUser["dateOfJoin"]
-                        .showAscendingSort &&
-                        !allSearchAndSortFieldForEmsUser["dateOfJoin"]
-                          .showDescendingSort && <LiaSortSolid size={20} />}
-                      {allSearchAndSortFieldForEmsUser["dateOfJoin"]
-                        .showAscendingSort &&
-                        !allSearchAndSortFieldForEmsUser["dateOfJoin"]
-                          .showDescendingSort && <TiArrowSortedUp size={20} />}
-                      {!allSearchAndSortFieldForEmsUser["dateOfJoin"]
-                        .showAscendingSort &&
-                        allSearchAndSortFieldForEmsUser["dateOfJoin"]
-                          .showDescendingSort && (
-                          <TiArrowSortedDown size={20} />
-                        )}
+                      {!emsUserRequestBeanWithPaginationAndSortAndSearch[
+                        "dateOfJoin"
+                      ].showAscendingSort &&
+                        !emsUserRequestBeanWithPaginationAndSortAndSearch[
+                          "dateOfJoin"
+                        ].showDescendingSort && <LiaSortSolid size={20} />}
+                      {emsUserRequestBeanWithPaginationAndSortAndSearch[
+                        "dateOfJoin"
+                      ].showAscendingSort &&
+                        !emsUserRequestBeanWithPaginationAndSortAndSearch[
+                          "dateOfJoin"
+                        ].showDescendingSort && <TiArrowSortedUp size={20} />}
+                      {!emsUserRequestBeanWithPaginationAndSortAndSearch[
+                        "dateOfJoin"
+                      ].showAscendingSort &&
+                        emsUserRequestBeanWithPaginationAndSortAndSearch[
+                          "dateOfJoin"
+                        ].showDescendingSort && <TiArrowSortedDown size={20} />}
                     </div>
                   </div>
-                  {allSearchAndSortFieldForEmsUser["dateOfJoin"]
-                    .showFilterInput && (
+                  {emsUserRequestBeanWithPaginationAndSortAndSearch[
+                    "dateOfJoin"
+                  ].showFilterInput && (
                     <div className="d-flex justify-content-center align-items-center gap-1">
                       <input
                         type="text"
                         name="dateOfJoin"
                         placeholder="Search Date Of Join [yyyy-MM-dd]"
                         value={
-                          allSearchAndSortFieldForEmsUser["dateOfJoin"]
-                            .searchValue
+                          emsUserRequestBeanWithPaginationAndSortAndSearch[
+                            "dateOfJoin"
+                          ].searchValue
                         }
                         onChange={(e) =>
                           onChangeHandleSearchFieldStateByFieldName(e)
@@ -717,8 +770,9 @@ const DisplayEmsUserAdvanced = () => {
                       }
                     >
                       <span>
-                        {allSearchAndSortFieldForEmsUser["salary"]
-                          .showFilterInput ? (
+                        {emsUserRequestBeanWithPaginationAndSortAndSearch[
+                          "salary"
+                        ].showFilterInput ? (
                           <TbFilterFilled size={20} />
                         ) : (
                           <TbFilter size={20} />
@@ -731,23 +785,27 @@ const DisplayEmsUserAdvanced = () => {
                       }
                       className={`${styles.cursorPointer}`}
                     >
-                      {!allSearchAndSortFieldForEmsUser["salary"]
-                        .showAscendingSort &&
-                        !allSearchAndSortFieldForEmsUser["salary"]
-                          .showDescendingSort && <LiaSortSolid size={20} />}
-                      {allSearchAndSortFieldForEmsUser["salary"]
-                        .showAscendingSort &&
-                        !allSearchAndSortFieldForEmsUser["salary"]
-                          .showDescendingSort && <TiArrowSortedUp size={20} />}
-                      {!allSearchAndSortFieldForEmsUser["salary"]
-                        .showAscendingSort &&
-                        allSearchAndSortFieldForEmsUser["salary"]
-                          .showDescendingSort && (
-                          <TiArrowSortedDown size={20} />
-                        )}
+                      {!emsUserRequestBeanWithPaginationAndSortAndSearch[
+                        "salary"
+                      ].showAscendingSort &&
+                        !emsUserRequestBeanWithPaginationAndSortAndSearch[
+                          "salary"
+                        ].showDescendingSort && <LiaSortSolid size={20} />}
+                      {emsUserRequestBeanWithPaginationAndSortAndSearch[
+                        "salary"
+                      ].showAscendingSort &&
+                        !emsUserRequestBeanWithPaginationAndSortAndSearch[
+                          "salary"
+                        ].showDescendingSort && <TiArrowSortedUp size={20} />}
+                      {!emsUserRequestBeanWithPaginationAndSortAndSearch[
+                        "salary"
+                      ].showAscendingSort &&
+                        emsUserRequestBeanWithPaginationAndSortAndSearch[
+                          "salary"
+                        ].showDescendingSort && <TiArrowSortedDown size={20} />}
                     </div>
                   </div>
-                  {allSearchAndSortFieldForEmsUser["salary"]
+                  {emsUserRequestBeanWithPaginationAndSortAndSearch["salary"]
                     .showFilterInput && (
                     <div className="d-flex justify-content-center align-items-center gap-1">
                       <input
@@ -755,7 +813,9 @@ const DisplayEmsUserAdvanced = () => {
                         name="salary"
                         placeholder="Search Salary"
                         value={
-                          allSearchAndSortFieldForEmsUser["salary"].searchValue
+                          emsUserRequestBeanWithPaginationAndSortAndSearch[
+                            "salary"
+                          ].searchValue
                         }
                         onChange={(e) =>
                           onChangeHandleSearchFieldStateByFieldName(e)
@@ -786,8 +846,9 @@ const DisplayEmsUserAdvanced = () => {
                       }
                     >
                       <span>
-                        {allSearchAndSortFieldForEmsUser["hikePercentage"]
-                          .showFilterInput ? (
+                        {emsUserRequestBeanWithPaginationAndSortAndSearch[
+                          "hikePercentage"
+                        ].showFilterInput ? (
                           <TbFilterFilled size={20} />
                         ) : (
                           <TbFilter size={20} />
@@ -800,32 +861,38 @@ const DisplayEmsUserAdvanced = () => {
                       }
                       className={`${styles.cursorPointer}`}
                     >
-                      {!allSearchAndSortFieldForEmsUser["hikePercentage"]
-                        .showAscendingSort &&
-                        !allSearchAndSortFieldForEmsUser["hikePercentage"]
-                          .showDescendingSort && <LiaSortSolid size={20} />}
-                      {allSearchAndSortFieldForEmsUser["hikePercentage"]
-                        .showAscendingSort &&
-                        !allSearchAndSortFieldForEmsUser["hikePercentage"]
-                          .showDescendingSort && <TiArrowSortedUp size={20} />}
-                      {!allSearchAndSortFieldForEmsUser["hikePercentage"]
-                        .showAscendingSort &&
-                        allSearchAndSortFieldForEmsUser["hikePercentage"]
-                          .showDescendingSort && (
-                          <TiArrowSortedDown size={20} />
-                        )}
+                      {!emsUserRequestBeanWithPaginationAndSortAndSearch[
+                        "hikePercentage"
+                      ].showAscendingSort &&
+                        !emsUserRequestBeanWithPaginationAndSortAndSearch[
+                          "hikePercentage"
+                        ].showDescendingSort && <LiaSortSolid size={20} />}
+                      {emsUserRequestBeanWithPaginationAndSortAndSearch[
+                        "hikePercentage"
+                      ].showAscendingSort &&
+                        !emsUserRequestBeanWithPaginationAndSortAndSearch[
+                          "hikePercentage"
+                        ].showDescendingSort && <TiArrowSortedUp size={20} />}
+                      {!emsUserRequestBeanWithPaginationAndSortAndSearch[
+                        "hikePercentage"
+                      ].showAscendingSort &&
+                        emsUserRequestBeanWithPaginationAndSortAndSearch[
+                          "hikePercentage"
+                        ].showDescendingSort && <TiArrowSortedDown size={20} />}
                     </div>
                   </div>
-                  {allSearchAndSortFieldForEmsUser["hikePercentage"]
-                    .showFilterInput && (
+                  {emsUserRequestBeanWithPaginationAndSortAndSearch[
+                    "hikePercentage"
+                  ].showFilterInput && (
                     <div className="d-flex justify-content-center align-items-center gap-1">
                       <input
                         type="number"
                         name="hikePercentage"
                         placeholder="Search Hike Percentage"
                         value={
-                          allSearchAndSortFieldForEmsUser["hikePercentage"]
-                            .searchValue
+                          emsUserRequestBeanWithPaginationAndSortAndSearch[
+                            "hikePercentage"
+                          ].searchValue
                         }
                         onChange={(e) =>
                           onChangeHandleSearchFieldStateByFieldName(e)
@@ -854,8 +921,9 @@ const DisplayEmsUserAdvanced = () => {
                       }
                     >
                       <span>
-                        {allSearchAndSortFieldForEmsUser["zipCode"]
-                          .showFilterInput ? (
+                        {emsUserRequestBeanWithPaginationAndSortAndSearch[
+                          "zipCode"
+                        ].showFilterInput ? (
                           <TbFilterFilled size={20} />
                         ) : (
                           <TbFilter size={20} />
@@ -868,23 +936,27 @@ const DisplayEmsUserAdvanced = () => {
                       }
                       className={`${styles.cursorPointer}`}
                     >
-                      {!allSearchAndSortFieldForEmsUser["zipCode"]
-                        .showAscendingSort &&
-                        !allSearchAndSortFieldForEmsUser["zipCode"]
-                          .showDescendingSort && <LiaSortSolid size={20} />}
-                      {allSearchAndSortFieldForEmsUser["zipCode"]
-                        .showAscendingSort &&
-                        !allSearchAndSortFieldForEmsUser["zipCode"]
-                          .showDescendingSort && <TiArrowSortedUp size={20} />}
-                      {!allSearchAndSortFieldForEmsUser["zipCode"]
-                        .showAscendingSort &&
-                        allSearchAndSortFieldForEmsUser["zipCode"]
-                          .showDescendingSort && (
-                          <TiArrowSortedDown size={20} />
-                        )}
+                      {!emsUserRequestBeanWithPaginationAndSortAndSearch[
+                        "zipCode"
+                      ].showAscendingSort &&
+                        !emsUserRequestBeanWithPaginationAndSortAndSearch[
+                          "zipCode"
+                        ].showDescendingSort && <LiaSortSolid size={20} />}
+                      {emsUserRequestBeanWithPaginationAndSortAndSearch[
+                        "zipCode"
+                      ].showAscendingSort &&
+                        !emsUserRequestBeanWithPaginationAndSortAndSearch[
+                          "zipCode"
+                        ].showDescendingSort && <TiArrowSortedUp size={20} />}
+                      {!emsUserRequestBeanWithPaginationAndSortAndSearch[
+                        "zipCode"
+                      ].showAscendingSort &&
+                        emsUserRequestBeanWithPaginationAndSortAndSearch[
+                          "zipCode"
+                        ].showDescendingSort && <TiArrowSortedDown size={20} />}
                     </div>
                   </div>
-                  {allSearchAndSortFieldForEmsUser["zipCode"]
+                  {emsUserRequestBeanWithPaginationAndSortAndSearch["zipCode"]
                     .showFilterInput && (
                     <div className="d-flex justify-content-center align-items-center gap-1">
                       <input
@@ -892,7 +964,9 @@ const DisplayEmsUserAdvanced = () => {
                         name="zipCode"
                         placeholder="Search Zip Code"
                         value={
-                          allSearchAndSortFieldForEmsUser["zipCode"].searchValue
+                          emsUserRequestBeanWithPaginationAndSortAndSearch[
+                            "zipCode"
+                          ].searchValue
                         }
                         onChange={(e) =>
                           onChangeHandleSearchFieldStateByFieldName(e)
@@ -923,46 +997,28 @@ const DisplayEmsUserAdvanced = () => {
                       }
                     >
                       <span>
-                        {allSearchAndSortFieldForEmsUser["mobileNumber"]
-                          .showFilterInput ? (
+                        {emsUserRequestBeanWithPaginationAndSortAndSearch[
+                          "mobileNumber"
+                        ].showFilterInput ? (
                           <TbFilterFilled size={20} />
                         ) : (
                           <TbFilter size={20} />
                         )}
                       </span>
                     </div>
-                    <div
-                      onClick={() =>
-                        onClickHandleToggleSortFlagByFieldName("mobileNumber")
-                      }
-                      className={`${styles.cursorPointer}`}
-                    >
-                      {!allSearchAndSortFieldForEmsUser["mobileNumber"]
-                        .showAscendingSort &&
-                        !allSearchAndSortFieldForEmsUser["mobileNumber"]
-                          .showDescendingSort && <LiaSortSolid size={20} />}
-                      {allSearchAndSortFieldForEmsUser["mobileNumber"]
-                        .showAscendingSort &&
-                        !allSearchAndSortFieldForEmsUser["mobileNumber"]
-                          .showDescendingSort && <TiArrowSortedUp size={20} />}
-                      {!allSearchAndSortFieldForEmsUser["mobileNumber"]
-                        .showAscendingSort &&
-                        allSearchAndSortFieldForEmsUser["mobileNumber"]
-                          .showDescendingSort && (
-                          <TiArrowSortedDown size={20} />
-                        )}
-                    </div>
                   </div>
-                  {allSearchAndSortFieldForEmsUser["mobileNumber"]
-                    .showFilterInput && (
+                  {emsUserRequestBeanWithPaginationAndSortAndSearch[
+                    "mobileNumber"
+                  ].showFilterInput && (
                     <div className="d-flex justify-content-center align-items-center gap-1">
                       <input
                         type="text"
                         name="mobileNumber"
                         placeholder="Search Mobile Number"
                         value={
-                          allSearchAndSortFieldForEmsUser["mobileNumber"]
-                            .searchValue
+                          emsUserRequestBeanWithPaginationAndSortAndSearch[
+                            "mobileNumber"
+                          ].searchValue
                         }
                         onChange={(e) =>
                           onChangeHandleSearchFieldStateByFieldName(e)

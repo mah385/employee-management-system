@@ -57,21 +57,31 @@ export const handleRequestToGetAllEmsUser = async () => {
 
 export const handleRequestToGetAllEmsUserWithPaginationAndSortAndSearch =
   async (
-    allSearchAndSortFieldForEmsUserWithPagination = {
-      emsAppPaginationMetadataAndSortMetadataBean: {
-        emsAppPaginationMetadataBean: {
-          pageNumber: 1,
-          pageSize: 15,
-          totalNoOfPage: null,
-        },
-      },
+    emsAppPaginationMetadataBean = {
+      pageNumber: 1,
+      pageSize: 15,
     },
+    emsAppSortMetadataBeanList,
+    emsUserRequestBeanWithSearch,
   ) => {
+    const emsUserRequestBeanWithPaginationAndSortAndSearch = {
+      emsAppPaginationMetadataAndSortMetadataBean: {
+        emsAppPaginationMetadataBean: emsAppPaginationMetadataBean,
+        emsAppSortMetadataBeanList: emsAppSortMetadataBeanList,
+      },
+      ...emsUserRequestBeanWithSearch,
+    };
+
+    console.log(
+      "emsUserRequestBeanWithPaginationAndSortAndSearch" +
+        JSON.stringify(emsUserRequestBeanWithPaginationAndSortAndSearch),
+    );
+
     try {
       return handleSuccessResponseUtil(
         false,
         await EmsUserApiRequestService.requestToGetAllEmsUserWithPaginationAndSortAndSearch(
-          allSearchAndSortFieldForEmsUserWithPagination,
+          emsUserRequestBeanWithPaginationAndSortAndSearch,
         ),
       );
     } catch (error) {

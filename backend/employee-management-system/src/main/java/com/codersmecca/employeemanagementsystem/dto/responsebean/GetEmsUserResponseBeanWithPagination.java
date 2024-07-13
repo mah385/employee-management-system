@@ -11,9 +11,10 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class GetEmsUserResponseBeanWithPaginationAndSearchAndSort {
+public class GetEmsUserResponseBeanWithPagination {
 
-    private List<GetEmsUserResponseBean> getEmsUserResponseBeanList = new ArrayList<>();
     private EmsAppPaginationMetadataBean emsAppPaginationMetadataBean;
+    private List<GetEmsUserResponseBean> getEmsUserResponseBeanList = new ArrayList<>();
+
 
 }
