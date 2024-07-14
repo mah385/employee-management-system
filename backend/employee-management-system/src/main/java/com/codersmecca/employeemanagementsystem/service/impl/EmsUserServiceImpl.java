@@ -200,7 +200,8 @@ public class EmsUserServiceImpl implements EmsUserService {
                         EmsAppPaginationMetadataBean.builder()
                                 .pageNumber(getEmsUserRepositoryBean.getPageable().getPageNumber() + 1)
                                 .pageSize(getEmsUserRepositoryBean.getPageable().getPageSize())
-                                .totalNoOfPage(getEmsUserRepositoryBean.getTotalPages())
+                                .totalPages(getEmsUserRepositoryBean.getTotalPages())
+                                .totalElements(getEmsUserRepositoryBean.getTotalElements())
                                 .build()
                 )
                 .getEmsUserResponseBeanList(

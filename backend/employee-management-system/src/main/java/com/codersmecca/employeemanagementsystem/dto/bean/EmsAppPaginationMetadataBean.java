@@ -16,6 +16,8 @@ public class EmsAppPaginationMetadataBean {
     @NotNull(message = "Please provide page size")
     private Integer pageSize;
 
-    private Integer totalNoOfPage;
+    private Integer totalPages;
+
+    private Long totalElements;
 
 }

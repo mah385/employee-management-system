@@ -57,10 +57,7 @@ export const handleRequestToGetAllEmsUser = async () => {
 
 export const handleRequestToGetAllEmsUserWithPaginationAndSortAndSearch =
   async (
-    emsAppPaginationMetadataBean = {
-      pageNumber: 1,
-      pageSize: 15,
-    },
+    emsAppPaginationMetadataBean,
     emsAppSortMetadataBeanList,
     emsUserRequestBeanWithSearch,
   ) => {
@@ -71,11 +68,6 @@ export const handleRequestToGetAllEmsUserWithPaginationAndSortAndSearch =
       },
       ...emsUserRequestBeanWithSearch,
     };
-
-    console.log(
-      "emsUserRequestBeanWithPaginationAndSortAndSearch" +
-        JSON.stringify(emsUserRequestBeanWithPaginationAndSortAndSearch),
-    );
 
     try {
       return handleSuccessResponseUtil(
