@@ -15,9 +15,7 @@ import * as EmsUserApiRequestHandlerService from "../../../axios/ems-user/ems-us
 /*--------------------------------------------------------------------------------------------------------------------*/
 
 const EmsAppFileUploadUtil = (props) => {
-  console.log(
-    "EmsAppFileUploadUtil (props.fileInputAccept): " + props.fileInputAccept,
-  );
+  console.log("EmsAppFileUploadUtil (props.fileInputAccept): " + props.fileInputAccept);
   const navigate = useNavigate();
   const [uploadFileInfo, setUploadFileInfo] = useState({
     selectedFile: undefined,
@@ -37,9 +35,7 @@ const EmsAppFileUploadUtil = (props) => {
     toggleFileUploadingStatus();
 
     const callApiToImportEmsUserData = async () => {
-      return await EmsUserApiRequestHandlerService.handleRequestToImportEmsUserData(
-        uploadFileInfo.selectedFile,
-      );
+      return await EmsUserApiRequestHandlerService.handleRequestToImportEmsUserData(uploadFileInfo.selectedFile);
     };
     callApiToImportEmsUserData()
       .then((successOrErrorResponseData) => {
@@ -89,10 +85,7 @@ const EmsAppFileUploadUtil = (props) => {
       </div>
       {uploadFileInfo.isFileSelected && (
         <div className="d-flex gap-5 mb-2">
-          <button
-            type="submit"
-            className="border border-2 border-success btn btn-outline-success"
-          >
+          <button type="submit" className="border border-2 border-success btn btn-outline-success">
             Upload File
           </button>
           <button

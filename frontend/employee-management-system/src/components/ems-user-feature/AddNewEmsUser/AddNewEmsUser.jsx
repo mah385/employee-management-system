@@ -44,11 +44,7 @@ const AddNewEmsUser = () => {
       return await EmsUserApiRequestHandlerService.handleRequestToGetDropdownOfEmsUserGender();
     };
     callApiToGetDropdownOfEmsUserGender().then((successOrErrorResponseData) => {
-      if (
-        isMounted &&
-        successOrErrorResponseData.statusCode === 200 &&
-        successOrErrorResponseData.payload != null
-      ) {
+      if (isMounted && successOrErrorResponseData.statusCode === 200 && successOrErrorResponseData.payload != null) {
         setDropdownOfEmsUserGender(successOrErrorResponseData.payload);
       }
     });
@@ -64,9 +60,7 @@ const AddNewEmsUser = () => {
     e.preventDefault();
 
     const callApiToAddNewEmsUser = async () => {
-      return await EmsUserApiRequestHandlerService.handleRequestToAddNewEmsUser(
-        newEmsUser,
-      );
+      return await EmsUserApiRequestHandlerService.handleRequestToAddNewEmsUser(newEmsUser);
     };
     callApiToAddNewEmsUser().then((successOrErrorResponseData) => {
       if (successOrErrorResponseData.statusCode === 201) {
@@ -177,10 +171,7 @@ const AddNewEmsUser = () => {
         />
       </div>
       <div className="d-flex gap-5 mt-4">
-        <button
-          type="submit"
-          className="border border-2 border-primary btn btn-outline-primary"
-        >
+        <button type="submit" className="border border-2 border-primary btn btn-outline-primary">
           Save
         </button>
         <button

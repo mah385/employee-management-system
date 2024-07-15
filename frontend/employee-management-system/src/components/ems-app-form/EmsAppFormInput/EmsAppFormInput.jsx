@@ -7,9 +7,7 @@ import { getInputLabelWidthBasedOnType } from "../ems-app-form-input-label-width
 /*-------------------------------------------------------------------*/
 
 function EmsAppFormInput(props) {
-  const inputLabelWidthBasedOnType = getInputLabelWidthBasedOnType(
-    props.inputlabelwidthtype,
-  );
+  const inputLabelWidthBasedOnType = getInputLabelWidthBasedOnType(props.inputlabelwidthtype);
   return (
     <div
       className={`${stylesMyForm.inputContainer} input-group input-group-sm m-1`}

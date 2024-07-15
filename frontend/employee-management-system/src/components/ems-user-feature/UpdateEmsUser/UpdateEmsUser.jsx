@@ -20,9 +20,7 @@ const UpdateEmsUser = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const [updatedEmsUser, setUpdatedEmsUser] = useState(
-    location.state.emsUserToBeUpdated,
-  );
+  const [updatedEmsUser, setUpdatedEmsUser] = useState(location.state.emsUserToBeUpdated);
   const [dropdownOfEmsUserGender, setDropdownOfEmsUserGender] = useState([]);
 
   useEffect(() => {
@@ -32,11 +30,7 @@ const UpdateEmsUser = () => {
       return await EmsUserApiRequestHandlerService.handleRequestToGetDropdownOfEmsUserGender();
     };
     callApiToGetDropdownOfEmsUserGender().then((successOrErrorResponseData) => {
-      if (
-        isMounted &&
-        successOrErrorResponseData.statusCode === 200 &&
-        successOrErrorResponseData.payload != null
-      ) {
+      if (isMounted && successOrErrorResponseData.statusCode === 200 && successOrErrorResponseData.payload != null) {
         setDropdownOfEmsUserGender(successOrErrorResponseData.payload);
       }
     });
@@ -52,9 +46,7 @@ const UpdateEmsUser = () => {
     e.preventDefault();
 
     const callApiToUpdateEmsUser = async () => {
-      return await EmsUserApiRequestHandlerService.handleRequestToUpdateEmsUser(
-        updatedEmsUser,
-      );
+      return await EmsUserApiRequestHandlerService.handleRequestToUpdateEmsUser(updatedEmsUser);
     };
     callApiToUpdateEmsUser().then((successOrErrorResponseData) => {
       if (successOrErrorResponseData.statusCode === 200) {
@@ -166,10 +158,7 @@ const UpdateEmsUser = () => {
         />
       </div>
       <div className="d-flex gap-5 mt-4">
-        <button
-          type="submit"
-          className="border border-2 border-primary btn btn-outline-primary"
-        >
+        <button type="submit" className="border border-2 border-primary btn btn-outline-primary">
           Update
         </button>
         <button

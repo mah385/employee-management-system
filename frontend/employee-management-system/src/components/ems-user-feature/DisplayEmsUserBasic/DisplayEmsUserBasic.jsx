@@ -17,9 +17,7 @@ import * as EmsUserApiRequestHandlerService from "../../../axios/ems-user/ems-us
 
 let renderCountOfDisplayEmsUserBasic = 0;
 const DisplayEmsUserBasic = () => {
-  console.log(
-    "renderCountOfDisplayEmsUserBasic: " + renderCountOfDisplayEmsUserBasic++,
-  );
+  console.log("renderCountOfDisplayEmsUserBasic: " + renderCountOfDisplayEmsUserBasic++);
 
   const navigate = useNavigate();
 
@@ -35,11 +33,7 @@ const DisplayEmsUserBasic = () => {
     };
     callApiToGetAllEmsUser()
       .then((successOrErrorResponseData) => {
-        if (
-          isMounted &&
-          successOrErrorResponseData.statusCode === 200 &&
-          successOrErrorResponseData.payload != null
-        ) {
+        if (isMounted && successOrErrorResponseData.statusCode === 200 && successOrErrorResponseData.payload != null) {
           setEmsUserList(successOrErrorResponseData.payload);
         }
       })
@@ -63,9 +57,7 @@ const DisplayEmsUserBasic = () => {
   const onClickHandleDeleteEmsUserById = async (id) => {
     setIsLoading(true);
     const callApiToDeleteEmsUserById = async () => {
-      return await EmsUserApiRequestHandlerService.handleRequestToDeleteEmsUserById(
-        id,
-      );
+      return await EmsUserApiRequestHandlerService.handleRequestToDeleteEmsUserById(id);
     };
     callApiToDeleteEmsUserById()
       .then((successOrErrorResponseData) => {
@@ -85,12 +77,8 @@ const DisplayEmsUserBasic = () => {
       ) : emsUserList.length === 0 ? (
         <EmsAppDataNotFound />
       ) : (
-        <table
-          className={`${styles.displayEmsUserTable} w-100 table-bordered text-center`}
-        >
-          <thead
-            className={`${styles.displayEmsUserTableHeading} sticky-top bg-warning`}
-          >
+        <table className={`${styles.displayEmsUserTable} w-100 table-bordered text-center`}>
+          <thead className={`${styles.displayEmsUserTableHeading} sticky-top bg-warning`}>
             <tr>
               <th>Sl. No.</th>
               <th>First Name</th>
@@ -119,9 +107,7 @@ const DisplayEmsUserBasic = () => {
                   <td>{emsUser.dateOfBirth}</td>
                   <td>{emsUser.dateOfJoin}</td>
                   <td className="text-end">{emsUser.salary.toFixed(2)}</td>
-                  <td className="text-end">
-                    {emsUser.hikePercentage.toFixed(2)}
-                  </td>
+                  <td className="text-end">{emsUser.hikePercentage.toFixed(2)}</td>
                   <td>{emsUser.zipCode}</td>
                   <td>{emsUser.mobileNumber}</td>
                   <td

@@ -3,16 +3,7 @@ import { ThreeCircles } from "react-loader-spinner";
 /*-------------------------------------------------------------------*/
 
 const getRandomColor = () => {
-  const colorList = [
-    "blue",
-    "green",
-    "orange",
-    "purple",
-    "brown",
-    "black",
-    "gold",
-    "teal",
-  ];
+  const colorList = ["blue", "green", "orange", "purple", "brown", "black", "gold", "teal"];
   return colorList[Math.floor(Math.random() * colorList.length)];
 };
 
