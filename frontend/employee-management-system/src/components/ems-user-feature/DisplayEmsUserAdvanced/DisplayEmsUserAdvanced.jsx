@@ -24,12 +24,13 @@ let renderCountOfDisplayEmsUserAdvanced = 0;
 const DisplayEmsUserAdvanced = () => {
   console.log("renderCountOfDisplayEmsUserAdvanced: " + renderCountOfDisplayEmsUserAdvanced++);
 
-  /*================================================================================================================================================*/
+  /*========================================================================================================================================================================================*/
 
   const [emsUserRequestBeanWithPaginationAndSortAndSearch, setEmsUserRequestBeanWithPaginationAndSortAndSearch] =
     useState({
       firstName: {
         sortOrderTimestamp: "",
+        sortOrderSequenceNo: "",
         showAscendingSort: false,
         showDescendingSort: false,
         showFilterInput: false,
@@ -37,6 +38,7 @@ const DisplayEmsUserAdvanced = () => {
       },
       lastName: {
         sortOrderTimestamp: "",
+        sortOrderSequenceNo: "",
         showAscendingSort: false,
         showDescendingSort: false,
         showFilterInput: false,
@@ -44,6 +46,7 @@ const DisplayEmsUserAdvanced = () => {
       },
       emsUserGender: {
         sortOrderTimestamp: "",
+        sortOrderSequenceNo: "",
         showAscendingSort: false,
         showDescendingSort: false,
         showFilterInput: false,
@@ -51,6 +54,7 @@ const DisplayEmsUserAdvanced = () => {
       },
       email: {
         sortOrderTimestamp: "",
+        sortOrderSequenceNo: "",
         showAscendingSort: false,
         showDescendingSort: false,
         showFilterInput: false,
@@ -58,6 +62,7 @@ const DisplayEmsUserAdvanced = () => {
       },
       dateOfBirth: {
         sortOrderTimestamp: "",
+        sortOrderSequenceNo: "",
         showAscendingSort: false,
         showDescendingSort: false,
         showFilterInput: false,
@@ -65,6 +70,7 @@ const DisplayEmsUserAdvanced = () => {
       },
       dateOfJoin: {
         sortOrderTimestamp: "",
+        sortOrderSequenceNo: "",
         showAscendingSort: false,
         showDescendingSort: false,
         showFilterInput: false,
@@ -72,6 +78,7 @@ const DisplayEmsUserAdvanced = () => {
       },
       salary: {
         sortOrderTimestamp: "",
+        sortOrderSequenceNo: "",
         showAscendingSort: false,
         showDescendingSort: false,
         showFilterInput: false,
@@ -79,6 +86,7 @@ const DisplayEmsUserAdvanced = () => {
       },
       hikePercentage: {
         sortOrderTimestamp: "",
+        sortOrderSequenceNo: "",
         showAscendingSort: false,
         showDescendingSort: false,
         showFilterInput: false,
@@ -86,6 +94,7 @@ const DisplayEmsUserAdvanced = () => {
       },
       zipCode: {
         sortOrderTimestamp: "",
+        sortOrderSequenceNo: "",
         showAscendingSort: false,
         showDescendingSort: false,
         showFilterInput: false,
@@ -109,7 +118,7 @@ const DisplayEmsUserAdvanced = () => {
     getEmsUserResponseBeanList: [],
   });
 
-  /*================================================================================================================================================*/
+  /*========================================================================================================================================================================================*/
 
   useEffect(() => {
     let isMounted = true;
@@ -154,7 +163,7 @@ const DisplayEmsUserAdvanced = () => {
     };
   }, []);
 
-  /*================================================================================================================================================*/
+  /*========================================================================================================================================================================================*/
 
   const onClickHandleToggleShowFilterInputByFieldName = (fieldName) => {
     const tempEmsUserRequestBeanWithPaginationAndSortAndSearch = {
@@ -169,7 +178,7 @@ const DisplayEmsUserAdvanced = () => {
     }));
   };
 
-  /*================================================================================================================================================*/
+  /*========================================================================================================================================================================================*/
 
   const onClickHandleToggleSortFlagByFieldName = (fieldName) => {
     const tempEmsUserRequestBeanWithPaginationAndSortAndSearch = {
@@ -180,6 +189,7 @@ const DisplayEmsUserAdvanced = () => {
       tempEmsUserRequestBeanWithPaginationAndSortAndSearch.showDescendingSort
     ) {
       tempEmsUserRequestBeanWithPaginationAndSortAndSearch.sortOrderTimestamp = "";
+      tempEmsUserRequestBeanWithPaginationAndSortAndSearch.sortOrderSequenceNo = "";
       tempEmsUserRequestBeanWithPaginationAndSortAndSearch.showAscendingSort = false;
       tempEmsUserRequestBeanWithPaginationAndSortAndSearch.showDescendingSort = false;
     } else {
@@ -194,7 +204,7 @@ const DisplayEmsUserAdvanced = () => {
     }));
   };
 
-  /*================================================================================================================================================*/
+  /*========================================================================================================================================================================================*/
 
   const onChangeHandleSearchFieldStateByFieldName = (e) => {
     const tempEmsUserRequestBeanWithPaginationAndSortAndSearch = {
@@ -207,7 +217,7 @@ const DisplayEmsUserAdvanced = () => {
     }));
   };
 
-  /*================================================================================================================================================*/
+  /*========================================================================================================================================================================================*/
 
   const onChangePagination = async (pageNumber, pageSize) => {
     const tempEmsAppPaginationMetadataBean = emsUserResponseBeanWithPagination.emsAppPaginationMetadataBean;
@@ -219,6 +229,12 @@ const DisplayEmsUserAdvanced = () => {
       emsAppPaginationMetadataBean: tempEmsAppPaginationMetadataBean,
     }));
 
+    onClickHandleSearch();
+  };
+
+  /*========================================================================================================================================================================================*/
+
+  const onClickHandleSearch = async () => {
     const emsAppSortMetadataBeanList = [];
     const emsUserRequestBeanWithSearch = Object.create({});
 
@@ -253,37 +269,30 @@ const DisplayEmsUserAdvanced = () => {
       });
   };
 
-  /*================================================================================================================================================*/
+  /*========================================================================================================================================================================================*/
 
   const prepareEmsAppSortMetadataBeanListAndEmsUserRequestBeanWithSearch = (
     emsAppSortMetadataBeanList,
     emsUserRequestBeanWithSearch,
   ) => {
     Object.keys(emsUserRequestBeanWithPaginationAndSortAndSearch).forEach((item) => {
-      const fieldNameCapitalized = item.charAt(0).toUpperCase().concat(item.slice(1));
-
       if (emsUserRequestBeanWithPaginationAndSortAndSearch[item].searchValue !== "") {
+        const fieldNameCapitalized = item.charAt(0).toUpperCase().concat(item.slice(1));
         emsUserRequestBeanWithSearch[`searchValueFor${fieldNameCapitalized}`] =
           emsUserRequestBeanWithPaginationAndSortAndSearch[item].searchValue;
       }
 
-      const emsAppSortMetadataBean = Object.create({});
-
       if (
-        emsUserRequestBeanWithPaginationAndSortAndSearch[item].showAscendingSort &&
-        !emsUserRequestBeanWithPaginationAndSortAndSearch[item].showDescendingSort
+        (emsUserRequestBeanWithPaginationAndSortAndSearch[item].showAscendingSort &&
+          !emsUserRequestBeanWithPaginationAndSortAndSearch[item].showDescendingSort) ||
+        (!emsUserRequestBeanWithPaginationAndSortAndSearch[item].showAscendingSort &&
+          emsUserRequestBeanWithPaginationAndSortAndSearch[item].showDescendingSort)
       ) {
+        const emsAppSortMetadataBean = Object.create({});
         emsAppSortMetadataBean.sortDirectionInputFieldName = item;
-        emsAppSortMetadataBean.sortDirection = ASC_STRING;
-        emsAppSortMetadataBean.sortOrderTimestamp =
-          emsUserRequestBeanWithPaginationAndSortAndSearch[item].sortOrderTimestamp;
-        emsAppSortMetadataBeanList.push(emsAppSortMetadataBean);
-      } else if (
-        !emsUserRequestBeanWithPaginationAndSortAndSearch[item].showAscendingSort &&
-        emsUserRequestBeanWithPaginationAndSortAndSearch[item].showDescendingSort
-      ) {
-        emsAppSortMetadataBean.sortDirectionInputFieldName = item;
-        emsAppSortMetadataBean.sortDirection = DESC_STRING;
+        emsAppSortMetadataBean.sortDirection = emsUserRequestBeanWithPaginationAndSortAndSearch[item].showAscendingSort
+          ? ASC_STRING
+          : DESC_STRING;
         emsAppSortMetadataBean.sortOrderTimestamp =
           emsUserRequestBeanWithPaginationAndSortAndSearch[item].sortOrderTimestamp;
         emsAppSortMetadataBeanList.push(emsAppSortMetadataBean);
@@ -291,7 +300,7 @@ const DisplayEmsUserAdvanced = () => {
     });
   };
 
-  /*================================================================================================================================================*/
+  /*========================================================================================================================================================================================*/
 
   return (
     <>
@@ -827,13 +836,9 @@ const DisplayEmsUserAdvanced = () => {
                 </tbody>
               </table>
               <div className="d-flex justify-content-center align-items-center">
-                {/*<button
-                type="button"
-                className="btn btn-outline-success"
-                onClick={onClickHandleSearch}
-              >
-                Search
-              </button>*/}
+                <button type="button" className="btn btn-outline-success" onClick={onClickHandleSearch}>
+                  Search
+                </button>
                 <Pagination
                   current={emsUserResponseBeanWithPagination.emsAppPaginationMetadataBean.pageNumber}
                   defaultCurrent={1}
