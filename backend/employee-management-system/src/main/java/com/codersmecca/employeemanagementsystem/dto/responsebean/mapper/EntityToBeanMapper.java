@@ -1,6 +1,6 @@
 package com.codersmecca.employeemanagementsystem.dto.responsebean.mapper;
 
-import com.codersmecca.employeemanagementsystem.dto.repositorybean.GetEmsUserRepositoryBean;
+import com.codersmecca.employeemanagementsystem.dto.projectionbean.GetEmsUserProjectionBean;
 import com.codersmecca.employeemanagementsystem.dto.responsebean.GetEmsUserResponseBean;
 import com.codersmecca.employeemanagementsystem.entity.EmsUserEntity;
 
@@ -32,7 +32,7 @@ public interface EntityToBeanMapper {
         return getEmsUserResponseBeanList;
     };
 
-    Function<List<GetEmsUserRepositoryBean>, List<GetEmsUserResponseBean>> mapMultipleEntityToBeanByUsingGetEmsUserRepositoryBeanAndReturnGetEmsUserResponseBean = (getEmsUserRepositoryBeanList) -> {
+    Function<List<GetEmsUserProjectionBean>, List<GetEmsUserResponseBean>> mapMultipleEntityToBeanByUsingGetEmsUserProjectionBeanAndReturnGetEmsUserResponseBean = (getEmsUserRepositoryBeanList) -> {
         List<GetEmsUserResponseBean> getEmsUserResponseBeanList = new ArrayList<>();
         getEmsUserRepositoryBeanList.forEach(emsUserEntitySaved -> {
             getEmsUserResponseBeanList.add(

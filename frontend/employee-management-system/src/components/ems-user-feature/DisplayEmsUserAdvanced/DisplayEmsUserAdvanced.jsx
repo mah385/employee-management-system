@@ -30,7 +30,6 @@ const DisplayEmsUserAdvanced = () => {
     useState({
       firstName: {
         sortOrderTimestamp: "",
-        sortOrderSequenceNo: "",
         showAscendingSort: false,
         showDescendingSort: false,
         showFilterInput: false,
@@ -38,7 +37,6 @@ const DisplayEmsUserAdvanced = () => {
       },
       lastName: {
         sortOrderTimestamp: "",
-        sortOrderSequenceNo: "",
         showAscendingSort: false,
         showDescendingSort: false,
         showFilterInput: false,
@@ -46,7 +44,6 @@ const DisplayEmsUserAdvanced = () => {
       },
       emsUserGender: {
         sortOrderTimestamp: "",
-        sortOrderSequenceNo: "",
         showAscendingSort: false,
         showDescendingSort: false,
         showFilterInput: false,
@@ -54,7 +51,6 @@ const DisplayEmsUserAdvanced = () => {
       },
       email: {
         sortOrderTimestamp: "",
-        sortOrderSequenceNo: "",
         showAscendingSort: false,
         showDescendingSort: false,
         showFilterInput: false,
@@ -62,7 +58,6 @@ const DisplayEmsUserAdvanced = () => {
       },
       dateOfBirth: {
         sortOrderTimestamp: "",
-        sortOrderSequenceNo: "",
         showAscendingSort: false,
         showDescendingSort: false,
         showFilterInput: false,
@@ -70,7 +65,6 @@ const DisplayEmsUserAdvanced = () => {
       },
       dateOfJoin: {
         sortOrderTimestamp: "",
-        sortOrderSequenceNo: "",
         showAscendingSort: false,
         showDescendingSort: false,
         showFilterInput: false,
@@ -78,7 +72,6 @@ const DisplayEmsUserAdvanced = () => {
       },
       salary: {
         sortOrderTimestamp: "",
-        sortOrderSequenceNo: "",
         showAscendingSort: false,
         showDescendingSort: false,
         showFilterInput: false,
@@ -86,7 +79,6 @@ const DisplayEmsUserAdvanced = () => {
       },
       hikePercentage: {
         sortOrderTimestamp: "",
-        sortOrderSequenceNo: "",
         showAscendingSort: false,
         showDescendingSort: false,
         showFilterInput: false,
@@ -94,7 +86,6 @@ const DisplayEmsUserAdvanced = () => {
       },
       zipCode: {
         sortOrderTimestamp: "",
-        sortOrderSequenceNo: "",
         showAscendingSort: false,
         showDescendingSort: false,
         showFilterInput: false,
@@ -189,11 +180,12 @@ const DisplayEmsUserAdvanced = () => {
       tempEmsUserRequestBeanWithPaginationAndSortAndSearch.showDescendingSort
     ) {
       tempEmsUserRequestBeanWithPaginationAndSortAndSearch.sortOrderTimestamp = "";
-      tempEmsUserRequestBeanWithPaginationAndSortAndSearch.sortOrderSequenceNo = "";
       tempEmsUserRequestBeanWithPaginationAndSortAndSearch.showAscendingSort = false;
       tempEmsUserRequestBeanWithPaginationAndSortAndSearch.showDescendingSort = false;
     } else {
-      tempEmsUserRequestBeanWithPaginationAndSortAndSearch.sortOrderTimestamp = new Date();
+      if (tempEmsUserRequestBeanWithPaginationAndSortAndSearch.sortOrderTimestamp === "") {
+        tempEmsUserRequestBeanWithPaginationAndSortAndSearch.sortOrderTimestamp = new Date();
+      }
       const tempShowAscendingSortFlag = tempEmsUserRequestBeanWithPaginationAndSortAndSearch.showAscendingSort;
       tempEmsUserRequestBeanWithPaginationAndSortAndSearch.showAscendingSort = !tempShowAscendingSortFlag;
       tempEmsUserRequestBeanWithPaginationAndSortAndSearch.showDescendingSort = tempShowAscendingSortFlag;
@@ -232,6 +224,27 @@ const DisplayEmsUserAdvanced = () => {
     onClickHandleSearch();
   };
 
+  /*========================================================================================================================================================================================*/
+  const onClickHandleShowSortOrderSequence = () => {
+    let sortOrderSequenceList = [];
+    Object.keys(emsUserRequestBeanWithPaginationAndSortAndSearch).forEach((item) => {
+      if (
+        emsUserRequestBeanWithPaginationAndSortAndSearch[item].sortOrderTimestamp &&
+        emsUserRequestBeanWithPaginationAndSortAndSearch[item].sortOrderTimestamp !== ""
+      ) {
+        const sortOrderSequence = Object.create({});
+        sortOrderSequence.fieldName = item;
+        sortOrderSequence.sortOrderTimestamp =
+          emsUserRequestBeanWithPaginationAndSortAndSearch[item].sortOrderTimestamp;
+        sortOrderSequenceList.push(sortOrderSequence);
+      }
+    });
+    sortOrderSequenceList.sort((a, b) => a.sortOrderTimestamp - b.sortOrderTimestamp);
+    if (sortOrderSequenceList.length === 0) {
+      sortOrderSequenceList = [{ fieldName: "Empty Sort Selection!", sortOrderTimestamp: null }];
+    }
+    return sortOrderSequenceList;
+  };
   /*========================================================================================================================================================================================*/
 
   const onClickHandleSearch = async () => {
@@ -835,8 +848,8 @@ const DisplayEmsUserAdvanced = () => {
                   })}
                 </tbody>
               </table>
-              <div className="d-flex justify-content-center align-items-center">
-                <button type="button" className="btn btn-outline-success" onClick={onClickHandleSearch}>
+              <div className="d-flex justify-content-center align-items-center gap-2">
+                <button type="button" className="btn btn-sm btn-outline-success" onClick={onClickHandleSearch}>
                   Search
                 </button>
                 <Pagination
@@ -852,6 +865,24 @@ const DisplayEmsUserAdvanced = () => {
                   onChange={onChangePagination}
                   // onShowSizeChange={}
                 />
+                <div className="nav-item dropdown">
+                  <button
+                    type="button"
+                    className="btn btn-sm btn-outline-success dropdown-toggle"
+                    data-bs-toggle="dropdown"
+                  >
+                    Show Sort Order Sequence
+                  </button>
+                  <ol className="dropdown-menu">
+                    {onClickHandleShowSortOrderSequence().map((option, index) => {
+                      return (
+                        <li key={index} value={option.fieldName} className="dropdown-item">
+                          {option.fieldName}
+                        </li>
+                      );
+                    })}
+                  </ol>
+                </div>
               </div>
             </div>
           </div>

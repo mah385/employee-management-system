@@ -12,13 +12,13 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @MappedSuperclass
-public abstract class EmsAppBaseEntity {
+public abstract class EmsAppAuditable {
 
     @Column
     protected LocalDateTime createdTime;
 
     @Column
-    protected LocalDateTime updatedTime;
+    protected LocalDateTime lastUpdatedTime;
 
     @PrePersist
     public void onPrePersist() {
@@ -27,7 +27,7 @@ public abstract class EmsAppBaseEntity {
 
     @PreUpdate
     public void onPreUpdate() {
-        this.updatedTime = LocalDateTime.now();
+        this.lastUpdatedTime = LocalDateTime.now();
     }
-
+//    https://medium.com/thefreshwrites/jpa-auditing-spring-boot-spring-security-575c77867570
 }

@@ -1,4 +1,4 @@
-package com.codersmecca.employeemanagementsystem.dto.repositorybean;
+package com.codersmecca.employeemanagementsystem.dto.projectionbean;
 
 import com.codersmecca.employeemanagementsystem.enums.EmsUserGender;
 import lombok.Getter;
@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @NoArgsConstructor
-public class GetEmsUserRepositoryBean {
+public class GetEmsUserProjectionBean {
 
     private Long id;
     private String firstName;
@@ -25,7 +25,7 @@ public class GetEmsUserRepositoryBean {
     private Integer zipCode;
     private String mobileNumber;
 
-    public GetEmsUserRepositoryBean(Long id, String firstName, String lastName, EmsUserGender emsUserGender, String email, LocalDate dateOfBirth, LocalDate dateOfJoin, BigDecimal salary, BigDecimal hikePercentage, Integer zipCode, String mobileNumber) {
+    public GetEmsUserProjectionBean(Long id, String firstName, String lastName, EmsUserGender emsUserGender, String email, LocalDate dateOfBirth, LocalDate dateOfJoin, BigDecimal salary, BigDecimal hikePercentage, Integer zipCode, String mobileNumber) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;

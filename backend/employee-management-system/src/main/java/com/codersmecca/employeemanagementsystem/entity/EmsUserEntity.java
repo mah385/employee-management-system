@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Entity
 @Table(name = "tbl_ems_user")
-public class EmsUserEntity extends EmsAppBaseEntity {
+public class EmsUserEntity extends EmsAppAuditable {
 
     @Id
     @Column

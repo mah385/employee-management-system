@@ -1,6 +1,6 @@
 package com.codersmecca.employeemanagementsystem.repository;
 
-import com.codersmecca.employeemanagementsystem.dto.repositorybean.GetEmsUserRepositoryBean;
+import com.codersmecca.employeemanagementsystem.dto.projectionbean.GetEmsUserProjectionBean;
 import com.codersmecca.employeemanagementsystem.entity.EmsUserEntity;
 import com.codersmecca.employeemanagementsystem.enums.EmsUserGender;
 import jakarta.transaction.Transactional;
@@ -42,7 +42,7 @@ public interface EmsUserRepository extends JpaRepository<EmsUserEntity, Long> {
             @Param(value = "userId") Long userId
     );
 
-    @Query("SELECT NEW com.codersmecca.employeemanagementsystem.dto.repositorybean.GetEmsUserRepositoryBean(eue.emsUserId, eue.emsUserFirstName, eue.emsUserLastName, eue.emsUserGender, " +
+    @Query("SELECT NEW com.codersmecca.employeemanagementsystem.dto.projectionbean.GetEmsUserProjectionBean(eue.emsUserId, eue.emsUserFirstName, eue.emsUserLastName, eue.emsUserGender, " +
             "eue.emsUserEmail, eue.emsUserDateOfBirth, eue.emsUserDateOfJoin, eue.emsUserSalary, eue.emsUserHikePercentage, eue.emsUserZipCode, eue.emsUserMobileNumber) " +
             "FROM EmsUserEntity eue " +
             "WHERE ((:searchFirstName IS NULL) OR (:searchFirstName IS NOT NULL AND lower(eue.emsUserFirstName) LIKE lower(concat('%',:searchFirstName,'%')))) " +
@@ -55,7 +55,7 @@ public interface EmsUserRepository extends JpaRepository<EmsUserEntity, Long> {
             "AND ((:searchHikePercentage IS NULL) OR (:searchHikePercentage IS NOT NULL AND concat('',eue.emsUserHikePercentage) LIKE concat(:searchHikePercentage,'%'))) " +
             "AND ((:searchZipCode IS NULL) OR (:searchZipCode IS NOT NULL AND concat('',eue.emsUserZipCode) LIKE concat('%',:searchZipCode,'%'))) " +
             "AND ((:searchMobileNumber IS NULL) OR (:searchMobileNumber IS NOT NULL AND eue.emsUserMobileNumber LIKE concat('%',:searchMobileNumber,'%'))) ")
-    Page<GetEmsUserRepositoryBean> findAllEmsUserWithPaginationAndSearchAndSort(
+    Page<GetEmsUserProjectionBean> findAllEmsUserWithPaginationAndSearchAndSort(
             @Param(value = "searchFirstName") String searchFirstName,
             @Param(value = "searchLastName") String searchLastName,
             @Param(value = "searchEmsUserGender") EmsUserGender searchEmsUserGender,

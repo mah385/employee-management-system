@@ -2,7 +2,7 @@ package com.codersmecca.employeemanagementsystem.service.impl;
 
 import com.codersmecca.employeemanagementsystem.dto.bean.EmsAppPaginationMetadataBean;
 import com.codersmecca.employeemanagementsystem.dto.bean.EmsAppSortMetadataBean;
-import com.codersmecca.employeemanagementsystem.dto.repositorybean.GetEmsUserRepositoryBean;
+import com.codersmecca.employeemanagementsystem.dto.projectionbean.GetEmsUserProjectionBean;
 import com.codersmecca.employeemanagementsystem.dto.requestbean.AddNewEmsUserRequestBean;
 import com.codersmecca.employeemanagementsystem.dto.requestbean.EmsUserRequestBeanWithPaginationAndSortAndSearch;
 import com.codersmecca.employeemanagementsystem.dto.requestbean.UpdateEmsUserRequestBean;
@@ -177,7 +177,7 @@ public class EmsUserServiceImpl implements EmsUserService {
 
         System.out.println("sortOrderList: " + sortOrderList);
 
-        Page<GetEmsUserRepositoryBean> getEmsUserRepositoryBean = this.emsUserRepository.findAllEmsUserWithPaginationAndSearchAndSort(
+        Page<GetEmsUserProjectionBean> getEmsUserProjectionBean = this.emsUserRepository.findAllEmsUserWithPaginationAndSearchAndSort(
                 emsUserRequestBeanWithPaginationAndSortAndSearch.getSearchValueForFirstName(),
                 emsUserRequestBeanWithPaginationAndSortAndSearch.getSearchValueForLastName(),
                 emsUserRequestBeanWithPaginationAndSortAndSearch.getSearchValueForEmsUserGender(),
@@ -198,14 +198,14 @@ public class EmsUserServiceImpl implements EmsUserService {
         GetEmsUserResponseBeanWithPagination getEmsUserResponseBeanWithPagination = GetEmsUserResponseBeanWithPagination.builder()
                 .emsAppPaginationMetadataBean(
                         EmsAppPaginationMetadataBean.builder()
-                                .pageNumber(getEmsUserRepositoryBean.getPageable().getPageNumber() + 1)
-                                .pageSize(getEmsUserRepositoryBean.getPageable().getPageSize())
-                                .totalPages(getEmsUserRepositoryBean.getTotalPages())
-                                .totalElements(getEmsUserRepositoryBean.getTotalElements())
+                                .pageNumber(getEmsUserProjectionBean.getPageable().getPageNumber() + 1)
+                                .pageSize(getEmsUserProjectionBean.getPageable().getPageSize())
+                                .totalPages(getEmsUserProjectionBean.getTotalPages())
+                                .totalElements(getEmsUserProjectionBean.getTotalElements())
                                 .build()
                 )
                 .getEmsUserResponseBeanList(
-                        EntityToBeanMapper.mapMultipleEntityToBeanByUsingGetEmsUserRepositoryBeanAndReturnGetEmsUserResponseBean.apply(getEmsUserRepositoryBean.getContent())
+                        EntityToBeanMapper.mapMultipleEntityToBeanByUsingGetEmsUserProjectionBeanAndReturnGetEmsUserResponseBean.apply(getEmsUserProjectionBean.getContent())
                 )
                 .build();
 
