@@ -21,7 +21,7 @@ public interface EmsUserService {
 
     ResponseEntity<EmsAppResponseEntity> getAllEmsUserWithPaginationAndSortAndSearch(EmsUserRequestBeanWithPaginationAndSortAndSearch emsUserRequestBeanWithPaginationAndSortAndSearch);
 
-    ResponseEntity<EmsAppResponseEntity> deleteEmsUserById(Long id);
+    ResponseEntity<EmsAppResponseEntity> deleteEmsUserById(String id);
 
     ResponseEntity<EmsAppResponseEntity> getDropdownOfEmsUserGender();
 

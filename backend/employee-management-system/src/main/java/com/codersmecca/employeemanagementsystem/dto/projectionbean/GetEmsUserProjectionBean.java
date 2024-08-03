@@ -13,7 +13,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class GetEmsUserProjectionBean {
 
-    private Long id;
+    private String id;
     private String firstName;
     private String lastName;
     private EmsUserGender emsUserGender;
@@ -25,7 +25,7 @@ public class GetEmsUserProjectionBean {
     private Integer zipCode;
     private String mobileNumber;
 
-    public GetEmsUserProjectionBean(Long id, String firstName, String lastName, EmsUserGender emsUserGender, String email, LocalDate dateOfBirth, LocalDate dateOfJoin, BigDecimal salary, BigDecimal hikePercentage, Integer zipCode, String mobileNumber) {
+    public GetEmsUserProjectionBean(String id, String firstName, String lastName, EmsUserGender emsUserGender, String email, LocalDate dateOfBirth, LocalDate dateOfJoin, BigDecimal salary, BigDecimal hikePercentage, Integer zipCode, String mobileNumber) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;

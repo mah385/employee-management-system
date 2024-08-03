@@ -13,7 +13,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class GetEmsUserResponseBean {
 
-    private Long id;
+    private String id;
     private String firstName;
     private String lastName;
     private EmsUserGender emsUserGender;

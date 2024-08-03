@@ -13,11 +13,11 @@ spring:
     #defer-datasource-initialization: true
     hibernate:
       ddl-auto: update
-    #show-sql: true
+    show-sql: true
     properties:
       hibernate:
         jdbc:
-          batch_size: 1000
+          batch_size: 10000
         #format_sql: true
   sql:
     init:
@@ -28,3 +28,11 @@ spring:
       enabled: true
       max-file-size: 1GB
       max-request-size: 1GB
+logging:
+  level:
+    org:
+      hibernate:
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE

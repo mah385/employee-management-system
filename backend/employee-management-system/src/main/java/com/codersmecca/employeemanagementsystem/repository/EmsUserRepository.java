@@ -17,7 +17,7 @@ import java.time.LocalDate;
 import java.util.Optional;
 
 @Repository
-public interface EmsUserRepository extends JpaRepository<EmsUserEntity, Long> {
+public interface EmsUserRepository extends JpaRepository<EmsUserEntity, String> {
 
     Optional<EmsUserEntity> findByEmsUserEmail(String email);
 

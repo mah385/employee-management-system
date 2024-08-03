@@ -57,7 +57,7 @@ public class EmsUserController {
 
     @DeleteMapping(value = "/delete-ems-user-by-id", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<EmsAppResponseEntity> deleteEmsUserById(
-            @RequestParam(value = "id") Long id
+            @RequestParam(value = "id") String id
     ) {
         return this.emsUserService.deleteEmsUserById(id);
     }

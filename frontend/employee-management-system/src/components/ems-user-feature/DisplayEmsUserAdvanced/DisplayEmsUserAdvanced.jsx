@@ -92,6 +92,9 @@ const DisplayEmsUserAdvanced = () => {
         searchValue: "",
       },
       mobileNumber: {
+        sortOrderTimestamp: "",
+        showAscendingSort: false,
+        showDescendingSort: false,
         showFilterInput: false,
         searchValue: "",
       },
@@ -109,11 +112,22 @@ const DisplayEmsUserAdvanced = () => {
     getEmsUserResponseBeanList: [],
   });
 
+  const [dropdownOfEmsUserGender, setDropdownOfEmsUserGender] = useState([]);
+
   /*========================================================================================================================================================================================*/
 
   useEffect(() => {
     let isMounted = true;
     setIsLoading(true);
+
+    const callApiToGetDropdownOfEmsUserGender = async () => {
+      return await EmsUserApiRequestHandlerService.handleRequestToGetDropdownOfEmsUserGender();
+    };
+    callApiToGetDropdownOfEmsUserGender().then((successOrErrorResponseData) => {
+      if (isMounted && successOrErrorResponseData.statusCode === 200 && successOrErrorResponseData.payload != null) {
+        setDropdownOfEmsUserGender(successOrErrorResponseData.payload);
+      }
+    });
 
     const callApiToGetAllEmsUserWithPaginationAndSortAndSearch = async () => {
       return await EmsUserApiRequestHandlerService.handleRequestToGetAllEmsUserWithPaginationAndSortAndSearch(
@@ -151,6 +165,7 @@ const DisplayEmsUserAdvanced = () => {
         emsAppPaginationMetadataBean: {},
         getEmsUserResponseBeanList: [],
       }));
+      setDropdownOfEmsUserGender([]);
     };
   }, []);
 
@@ -221,10 +236,11 @@ const DisplayEmsUserAdvanced = () => {
       emsAppPaginationMetadataBean: tempEmsAppPaginationMetadataBean,
     }));
 
-    onClickHandleSearch();
+    await onClickHandleSearch();
   };
 
   /*========================================================================================================================================================================================*/
+
   const onClickHandleShowSortOrderSequence = () => {
     let sortOrderSequenceList = [];
     Object.keys(emsUserRequestBeanWithPaginationAndSortAndSearch).forEach((item) => {
@@ -245,6 +261,7 @@ const DisplayEmsUserAdvanced = () => {
     }
     return sortOrderSequenceList;
   };
+
   /*========================================================================================================================================================================================*/
 
   const onClickHandleSearch = async () => {
@@ -324,14 +341,14 @@ const DisplayEmsUserAdvanced = () => {
       ) : (
         <>
           <div className="h-100">
-            {Object.keys(emsUserRequestBeanWithPaginationAndSortAndSearch).map((item) => {
+            {/*{Object.keys(emsUserRequestBeanWithPaginationAndSortAndSearch).map((item) => {
               return (
                 <div key={item}>
                   {JSON.stringify(emsUserRequestBeanWithPaginationAndSortAndSearch[item]) + " --- " + item}
                 </div>
               );
             })}
-            <div>{JSON.stringify(emsUserResponseBeanWithPagination.emsAppPaginationMetadataBean)}</div>
+            <div>{JSON.stringify(emsUserResponseBeanWithPagination.emsAppPaginationMetadataBean)}</div>*/}
             <div className="d-flex flex-column justify-content-start align-items-center">
               <table className="w-100 table-bordered text-center">
                 <thead className={`${styles.displayEmsUserTableHeading} sticky-top bg-warning`}>
@@ -476,13 +493,21 @@ const DisplayEmsUserAdvanced = () => {
                       </div>
                       {emsUserRequestBeanWithPaginationAndSortAndSearch["emsUserGender"].showFilterInput && (
                         <div className="d-flex justify-content-center align-items-center gap-1">
-                          <input
-                            type="text"
+                          <select
+                            className="form-select-sm"
                             name="emsUserGender"
-                            placeholder="Search Gender"
                             value={emsUserRequestBeanWithPaginationAndSortAndSearch["emsUserGender"].searchValue}
                             onChange={(e) => onChangeHandleSearchFieldStateByFieldName(e)}
-                          />
+                          >
+                            <option value={null}>Please Select</option>
+                            {dropdownOfEmsUserGender.map((option, index) => {
+                              return (
+                                <option key={index} value={option.value}>
+                                  {option.label}
+                                </option>
+                              );
+                            })}
+                          </select>
                           <button
                             type="button"
                             onClick={() => onClickHandleToggleShowFilterInputByFieldName("emsUserGender")}
@@ -848,23 +873,10 @@ const DisplayEmsUserAdvanced = () => {
                   })}
                 </tbody>
               </table>
-              <div className="d-flex justify-content-center align-items-center gap-2">
+              <div className="d-flex justify-content-center align-items-center gap-2 m-2">
                 <button type="button" className="btn btn-sm btn-outline-success" onClick={onClickHandleSearch}>
-                  Search
+                  Apply Filter or Sort
                 </button>
-                <Pagination
-                  current={emsUserResponseBeanWithPagination.emsAppPaginationMetadataBean.pageNumber}
-                  defaultCurrent={1}
-                  defaultPageSize={10}
-                  pageSize={emsUserResponseBeanWithPagination.emsAppPaginationMetadataBean.pageSize}
-                  pageSizeOptions={[10, 20, 30, 40, 50]}
-                  responsive={true}
-                  showQuickJumper
-                  size="small"
-                  total={emsUserResponseBeanWithPagination.emsAppPaginationMetadataBean.totalElements}
-                  onChange={onChangePagination}
-                  // onShowSizeChange={}
-                />
                 <div className="nav-item dropdown">
                   <button
                     type="button"
@@ -883,6 +895,19 @@ const DisplayEmsUserAdvanced = () => {
                     })}
                   </ol>
                 </div>
+                <Pagination
+                  current={emsUserResponseBeanWithPagination.emsAppPaginationMetadataBean.pageNumber}
+                  defaultCurrent={1}
+                  defaultPageSize={10}
+                  pageSize={emsUserResponseBeanWithPagination.emsAppPaginationMetadataBean.pageSize}
+                  pageSizeOptions={[10, 20, 30, 40, 50]}
+                  responsive={true}
+                  showQuickJumper
+                  size="small"
+                  total={emsUserResponseBeanWithPagination.emsAppPaginationMetadataBean.totalElements}
+                  onChange={onChangePagination}
+                  // onShowSizeChange={}
+                />
               </div>
             </div>
           </div>

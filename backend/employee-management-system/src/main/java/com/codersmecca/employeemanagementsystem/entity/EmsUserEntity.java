@@ -14,13 +14,12 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Entity
 @Table(name = "tbl_ems_user")
-public class EmsUserEntity extends EmsAppAuditable {
+public class EmsUserEntity {
 
     @Id
-    @Column
-    @GeneratedValue(generator = "tbl_ems_user_seq_gen", strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(name = "tbl_ems_user_seq_gen", sequenceName = "tbl_ems_user_seq")
-    private Long emsUserId;
+    @Column(columnDefinition = "CHAR(36)", nullable = false)
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String emsUserId;
 
     @Column
     private String emsUserFirstName;
