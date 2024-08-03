@@ -45,27 +45,27 @@ public interface EmsUserRepository extends JpaRepository<EmsUserEntity, String> 
     @Query("SELECT NEW com.codersmecca.employeemanagementsystem.dto.projectionbean.GetEmsUserProjectionBean(eue.emsUserId, eue.emsUserFirstName, eue.emsUserLastName, eue.emsUserGender, " +
             "eue.emsUserEmail, eue.emsUserDateOfBirth, eue.emsUserDateOfJoin, eue.emsUserSalary, eue.emsUserHikePercentage, eue.emsUserZipCode, eue.emsUserMobileNumber) " +
             "FROM EmsUserEntity eue " +
-            "WHERE ((:searchFirstName IS NULL) OR (:searchFirstName IS NOT NULL AND lower(eue.emsUserFirstName) LIKE lower(concat('%',:searchFirstName,'%')))) " +
-            "AND ((:searchLastName IS NULL) OR (:searchLastName IS NOT NULL AND lower(eue.emsUserLastName) LIKE lower(concat('%',:searchLastName,'%')))) " +
-            "AND ((:searchEmsUserGender IS NULL) OR (:searchEmsUserGender IS NOT NULL AND eue.emsUserGender=:searchEmsUserGender)) " +
-            "AND ((:searchEmail IS NULL) OR (:searchEmail IS NOT NULL AND lower(eue.emsUserEmail) LIKE lower(concat('%',:searchEmail,'%')))) " +
-            "AND ((:searchDateOfBirth IS NULL) OR (:searchDateOfBirth IS NOT NULL AND concat('', eue.emsUserDateOfBirth) LIKE concat(:searchDateOfBirth,'%'))) " +
-            "AND ((:searchDateOfJoin IS NULL) OR (:searchDateOfJoin IS NOT NULL AND concat('', eue.emsUserDateOfJoin) LIKE concat(:searchDateOfJoin,'%'))) " +
-            "AND ((:searchSalary IS NULL) OR (:searchSalary IS NOT NULL AND concat('',eue.emsUserSalary) LIKE concat(:searchSalary,'%'))) " +
-            "AND ((:searchHikePercentage IS NULL) OR (:searchHikePercentage IS NOT NULL AND concat('',eue.emsUserHikePercentage) LIKE concat(:searchHikePercentage,'%'))) " +
-            "AND ((:searchZipCode IS NULL) OR (:searchZipCode IS NOT NULL AND concat('',eue.emsUserZipCode) LIKE concat('%',:searchZipCode,'%'))) " +
-            "AND ((:searchMobileNumber IS NULL) OR (:searchMobileNumber IS NOT NULL AND eue.emsUserMobileNumber LIKE concat('%',:searchMobileNumber,'%'))) ")
+            "WHERE ((:searchValueForFirstName IS NULL)      OR (:searchValueForFirstName IS NOT NULL        AND lower(eue.emsUserFirstName)             LIKE lower(concat('%', :searchValueForFirstName, '%')))) " +
+            "AND ((:searchValueForLastName IS NULL)         OR (:searchValueForLastName IS NOT NULL         AND lower(eue.emsUserLastName)              LIKE lower(concat('%', :searchValueForLastName, '%')))) " +
+            "AND ((:searchValueForEmsUserGender IS NULL)    OR (:searchValueForEmsUserGender IS NOT NULL    AND eue.emsUserGender=:searchValueForEmsUserGender)) " +
+            "AND ((:searchValueForEmail IS NULL)            OR (:searchValueForEmail IS NOT NULL            AND lower(eue.emsUserEmail)                 LIKE lower(concat('%', :searchValueForEmail, '%')))) " +
+            "AND ((:searchValueForDateOfBirth IS NULL)      OR (:searchValueForDateOfBirth IS NOT NULL      AND concat('', eue.emsUserDateOfBirth)      LIKE concat(:searchValueForDateOfBirth, '%'))) " +
+            "AND ((:searchValueForDateOfJoin IS NULL)       OR (:searchValueForDateOfJoin IS NOT NULL       AND concat('', eue.emsUserDateOfJoin)       LIKE concat(:searchValueForDateOfJoin, '%'))) " +
+            "AND ((:searchValueForSalary IS NULL)           OR (:searchValueForSalary IS NOT NULL           AND concat('', eue.emsUserSalary)           LIKE concat(:searchValueForSalary, '%'))) " +
+            "AND ((:searchValueForHikePercentage IS NULL)   OR (:searchValueForHikePercentage IS NOT NULL   AND concat('', eue.emsUserHikePercentage)   LIKE concat(:searchValueForHikePercentage, '%'))) " +
+            "AND ((:searchValueForZipCode IS NULL)          OR (:searchValueForZipCode IS NOT NULL          AND concat('', eue.emsUserZipCode)          LIKE concat('%', :searchValueForZipCode, '%'))) " +
+            "AND ((:searchValueForMobileNumber IS NULL)     OR (:searchValueForMobileNumber IS NOT NULL     AND eue.emsUserMobileNumber                 LIKE concat('%', :searchValueForMobileNumber, '%'))) ")
     Page<GetEmsUserProjectionBean> findAllEmsUserWithPaginationAndSearchAndSort(
-            @Param(value = "searchFirstName") String searchFirstName,
-            @Param(value = "searchLastName") String searchLastName,
-            @Param(value = "searchEmsUserGender") EmsUserGender searchEmsUserGender,
-            @Param(value = "searchEmail") String searchEmail,
-            @Param(value = "searchDateOfBirth") String searchDateOfBirth,
-            @Param(value = "searchDateOfJoin") String searchDateOfJoin,
-            @Param(value = "searchSalary") BigDecimal searchSalary,
-            @Param(value = "searchHikePercentage") BigDecimal searchHikePercentage,
-            @Param(value = "searchZipCode") Integer searchZipCode,
-            @Param(value = "searchMobileNumber") String searchMobileNumber,
+            @Param(value = "searchValueForFirstName") String searchValueForFirstName,
+            @Param(value = "searchValueForLastName") String searchValueForLastName,
+            @Param(value = "searchValueForEmsUserGender") EmsUserGender searchValueForEmsUserGender,
+            @Param(value = "searchValueForEmail") String searchValueForEmail,
+            @Param(value = "searchValueForDateOfBirth") String searchValueForDateOfBirth,
+            @Param(value = "searchValueForDateOfJoin") String searchValueForDateOfJoin,
+            @Param(value = "searchValueForSalary") BigDecimal searchValueForSalary,
+            @Param(value = "searchValueForHikePercentage") BigDecimal searchValueForHikePercentage,
+            @Param(value = "searchValueForZipCode") Integer searchValueForZipCode,
+            @Param(value = "searchValueForMobileNumber") String searchValueForMobileNumber,
             Pageable pageable
     );
 

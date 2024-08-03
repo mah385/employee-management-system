@@ -11,7 +11,6 @@ import { TbFilter, TbFilterFilled } from "react-icons/tb";
 import { TiArrowSortedDown, TiArrowSortedUp } from "react-icons/ti";
 /*--------------------------------------------------------------------------------------------------------------------*/
 import EmsAppLoader from "../../util/EmsAppLoader/EmsAppLoader.jsx";
-import EmsAppDataNotFound from "../../util/EmsAppDataNotFound/EmsAppDataNotFound.jsx";
 /*--------------------------------------------------------------------------------------------------------------------*/
 import { ASC_STRING, DESC_STRING } from "../../../constants/emp-app-constant.js";
 // import * as EmpAppPathConstant from "../../../constants/emp-app-path-constant.js";
@@ -336,8 +335,6 @@ const DisplayEmsUserAdvanced = () => {
     <>
       {isLoading ? (
         <EmsAppLoader />
-      ) : emsUserResponseBeanWithPagination.getEmsUserResponseBeanList.length === 0 ? (
-        <EmsAppDataNotFound />
       ) : (
         <>
           <div className="h-100">
@@ -873,9 +870,10 @@ const DisplayEmsUserAdvanced = () => {
                   })}
                 </tbody>
               </table>
+              {emsUserResponseBeanWithPagination.getEmsUserResponseBeanList.length === 0 && <h1>Data Not Found.</h1>}
               <div className="d-flex justify-content-center align-items-center gap-2 m-2">
                 <button type="button" className="btn btn-sm btn-outline-success" onClick={onClickHandleSearch}>
-                  Apply Filter or Sort
+                  Reload or (Apply Filter/Sort)
                 </button>
                 <div className="nav-item dropdown">
                   <button
